@@ -1,0 +1,41 @@
+<nz-layout>
+  <nz-sider nzCollapsible nzWidth="200px" [nzCollapsed]="isCollapsed">
+    <div class="logo" [routerLink]="['/']" routerLinkActive="router-link-active">HOME</div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-submenu nzTitle="EA" nzIcon="desktop">
+        <ul>
+          <li nz-menu-item>All</li>
+          <li nz-menu-item>Popular</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Indicator" nzIcon="pie-chart">
+        <ul>
+          <li nz-menu-item>All</li>
+          <li nz-menu-item>Popular</li>
+        </ul>
+      </li>
+      <li nz-menu-item [routerLink]="['/about']">
+        <span nz-icon nzType="info"></span>
+        <span>About</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <nz-page-header class="site-page-header" (nzBack)="onBack()" nzBackIcon nzTitle="Title"
+        nzSubtitle="This is a subtitle"></nz-page-header>
+    </nz-header>
+    <nz-content>
+      <nz-breadcrumb nzSeparator=">">
+        <nz-breadcrumb-item>
+          <span nz-icon nzType="home" [routerLink]="['/']"></span>
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item *ngFor="let item of breadcrumb">{{item.name}}</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <div class="inner-content">
+        <ng-content></ng-content>
+      </div>
+    </nz-content>
+    <nz-footer>StromIT ©2023 Implement By Angular</nz-footer>
+  </nz-layout>
+</nz-layout>

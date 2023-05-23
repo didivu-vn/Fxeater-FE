@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomePage } from './home/home.page';
-import { AboutPage } from './about/about.page';
+
 import { ZorroModule } from './shared/lib';
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
+import { AboutPage, HomePage } from './page';
+import { MainLayoutComponent } from './layout';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -19,12 +22,13 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
   declarations: [
     AppComponent, 
     HomePage, 
-    AboutPage
+    AboutPage, MainLayoutComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    ZorroModule
+    ZorroModule,
+    BrowserAnimationsModule
   ],
   exports:[
     ZorroModule

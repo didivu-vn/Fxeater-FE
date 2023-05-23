@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { HomePage } from './home/home.page';
+import { HomePage } from './page/home/home.page';
+
 
 const routes: Routes = [
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    loadChildren: () => import('./about/about-page-routing.module').then(mod => mod.AboutRoutingModule)
+    loadChildren: () => import('./page/about/about-page-routing.module').then(mod => mod.AboutRoutingModule)
   },
 ];
 
