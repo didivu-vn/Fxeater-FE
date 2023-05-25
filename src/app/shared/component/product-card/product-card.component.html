@@ -1,0 +1,35 @@
+<div class="container">
+    <nz-tabset [nzTabPosition]="'top'" [nzAnimated]="true" [nzSize]="'small'">
+        <nz-tab [nzTitle]="'Overview'">
+            <nz-card [nzCover]="coverTemplate" [nzActions]="[actionEllipsis, actionEdit, actionSetting]">
+                <nz-card-meta [nzTitle]="productData.name" [nzDescription]="productData.email"
+                    [nzAvatar]="avatarTemplate"></nz-card-meta>
+            </nz-card>
+        </nz-tab>
+        <nz-tab [nzTitle]="'Detail'">
+            <p>Detail</p>
+            <nz-rate [ngModel]="productData.id +0.5" nzAllowHalf></nz-rate>
+        </nz-tab>
+    </nz-tabset>
+</div>
+
+<ng-template #avatarTemplate>
+    <nz-avatar [nzText]="productData.name.slice(0,1)"></nz-avatar>
+</ng-template>
+
+<ng-template #coverTemplate style="width:300px;">
+    <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+</ng-template>
+
+<ng-template #actionEllipsis>
+    <span nz-icon nzType="eye" nzTheme="outline" [routerLink]="['/product/'+productData.id]"
+        routerLinkActive="router-link-active"></span>
+</ng-template>
+
+<ng-template #actionEdit>
+    <span nz-icon nzType="heart" nzTheme="outline"></span>
+</ng-template>
+
+<ng-template #actionSetting>
+    <span nz-icon nzType="shopping-cart" nzTheme="outline"></span>
+</ng-template>
