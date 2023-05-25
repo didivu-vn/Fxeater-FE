@@ -14,6 +14,8 @@ import { AboutPage, HomePage } from './page';
 import { MainLayoutComponent } from './layout';
 import { ProductDetailPage } from './page/product/product-detail/product-detail.page';
 import { ProductIndexPage } from './page/product/product-index/product-index.page';
+import { ProductCardComponent } from './shared/component';
+import { FormsModule } from '@angular/forms';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -27,10 +29,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AboutPage, 
     MainLayoutComponent, 
     ProductIndexPage, 
-    ProductDetailPage],
+    ProductDetailPage, ProductCardComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
+    FormsModule,
     ZorroModule,
     BrowserAnimationsModule
   ],

@@ -15,6 +15,12 @@ const dummyData = [
     email: 'ejeyd@example.com',
     address: 'London, UK',
   },
+  {
+    id: 3,
+    name: 'Bao Nguyen',
+    email: 'baonh@example.com',
+    address: 'HCM, VN',
+  },
 ]
 
 @Component({
