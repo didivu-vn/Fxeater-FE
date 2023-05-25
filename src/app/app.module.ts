@@ -12,6 +12,8 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { AboutPage, HomePage } from './page';
 import { MainLayoutComponent } from './layout';
+import { ProductDetailPage } from './page/product/product-detail/product-detail.page';
+import { ProductIndexPage } from './page/product/product-index/product-index.page';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -22,8 +24,10 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
   declarations: [
     AppComponent, 
     HomePage, 
-    AboutPage, MainLayoutComponent
-  ],
+    AboutPage, 
+    MainLayoutComponent, 
+    ProductIndexPage, 
+    ProductDetailPage],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,

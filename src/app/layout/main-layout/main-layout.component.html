@@ -2,6 +2,10 @@
   <nz-sider nzCollapsible nzWidth="200px" [nzCollapsed]="isCollapsed">
     <div class="logo" [routerLink]="['/']" routerLinkActive="router-link-active">HOME</div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item [routerLink]="['/product']">
+        <span nz-icon nzType="radar-chart" nzTheme="outline"></span>
+        <span>All Product</span>
+      </li>
       <li nz-submenu nzTitle="EA" nzIcon="desktop">
         <ul>
           <li nz-menu-item>All</li>
@@ -15,23 +19,31 @@
         </ul>
       </li>
       <li nz-menu-item [routerLink]="['/about']">
-        <span nz-icon nzType="info"></span>
-        <span>About</span>
+        <span nz-icon nzType="question-circle" nzTheme="outline"></span>
+        <span>About Us</span>
       </li>
     </ul>
   </nz-sider>
   <nz-layout>
-    <nz-header>
-      <nz-page-header class="site-page-header" (nzBack)="onBack()" nzBackIcon nzTitle="Title"
-        nzSubtitle="This is a subtitle"></nz-page-header>
+    <!-- header section -->
+    <nz-header *ngIf="(header$ | async) as header">
+      <nz-page-header class="site-page-header" nzTitle="{{header.title}}" nzSubtitle="{{header.subtitle}}">
+      </nz-page-header>
     </nz-header>
     <nz-content>
-      <nz-breadcrumb nzSeparator=">">
-        <nz-breadcrumb-item>
-          <span nz-icon nzType="home" [routerLink]="['/']"></span>
-        </nz-breadcrumb-item>
-        <nz-breadcrumb-item *ngFor="let item of breadcrumb">{{item.name}}</nz-breadcrumb-item>
-      </nz-breadcrumb>
+      <!-- breadcrumb section -->
+      <ng-container *ngIf="(breadcrumb$ | async) as breadcrumb">
+        <nz-breadcrumb nzSeparator=">">
+          <nz-breadcrumb-item>
+            <span nz-icon nzType="home" [routerLink]="['/']"></span>
+          </nz-breadcrumb-item>
+          <nz-breadcrumb-item *ngFor="let item of breadcrumb">
+            {{item.name}}
+          </nz-breadcrumb-item>
+        </nz-breadcrumb>
+      </ng-container>
+
+      <!-- main content section -->
       <div class="inner-content">
         <ng-content></ng-content>
       </div>

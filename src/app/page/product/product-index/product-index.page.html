@@ -1,0 +1,8 @@
+<p>product-index works!</p>
+<ng-container *ngIf="(productData$ | async) as items">
+    <div class="product__card" *ngFor="let item of items">
+        <p class="product__name">{{item.name}}</p>
+        <button nz-button nzType="primary" [routerLink]="['/product/'+item.id]"
+            routerLinkActive="router-link-active">Check</button>
+    </div>
+</ng-container>
