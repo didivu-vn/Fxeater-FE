@@ -6,6 +6,10 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzRateModule } from 'ng-zorro-antd/rate';
 
 const TARGET_COMPONENTS = [
     NzIconModule,
@@ -14,7 +18,11 @@ const TARGET_COMPONENTS = [
     NzBreadCrumbModule,
     NzLayoutModule,
     NzMenuModule,
-    NzPageHeaderModule
+    NzPageHeaderModule,
+    NzCardModule,
+    NzTabsModule,
+    NzAvatarModule,
+    NzRateModule
 ]
 
 @NgModule({
