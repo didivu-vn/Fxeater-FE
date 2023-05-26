@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LayoutService } from 'src/app/service/layout.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -7,18 +8,14 @@ import { Component } from '@angular/core';
 })
 export class MainLayoutComponent {
   isCollapsed = false;
-  breadcrumb = [
-    {
-      name: 'EA',
-      url: '/ea'
-    },
-    {
-      name: 'All',
-      url: '/ea/all'
-    }
-  ]
+  breadcrumb$ = this.layoutService.getBreadcrumbData()
+  header$ = this.layoutService.getHeaderData()
 
-  onBack() {
-    console.log('onBack');
+  constructor( 
+    private layoutService: LayoutService
+  ) {}    
+
+  onBack(in_data = '/') {
+    console.log('onBack to -- ', in_data);
   }
 }
