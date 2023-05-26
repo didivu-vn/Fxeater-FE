@@ -7,9 +7,10 @@ import { LayoutService } from 'src/app/service/layout.service';
   styleUrls: ['./main-layout.component.scss']
 })
 export class MainLayoutComponent {
-  isCollapsed = false;
+  isCollapsed = true;
   breadcrumb$ = this.layoutService.getBreadcrumbData()
   header$ = this.layoutService.getHeaderData()
+  isHandset$ = this.layoutService.getIsHandset()
 
   constructor( 
     private layoutService: LayoutService

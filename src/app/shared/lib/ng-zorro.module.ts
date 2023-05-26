@@ -10,6 +10,15 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzRateModule } from 'ng-zorro-antd/rate';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzBackTopModule } from 'ng-zorro-antd/back-top';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 
 const TARGET_COMPONENTS = [
     NzIconModule,
@@ -22,7 +31,16 @@ const TARGET_COMPONENTS = [
     NzCardModule,
     NzTabsModule,
     NzAvatarModule,
-    NzRateModule
+    NzRateModule,
+    NzDividerModule,
+    NzCarouselModule,
+    NzBackTopModule,
+    NzStatisticModule,
+    NzGridModule,
+    NzCollapseModule,
+    NzSpaceModule,
+    NzTagModule,
+    NzDescriptionsModule
 ]
 
 @NgModule({
