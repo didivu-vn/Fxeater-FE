@@ -1,1 +1,62 @@
-<p>product-detail works!</p>
+<div class="product__detail" *ngIf="(productId$ | async) as productId">
+    <div class="row">
+        <div class="col-12">
+            <nz-tag [nzColor]="'green'">UDSAUX</nz-tag>
+            <nz-tag [nzColor]="'green'">MT4</nz-tag>
+            <nz-tag [nzColor]="'green'">MT5</nz-tag>
+        </div>
+        <div class="col-12">
+            <h1 nz-typography>Product {{productId}}</h1>
+            <button nz-button nzType="primary">Purchase</button>
+            <button nz-button nzType="default" ngClass="ms-2">Save</button>
+        </div>
+    </div>
+    <nz-divider></nz-divider>
+
+    <div class="row">
+        <nz-descriptions nzSize="small" [nzColumn]="2">
+            <nz-descriptions-item nzTitle="Created" [nzSpan]="1">Lili Qu</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Association" [nzSpan]="1"><a>421421</a></nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Creation Time" [nzSpan]="1">2017-01-10</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Effective Time" [nzSpan]="1">2017-10-10</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Remarks" [nzSpan]="2">
+                Gonghu Road, Xihu District, Hangzhou, Zhejiang, China
+            </nz-descriptions-item>
+        </nz-descriptions>
+    </div>
+    <nz-divider></nz-divider>
+    <div class="row">
+        <div class="col-lg-2 col-6 p-2">
+            <nz-card>
+                <nz-statistic [nzValue]="(11.28 | number: '1.0-2')!" [nzTitle]="'All time profit'"
+                    [nzPrefix]="prefixTplOne" [nzSuffix]="'%'" [nzValueStyle]="{ color: '#3F8600' }"></nz-statistic>
+            </nz-card>
+        </div>
+        <div class="col-lg-2 col-6 p-2">
+            <nz-card>
+                <nz-statistic [nzValue]="(9.3 | number: '1.0-2')!" [nzTitle]="'Most backdown'" [nzPrefix]="prefixTplTwo"
+                    [nzSuffix]="'%'" [nzValueStyle]="{ color: '#CF1322' }"></nz-statistic>
+            </nz-card>
+        </div>
+        <div class="col-lg-2 col-6 p-2">
+            <nz-card>
+                <nz-statistic [nzValue]="(5.2 | number: '1.0-2')!" [nzTitle]="'This month'" [nzPrefix]="prefixTplOne"
+                    [nzSuffix]="'%'" [nzValueStyle]="{ color: '#3F8600' }"></nz-statistic>
+            </nz-card>
+        </div>
+    </div>
+    <nz-divider></nz-divider>
+    <div class="row p-2">
+        <nz-collapse>
+            <nz-collapse-panel *ngFor="let panel of panels" [nzHeader]="panel.name" [nzActive]="panel.active"
+                [nzDisabled]="panel.disabled">
+                <nz-statistic [nzValue]="93" [nzTitle]="'Points'" [nzSuffix]="'/ 100'"></nz-statistic>
+
+            </nz-collapse-panel>
+        </nz-collapse>
+    </div>
+
+</div>
+
+<ng-template #prefixTplOne><span nz-icon nzType="arrow-up"></span></ng-template>
+<ng-template #prefixTplTwo><span nz-icon nzType="arrow-down"></span></ng-template>

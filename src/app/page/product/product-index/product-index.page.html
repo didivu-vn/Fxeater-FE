@@ -1,7 +1,27 @@
-<ng-container *ngIf="(productData$ | async) as items">
-    <div class="row">
-        <div class="col-md-6 col-lg-3 col-12 mb-3" *ngFor="let item of items; let i=index">
-            <app-product-card [productData]="item"></app-product-card>
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-12 p-lg-4 p-2">
+        <nz-divider nzText="Best rating" nzOrientation="left"></nz-divider>
+        <div class="best__rating__product" *ngIf="(productData$ | async) as items">
+            <div class="row">
+                <nz-carousel [nzEnableSwipe]="true" [nzLoop]="true" nzAutoPlay [nzAutoPlaySpeed]="4000"
+                    [nzDots]="false">
+                    <div nz-carousel-content *ngFor="let item of items; let i=index">
+                        <app-product-card [productData]="item"></app-product-card>
+                    </div>
+                </nz-carousel>
+            </div>
         </div>
     </div>
-</ng-container>
+    <div class="col-lg-3 col-md-6 col-12 p-lg-4 p-2">
+        <nz-divider nzText="Free but good" nzOrientation="left"></nz-divider>
+        <div class="free__product" *ngIf="(productData$ | async) as items">
+
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-12 p-lg-4 p-2">
+        <nz-divider nzText="Best with Fee" nzOrientation="left"></nz-divider>
+        <div class="Fee__product" *ngIf="(productData$ | async) as items">
+
+        </div>
+    </div>
+</div>
