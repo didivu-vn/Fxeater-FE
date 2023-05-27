@@ -35,7 +35,7 @@ export class ProductDetailPage extends BaseComponent {
   }
 
   productId$ = this.route.params.pipe(
-    map(_ => _['id']),
+    map(_ => _['id'].split('-')[0]),
     tap(_ => {
         this.productId = _
         this.metaData.breadcrumb[1].name = 'Detail ' + _

@@ -16,8 +16,8 @@ interface IBreadcrumbData {
 @Component({template:''})
 export class BaseComponent implements OnInit {
   
-    private layoutService = inject(LayoutService)
-    private metaDateService = inject(MetadataService)
+    protected layoutService = inject(LayoutService)
+    protected metaDateService = inject(MetadataService)
     protected metaData: IMetaData = {} as IMetaData
 
     constructor( ) {}

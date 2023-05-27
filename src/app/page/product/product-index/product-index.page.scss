@@ -1,3 +1,8 @@
-:host ::ng-deep .slick-list {
-    max-height: 480px;
+:host ::ng-deep {
+
+    span.ant-segmented-item-icon {
+        display: inline-flex;
+        align-items: center;
+    }
+
 }
