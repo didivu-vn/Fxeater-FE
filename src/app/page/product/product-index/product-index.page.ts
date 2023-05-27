@@ -1,25 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { BaseComponent, IMetaData } from 'src/app/shared/interface/base.component';
 
 const dummyData = [
   {
     id: 1,
-    name: 'John Smith',
-    email: 'tzirw@example.com',
-    address: 'New York, NY 10012, US',
+    name: 'Product 1',
+    description: 'descript 1',
+    price: 2000,
+    image: 'https://storage.googleapis.com/stormie-portfolio-bucket/media/blog/user_2/4wxgtl-20230406174437.png',
+    category: 'MT4, MT5, USDAUX',
+    rating: 4.5,
+    view_count: 100,
+    like_count: 5,
+    created_at: 3,
+    author: 'Jame',
+    replies : []
   },
   {
     id: 2,
-    name: 'Mike Litorus',
-    email: 'ejeyd@example.com',
-    address: 'London, UK',
-  },
-  {
-    id: 3,
-    name: 'Bao Nguyen',
-    email: 'baonh@example.com',
-    address: 'HCM, VN',
+    name: 'Product 2',
+    description: 'descript 2',
+    price: 3000,
+    image: 'https://storage.googleapis.com/stormie-portfolio-bucket/media/blog/user_2/Google-devs-app-script-social-20230323092429-20230331232535.png',
+    category: 'MT4, MT5, USDAUX',
+    rating: 4.5,
+    view_count: 200,
+    like_count: 5,
+    created_at: 3,
+    author: 'Jonathan',
+    replies : []
   },
 ]
 
@@ -31,6 +41,12 @@ const dummyData = [
 export class ProductIndexPage extends BaseComponent {
   
   public productData$ =  new BehaviorSubject(dummyData);
+  layoutType = 1
+  
+  protected options = [
+    { label: 'List', value: 'list', icon: 'bars' },
+    { label: 'Cart', value: 'card', icon: 'appstore' }
+  ];
 
   protected override metaData: IMetaData = {
     breadcrumb:[

@@ -19,6 +19,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzSegmentedModule } from 'ng-zorro-antd/segmented';
 
 const TARGET_COMPONENTS = [
     NzIconModule,
@@ -40,7 +41,8 @@ const TARGET_COMPONENTS = [
     NzCollapseModule,
     NzSpaceModule,
     NzTagModule,
-    NzDescriptionsModule
+    NzDescriptionsModule,
+    NzSegmentedModule
 ]
 
 @NgModule({

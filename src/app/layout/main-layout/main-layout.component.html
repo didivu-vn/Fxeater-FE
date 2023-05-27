@@ -3,7 +3,11 @@
     <nz-sider nzCollapsible nzWidth="200px" [nzCollapsed]="isCollapsed" [nzCollapsedWidth]="80"
       *ngIf="!(isHandset$ | async)">
 
-      <div class="logo" [routerLink]="['/']" routerLinkActive="router-link-active">FXeater</div>
+      <div class="logo text-center cs__pointer" [routerLink]="['/']" routerLinkActive="router-link-active">
+        <span class="cs__text-1">
+          FXeater
+        </span>
+      </div>
       <ul nz-menu nzTheme="dark" nzMode="inline">
         <li nz-menu-item [routerLink]="['/product']">
           <span nz-icon nzType="radar-chart" nzTheme="outline"></span>

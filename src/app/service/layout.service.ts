@@ -27,7 +27,6 @@ export class LayoutService {
     shareReplay()
   );
 
-
   constructor(
     private breakpointObserver: BreakpointObserver
   ) { }
