@@ -1,0 +1,10 @@
+<div class="py-2">
+    <nz-breadcrumb nzSeparator=">">
+        <nz-breadcrumb-item>
+            <span nz-icon nzType="home" [routerLink]="['/']"></span>
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item *ngFor="let item of breadcrumb" [routerLink]="[item.url]">
+            {{item.name}}
+        </nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>

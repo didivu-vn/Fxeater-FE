@@ -3,7 +3,7 @@
     <nz-sider nzCollapsible nzWidth="200px" [nzCollapsed]="isCollapsed" [nzCollapsedWidth]="80"
       *ngIf="!(isHandset$ | async)">
 
-      <div class="logo" [routerLink]="['/']" routerLinkActive="router-link-active">HOME</div>
+      <div class="logo" [routerLink]="['/']" routerLinkActive="router-link-active">FXeater</div>
       <ul nz-menu nzTheme="dark" nzMode="inline">
         <li nz-menu-item [routerLink]="['/product']">
           <span nz-icon nzType="radar-chart" nzTheme="outline"></span>
@@ -29,21 +29,11 @@
     </nz-sider>
     <nz-layout>
       <!-- header section -->
-      <nz-header *ngIf="(header$ | async) as header">
-        <nz-page-header class="site-page-header" nzTitle="{{header.title}}" nzSubtitle="{{header.subtitle}}">
-        </nz-page-header>
-      </nz-header>
+      <app-header *ngIf="(header$ |async) as header" [header]="header"></app-header>
       <nz-content>
         <!-- breadcrumb section -->
         <ng-container *ngIf="(breadcrumb$ | async) as breadcrumb">
-          <nz-breadcrumb nzSeparator=">">
-            <nz-breadcrumb-item>
-              <span nz-icon nzType="home" [routerLink]="['/']"></span>
-            </nz-breadcrumb-item>
-            <nz-breadcrumb-item *ngFor="let item of breadcrumb" [routerLink]="[item.url]">
-              {{item.name}}
-            </nz-breadcrumb-item>
-          </nz-breadcrumb>
+          <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
         </ng-container>
 
         <!-- main content section -->

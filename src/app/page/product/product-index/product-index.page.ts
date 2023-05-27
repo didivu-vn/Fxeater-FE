@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { LayoutService } from 'src/app/service/layout.service';
+import { BaseComponent, IMetaData } from 'src/app/shared/interface/base.component';
 
 const dummyData = [
   {
@@ -28,28 +28,25 @@ const dummyData = [
   templateUrl: './product-index.page.html',
   styleUrls: ['./product-index.page.scss']
 })
-export class ProductIndexPage implements OnInit {
+export class ProductIndexPage extends BaseComponent {
   
   public productData$ =  new BehaviorSubject(dummyData);
 
-  constructor(
-    private layoutService: LayoutService
-  ) {}
-
-  ngOnInit(): void {
-      this.layoutService.setBreadbrumbData(
-        [
-          {
-            name: 'Products',
-            url: '/product'
-          }
-        ]
-      )
-      this.layoutService.setHeaderData(
-        {
-          title: 'Products',
-          subtitle: 'Every products that we have tried.'
-        }
-      )
+  protected override metaData: IMetaData = {
+    breadcrumb:[
+      {
+        name: 'Products',
+        url: '/product'
+      }
+    ],
+    layout:{
+      title: 'Products',
+      subtitle: 'Every products that we have tried.'
+    }
   }
+
+  constructor() {
+    super()
+  }
+
 }
