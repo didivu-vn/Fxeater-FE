@@ -1,32 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutService } from 'src/app/service/layout.service';
+import { BaseComponent, IMetaData } from 'src/app/shared/interface/base.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.css']
 })
-export class HomePage implements OnInit {
+export class HomePage extends BaseComponent {
 
-  constructor(
-    private layoutService: LayoutService
-  ) {}
+  override metaData: IMetaData = {
+    breadcrumb:[
+      {
+        name: 'Home',
+        url: '/'
+      }
+    ],
+    layout: {
+      title: 'Home',
+      subtitle: 'Best in price you can find.'
+    }
+  }
 
-  ngOnInit(): void {
-      this.layoutService.setBreadbrumbData(
-        [
-          {
-            name: 'Home',
-            url: '/'
-          }
-        ]
-      )
-      this.layoutService.setHeaderData(
-        {
-          title: 'Home',
-          subtitle: 'Best in price you can find.'
-        }
-      )
+  constructor( ) {
+    super()
   }
 
 }

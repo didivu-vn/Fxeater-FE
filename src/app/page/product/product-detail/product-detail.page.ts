@@ -18,7 +18,6 @@ export class ProductDetailPage implements OnInit {
       }),
   )
   
-  
   panels = [
     {
       active: false,
