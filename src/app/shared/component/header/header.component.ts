@@ -12,7 +12,5 @@ export class HeaderComponent {
     subtitle: '',
   }
 
-  constructor() {
-    console.log(this.header)
-  } 
+  constructor() {} 
 }

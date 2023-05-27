@@ -7,16 +7,15 @@ export interface IPageMetadata {
   title: string;
   // image will be added later
   description: string;
-  author: string;
-  keywords: string[];
-  type: string;
+  author?: string;
+  keywords?: string[];
+  type?: string;
 }
 
 const defaultMetadata: IPageMetadata = {
-  title: 'Didivu | Tech & Life',
-  description: 'Tech & life blog',
-  author: 'stormie',
-  keywords: ['Didivu', 'Switch to tech', 'Tech & life'],
+  title: 'FXeater | First saw, first try',
+  description: 'We are trying to expose real good Expert Advisors and Indicator from Japan trader to the world.',
+  keywords: ['FX', 'Expert Advisors', 'Indicator'],
   type: 'website',
 }
 
@@ -38,7 +37,6 @@ export class MetadataService {
        ...metatags,
        { property: 'og:url', content: `${HOST_URL}${this.router.url}`},
        { name: 'robots', content: index ? 'index, follow' : 'noindex' },
-       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
        { 'http-equiv': 'Content-Type', content: 'text/html; charset=utf-8' },
       ]);
   
@@ -51,12 +49,10 @@ export class MetadataService {
         { property: 'og:title', content: metadata.title },  
         { name: 'description', content: metadata.description },
         { property: 'og:description', content: metadata.description },  
-        { name: 'author', content: metadata.author },
-        { property: 'og:author', content: metadata.author },  
-        { name: 'keywords', content: metadata.keywords.join(', ') },  
-        { property: 'og:type', content: metadata.type },
+        { name: 'author', content: metadata.author || '' },
+        { property: 'og:author', content: metadata.author || '' },  
+        { name: 'keywords', content: metadata.keywords?.join(', ') || defaultMetadata.keywords?.join(', ') || '' },  
+        { property: 'og:type', content: metadata.type || defaultMetadata.type || ''},
       ];
     }
-
-
 }
