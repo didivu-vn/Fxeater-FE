@@ -20,6 +20,12 @@ export class AboutPage extends BaseComponent {
     {
       title: 'About Us',
       subtitle: 'Who we are and what we do.'
+    },
+    page:{
+      title: 'FXeater | About Us',
+      description: 'We are trying to expose real good Expert Advisors and Indicator from Japan trader to the world.',
+      keywords: ['FX', 'Expert Advisors', 'Indicator'],
+      type: 'website',
     }
   }
 

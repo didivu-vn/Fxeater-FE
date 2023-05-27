@@ -1,19 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs';
-import { LayoutService } from 'src/app/service/layout.service';
+import { BaseComponent, IMetaData } from 'src/app/shared/interface/base.component';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.page.html',
   styleUrls: ['./product-detail.page.scss']
 })
-export class ProductDetailPage implements OnInit {
+export class ProductDetailPage extends BaseComponent {
   
+  productId = 0
+  productName = ''
+
+  override metaData: IMetaData = {
+    breadcrumb: [
+      {
+        name: 'Products',
+        url: '/product'
+      },
+      {
+        name: 'Detail ' + this.productId,
+        url: '/product/' + this.productId 
+      }
+    ],
+    layout:{
+      title: 'Product Detail',
+      subtitle: 'Everything you need to know about.'
+    },
+    page: {
+      title: `FXeater | ${this.productName}`,
+      description: 'Everything you need to know about.'
+    }
+  }
+
   productId$ = this.route.params.pipe(
     map(_ => _['id']),
     tap(_ => {
         this.productId = _
+        this.metaData.breadcrumb[1].name = 'Detail ' + _
+        this.metaData.breadcrumb[1].url = '/product/' + _
         this.updateLayout()
       }),
   )
@@ -35,35 +61,11 @@ export class ProductDetailPage implements OnInit {
       disabled: false
     },
   ]
-  productId : number = 0
+
     
   constructor(
-    private layoutService: LayoutService,
     private route: ActivatedRoute,
-  ) {}
-
-  ngOnInit(): void {
-    this.updateLayout()
-  }
-
-  updateLayout(){
-    this.layoutService.setBreadbrumbData(
-      [
-        {
-          name: 'Products',
-          url: '/product'
-        },
-        {
-          name: 'Detail ' + this.productId,
-          url: '/product/' + this.productId 
-        }
-      ]
-    )
-    this.layoutService.setHeaderData(
-      {
-        title: 'Product Detail',
-        subtitle: 'Everything you need to know about.'
-      }
-    )
+  ) {
+    super()
   }
 }

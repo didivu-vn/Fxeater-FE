@@ -42,6 +42,12 @@ export class ProductIndexPage extends BaseComponent {
     layout:{
       title: 'Products',
       subtitle: 'Every products that we have tried.'
+    },
+    page:{
+      title: 'FXeater | All products',
+      description: 'We are trying to expose real good Expert Advisors and Indicator from Japan trader to the world.',
+      keywords: ['FX', 'Expert Advisors', 'Indicator'],
+      type: 'website',
     }
   }
 

@@ -1,9 +1,11 @@
 import { Component, OnInit, inject } from "@angular/core"
 import { IHeaderData, LayoutService } from "../../service/layout.service"
+import { IPageMetadata, MetadataService } from "src/app/service"
 
 export interface IMetaData {
   layout: IHeaderData,
-  breadcrumb: IBreadcrumbData[]
+  breadcrumb: IBreadcrumbData[],
+  page?: IPageMetadata
 }
 
 interface IBreadcrumbData {
@@ -15,17 +17,24 @@ interface IBreadcrumbData {
 export class BaseComponent implements OnInit {
   
     private layoutService = inject(LayoutService)
+    private metaDateService = inject(MetadataService)
     protected metaData: IMetaData = {} as IMetaData
-    
+
     constructor( ) {}
   
     ngOnInit(): void {
       this.updateLayout()
+      this.updateSEO()
     }
 
     updateLayout(){
       this.metaData.breadcrumb && this.layoutService.setBreadbrumbData(this.metaData.breadcrumb)
       this.metaData.layout && this.layoutService.setHeaderData(this.metaData.layout)
     }
+
+    updateSEO(){
+      this.metaDateService.updateMetadata(this.metaData.page || {})
+    }
+
   }
   
