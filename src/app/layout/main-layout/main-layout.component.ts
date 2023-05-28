@@ -10,6 +10,7 @@ export class MainLayoutComponent {
   isCollapsed = false;
   breadcrumb$ = this.layoutService.getBreadcrumbData()
   header$ = this.layoutService.getHeaderData()
+  isHandset$ = this.layoutService.getIsHandset()
 
   constructor( 
     private layoutService: LayoutService

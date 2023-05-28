@@ -1,0 +1,36 @@
+<nz-table #nzTable [nzData]="items" nzTableLayout="fixed">
+    <thead>
+        <tr>
+            <th nzWidth="60px"></th>
+            <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">
+                {{ column.title }}
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of nzTable.data">
+            <tr>
+                <td [nzExpand]="expandSet.has(data.id)" (nzExpandChange)="onExpandChange(data.id, $event)"></td>
+                <td>{{ data.name }}</td>
+                <td>{{ data.author }}</td>
+                <td>{{ data.category }}</td>
+                <td>
+                    {{ data.price }} <i class="fa fa-jpy" aria-hidden="true"></i>
+                </td>
+                <td>
+                    {{ data.rating }} <i class="fa fa-star" aria-hidden="true"></i>
+                </td>
+                <td>
+                    {{ data.like_count }} <i class="fa fa-heart" aria-hidden="true"></i>
+                </td>
+                <td>
+                    <a class="text-primary" (click)="viewProduct(data.id, data.name)">View</a>
+                </td>
+            </tr>
+            <tr [nzExpand]="expandSet.has(data.id)">
+                <span>{{ data.description }}</span>
+            </tr>
+        </ng-container>
+    </tbody>
+</nz-table>

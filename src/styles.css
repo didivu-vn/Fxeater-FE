@@ -1,1 +1,34 @@
 @import "../node_modules/ng-zorro-antd/ng-zorro-antd.dark.css";
+
+
+:root{
+    --cs-color-bg: #fef6e4;
+    --cs-color-text: #172c66;
+    --cs-color-primary: #f3d2c1;
+    --cs-color-secondary: #8bd3dd;
+    --cs-color-tertiary:#f582ae;
+    --cs-color-hightlight: #fef6e4;
+    --cs-color-stroke: #001858;
+
+
+    --cs-main-font: 'Montserrat', sans-serif;
+    --cs-second-font: 'Open Sans', sans-serif;
+    --cs-header-font:'Playfair Display', serif;
+}
+
+.cs__text-1 {
+    font-family: var(--cs-main-font);
+}
+
+.cs__text-2 {
+    font-family: var(--cs-second-font);
+}
+
+.cs__text-3 {
+    font-family: var(--cs-header-font);
+}
+
+.cs__pointer	{
+    cursor: pointer;
+}
+  
