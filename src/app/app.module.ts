@@ -23,13 +23,12 @@ import {
   BreadcrumbComponent,
   HeaderComponent,
   LgProductCardComponent, 
-  LineProductCardComponent, 
   LoaderSpinerComponent, 
   NavbarComponent, 
-  NavbarMobileComponent, 
   ProductCardComponent, 
   SmProductCardComponent 
 } from './shared/component';
+import { ProductTableComponent } from './shared/component/product-table/product-table.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -47,8 +46,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ProductCardComponent, 
     LgProductCardComponent, 
     SmProductCardComponent, 
-    LineProductCardComponent, 
-    HeaderComponent, BreadcrumbComponent, NavbarMobileComponent, NavbarComponent, LoaderSpinerComponent],
+    HeaderComponent, BreadcrumbComponent, NavbarComponent, LoaderSpinerComponent, ProductTableComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,

@@ -21,6 +21,8 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzSegmentedModule } from 'ng-zorro-antd/segmented';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 const TARGET_COMPONENTS = [
     NzIconModule,
@@ -44,7 +46,9 @@ const TARGET_COMPONENTS = [
     NzTagModule,
     NzDescriptionsModule,
     NzSegmentedModule,
-    NzSpinModule
+    NzSpinModule,
+    NzInputModule,
+    NzTableModule
 ]
 
 @NgModule({

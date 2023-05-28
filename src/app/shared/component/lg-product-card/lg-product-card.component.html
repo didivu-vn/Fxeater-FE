@@ -6,7 +6,10 @@
         </a>
         <div class="item-body px-lg-3">
             <div class="item-body-content">
-                <h5 class="category">{{productData.category}}</h5>
+                <div class="category">
+                    <nz-tag [nzColor]="'blue'" *ngFor="let item of productData.category.split(',')">{{item}}</nz-tag>
+                </div>
+                <nz-divider [nzPlain]="true"></nz-divider>
                 <h2 class="title fs-3">
                     <a [routerLink]="'/product/'+productData.id+'-'+blogSlug" class="link" title="{{productData.name}}">
                         {{productData.name}}
@@ -14,6 +17,7 @@
                 </h2>
                 <p class="description fs-6">{{productData.description}}</p>
             </div>
+            <nz-divider [nzPlain]="true"></nz-divider>
             <div class="row item-meta">
                 <span class="col-lg-3 col-6 date">
                     <i class="fa-regular fa-clock me-1"></i>{{productData.created_at | date:'short'}}
