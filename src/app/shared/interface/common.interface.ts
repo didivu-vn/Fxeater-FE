@@ -12,3 +12,17 @@ export interface IProduct {
     author: string
     replies : any[]
 }
+
+export interface IUserInfo {
+    id:number
+    base_user?: IBaseUser
+    avatar:string
+    gender: 'N' | 'M' | 'O' | 'F'
+}
+
+export interface IBaseUser {
+    id:number
+    email: string
+    last_login:any
+    username:string
+}

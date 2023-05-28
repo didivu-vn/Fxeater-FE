@@ -20,6 +20,7 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzSegmentedModule } from 'ng-zorro-antd/segmented';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 const TARGET_COMPONENTS = [
     NzIconModule,
@@ -42,7 +43,8 @@ const TARGET_COMPONENTS = [
     NzSpaceModule,
     NzTagModule,
     NzDescriptionsModule,
-    NzSegmentedModule
+    NzSegmentedModule,
+    NzSpinModule
 ]
 
 @NgModule({
