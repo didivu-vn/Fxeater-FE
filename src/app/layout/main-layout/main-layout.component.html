@@ -1,53 +1,53 @@
-<nz-layout>
-  <nz-sider nzCollapsible nzWidth="200px" [nzCollapsed]="isCollapsed">
-    <div class="logo" [routerLink]="['/']" routerLinkActive="router-link-active">HOME</div>
-    <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item [routerLink]="['/product']">
-        <span nz-icon nzType="radar-chart" nzTheme="outline"></span>
-        <span>All Product</span>
-      </li>
-      <li nz-submenu nzTitle="EA" nzIcon="desktop">
-        <ul>
-          <li nz-menu-item>All</li>
-          <li nz-menu-item>Popular</li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="Indicator" nzIcon="pie-chart">
-        <ul>
-          <li nz-menu-item>All</li>
-          <li nz-menu-item>Popular</li>
-        </ul>
-      </li>
-      <li nz-menu-item [routerLink]="['/about']">
-        <span nz-icon nzType="question-circle" nzTheme="outline"></span>
-        <span>About Us</span>
-      </li>
-    </ul>
-  </nz-sider>
+<ng-container>
   <nz-layout>
-    <!-- header section -->
-    <nz-header *ngIf="(header$ | async) as header">
-      <nz-page-header class="site-page-header" nzTitle="{{header.title}}" nzSubtitle="{{header.subtitle}}">
-      </nz-page-header>
-    </nz-header>
-    <nz-content>
-      <!-- breadcrumb section -->
-      <ng-container *ngIf="(breadcrumb$ | async) as breadcrumb">
-        <nz-breadcrumb nzSeparator=">">
-          <nz-breadcrumb-item>
-            <span nz-icon nzType="home" [routerLink]="['/']"></span>
-          </nz-breadcrumb-item>
-          <nz-breadcrumb-item *ngFor="let item of breadcrumb">
-            {{item.name}}
-          </nz-breadcrumb-item>
-        </nz-breadcrumb>
-      </ng-container>
-
-      <!-- main content section -->
-      <div class="inner-content">
-        <ng-content></ng-content>
+    <nz-sider nzCollapsible nzWidth="200px" [nzCollapsed]="isCollapsed" [nzCollapsedWidth]="80"
+      *ngIf="!(isHandset$ | async)">
+      <div class="logo text-center cs__pointer" [routerLink]="['/']" routerLinkActive="router-link-active">
+        <span class="cs__text-1">
+          FXeater
+        </span>
       </div>
-    </nz-content>
-    <nz-footer>StromIT ©2023 Implement By Angular</nz-footer>
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-menu-item [routerLink]="['/product']">
+          <span nz-icon nzType="radar-chart" nzTheme="outline"></span>
+          <span>All Products</span>
+        </li>
+        <li nz-submenu nzTitle="EA" nzIcon="desktop">
+          <ul>
+            <li nz-menu-item>All</li>
+            <li nz-menu-item>Popular</li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Indicator" nzIcon="pie-chart">
+          <ul>
+            <li nz-menu-item>All</li>
+            <li nz-menu-item>Popular</li>
+          </ul>
+        </li>
+        <li nz-menu-item [routerLink]="['/about']">
+          <span nz-icon nzType="question-circle" nzTheme="outline"></span>
+          <span>About Us</span>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout>
+      <!-- header section -->
+      <app-navbar *ngIf="(isHandset$ | async); else temname"></app-navbar>
+      <ng-template #temname>
+        <app-header *ngIf="(header$ |async) as header" [header]="header"></app-header>
+      </ng-template>
+      <nz-content>
+        <!-- breadcrumb section -->
+        <ng-container *ngIf="(breadcrumb$ | async) as breadcrumb">
+          <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+        </ng-container>
+
+        <!-- main content section -->
+        <div class="inner-content">
+          <ng-content></ng-content>
+        </div>
+      </nz-content>
+      <nz-footer>StromIT ©2023 Implement By Angular</nz-footer>
+    </nz-layout>
   </nz-layout>
-</nz-layout>
+</ng-container>

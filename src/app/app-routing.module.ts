@@ -8,7 +8,12 @@ import { ProductIndexPage } from './page/product/product-index/product-index.pag
 const routes: Routes = [
   {
     path: '',
-    component:HomePage
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomePage
   },
   {
     path: 'product',

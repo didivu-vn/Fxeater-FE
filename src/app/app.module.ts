@@ -1,21 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 
-import { ZorroModule } from './shared/lib';
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
-import { AboutPage, HomePage } from './page';
+
 import { MainLayoutComponent } from './layout';
-import { ProductDetailPage } from './page/product/product-detail/product-detail.page';
-import { ProductIndexPage } from './page/product/product-index/product-index.page';
-import { ProductCardComponent } from './shared/component';
-import { FormsModule } from '@angular/forms';
+import { ZorroModule } from './shared/lib';
+import { 
+  AboutPage, 
+  HomePage, 
+  ProductDetailPage, 
+  ProductIndexPage 
+} from './page';
+
+import { 
+  BreadcrumbComponent,
+  HeaderComponent,
+  LgProductCardComponent, 
+  LoaderSpinerComponent, 
+  NavbarComponent, 
+  ProductCardComponent, 
+  SmProductCardComponent 
+} from './shared/component';
+import { ProductTableComponent } from './shared/component/product-table/product-table.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -29,7 +42,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AboutPage, 
     MainLayoutComponent, 
     ProductIndexPage, 
-    ProductDetailPage, ProductCardComponent],
+    ProductDetailPage, 
+    ProductCardComponent, 
+    LgProductCardComponent, 
+    SmProductCardComponent, 
+    HeaderComponent, BreadcrumbComponent, NavbarComponent, LoaderSpinerComponent, ProductTableComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, map, shareReplay } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 export interface IBreadcrumbData {
   name: string
@@ -20,7 +21,15 @@ export class LayoutService {
 
   breadcrumbData$ = new BehaviorSubject([] as IBreadcrumbData[])
   headerData$ = new BehaviorSubject({} as IHeaderData)
-  constructor() { }
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
+
+  constructor(
+    private breakpointObserver: BreakpointObserver
+  ) { }
 
   getBreadcrumbData(){
     return this.breadcrumbData$
@@ -36,6 +45,10 @@ export class LayoutService {
 
   setHeaderData(data: IHeaderData) {
     this.headerData$.next(data)
+  }
+
+  getIsHandset(){
+    return this.isHandset$
   }
 
 }
