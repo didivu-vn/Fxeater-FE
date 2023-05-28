@@ -24,6 +24,9 @@ import {
   HeaderComponent,
   LgProductCardComponent, 
   LineProductCardComponent, 
+  LoaderSpinerComponent, 
+  NavbarComponent, 
+  NavbarMobileComponent, 
   ProductCardComponent, 
   SmProductCardComponent 
 } from './shared/component';
@@ -45,7 +48,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     LgProductCardComponent, 
     SmProductCardComponent, 
     LineProductCardComponent, 
-    HeaderComponent, BreadcrumbComponent],
+    HeaderComponent, BreadcrumbComponent, NavbarMobileComponent, NavbarComponent, LoaderSpinerComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,

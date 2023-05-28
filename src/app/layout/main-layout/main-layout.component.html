@@ -2,7 +2,6 @@
   <nz-layout>
     <nz-sider nzCollapsible nzWidth="200px" [nzCollapsed]="isCollapsed" [nzCollapsedWidth]="80"
       *ngIf="!(isHandset$ | async)">
-
       <div class="logo text-center cs__pointer" [routerLink]="['/']" routerLinkActive="router-link-active">
         <span class="cs__text-1">
           FXeater
@@ -33,7 +32,10 @@
     </nz-sider>
     <nz-layout>
       <!-- header section -->
-      <app-header *ngIf="(header$ |async) as header" [header]="header"></app-header>
+      <app-navbar *ngIf="(isHandset$ | async); else temname"></app-navbar>
+      <ng-template #temname>
+        <app-header *ngIf="(header$ |async) as header" [header]="header"></app-header>
+      </ng-template>
       <nz-content>
         <!-- breadcrumb section -->
         <ng-container *ngIf="(breadcrumb$ | async) as breadcrumb">
