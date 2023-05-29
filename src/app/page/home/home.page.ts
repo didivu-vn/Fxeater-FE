@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { BaseComponent, IMetaData } from 'src/app/shared/interface/base.component';
+import { dummyData } from '../product/product-index/product-index.page';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,7 @@ import { BaseComponent, IMetaData } from 'src/app/shared/interface/base.componen
   styleUrls: ['./home.page.css']
 })
 export class HomePage extends BaseComponent {
-
+  public productData$ =  new BehaviorSubject(dummyData);
   override metaData: IMetaData = {
     breadcrumb:[
       {

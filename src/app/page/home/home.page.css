@@ -1,1 +1,23 @@
+.section{
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
 
+.light-color-gradient {
+    position: relative;
+    background-color: #f5f6f7;
+    background-image: linear-gradient(54deg, rgba(255, 131, 122, 0.25), rgba(255, 131, 122, 0) 28%), linear-gradient(241deg, rgba(239, 152, 207, 0.25), rgba(239, 152, 207, 0) 36%);
+}
+
+.cs__cta-1 {
+    padding: 0.75rem;
+    color: var(--cs-color-bg);
+    background-color: #001529;
+    font-size: larger;
+    font-family: var(--cs-second-font);
+    border-radius: 10px;
+    
+    display: flex;
+    justify-content: center;
+    max-width: 150px;
+}

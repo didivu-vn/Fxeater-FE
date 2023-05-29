@@ -36,4 +36,11 @@
 .cs__pointer	{
     cursor: pointer;
 }
-  
+
+nz-content {
+    margin: 0px !important;
+}
+
+.inner-content {
+    padding: 0px !important;
+}

@@ -26,9 +26,12 @@ import {
   LoaderSpinerComponent, 
   NavbarComponent, 
   ProductCardComponent, 
+  ProductTableComponent, 
   SmProductCardComponent 
 } from './shared/component';
-import { ProductTableComponent } from './shared/component/product-table/product-table.component';
+import { FadeInAnimationDirective } from './shared/derective/fade-in-animation.directive';
+
+
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -46,7 +49,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ProductCardComponent, 
     LgProductCardComponent, 
     SmProductCardComponent, 
-    HeaderComponent, BreadcrumbComponent, NavbarComponent, LoaderSpinerComponent, ProductTableComponent],
+    HeaderComponent, BreadcrumbComponent, NavbarComponent, LoaderSpinerComponent, ProductTableComponent, FadeInAnimationDirective],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,

@@ -1,3 +1,47 @@
-<div class="container">
-    <p>Homepage's content</p>
+<div class="section light-color-gradient">
+    <div class="container" style="opacity: 1;">
+        <div class="row">
+            <div class="col-xl-6 col-12">
+                <h2 class="cs__text-3 pb-3" gsapFadeIn [delay]="0.2" [duration]="0.5" [direct]="'s'">
+                    Access all of the best FX support products from Japan
+                </h2>
+                <h5 class="cs__text-2 pb-3" gsapFadeIn [delay]="0.6" [duration]="0.5" [direct]="'s'">
+                    Tone resources that we have tried and will definitely continue using. All with reviews, useage and
+                    detail manual.
+                </h5>
+                <div class="cs__cta-1 cs__pointer" [routerLink]="['/product']" routerLinkActive="router-link-active"
+                    gsapFadeIn [delay]="1" [duration]="0.5" [direct]="'s'">
+                    View Products
+                </div>
+            </div>
+            <div class="col-xl-3 ms-auto">
+                <img src="/assets/undraw_predictive_analytics_re_wxt8.svg" alt="main finance image" height="250"
+                    gsapFadeIn [delay]="0.2" [duration]="1.3" [direct]="'e'">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-7 col-md-12 col-12 p-3">
+                <nz-divider nzText="Best rating" nzOrientation="left"></nz-divider>
+                <div class="best__rating__product" *ngIf="(productData$ | async) as items">
+                    <ng-container *ngFor="let item of items; let i=index">
+                        <ng-container>
+                            <app-lg-product-card [productData]="item"></app-lg-product-card>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="col-xl-3 p-3">
+                <p style="height: 200px;">New product</p>
+                <p style="height: 200px;">Popular developer</p>
+                <p style="height: 200px;">Suggest</p>
+            </div>
+            <div class="col-xl-2 p-3 ms-auto">
+                <p class="light-color-gradient" style="height: 100%;">promotion right banner</p>
+            </div>
+        </div>
+    </div>
 </div>
