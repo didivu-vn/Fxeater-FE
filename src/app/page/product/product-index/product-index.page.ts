@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 import { BaseComponent, IMetaData } from 'src/app/shared/interface/base.component';
 
-const dummyData = [
+export const dummyData = [
   {
     id: 1,
     name: 'Product 1',
