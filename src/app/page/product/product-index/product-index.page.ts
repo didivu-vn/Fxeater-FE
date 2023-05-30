@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
-import { BaseComponent, IMetaData } from 'src/app/shared/interface/base.component';
+import { BasePage, IMetaData } from 'src/app/shared/interface/base.component';
 
 export const dummyData = [
   {
     id: 1,
     name: 'Product 1',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo neque libero, deserunt fugiat aliquid voluptatibus sunt dolore illo blanditiis laudantium quia dolorum! Corporis, sint ipsam voluptates illum incidunt quae!',
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem explicabo neque libero.',
     price: 2000,
     image: 'https://storage.googleapis.com/stormie-portfolio-bucket/media/blog/user_2/4wxgtl-20230406174437.png',
     category: 'MT4, MT5, USDAUX',
@@ -20,7 +20,7 @@ export const dummyData = [
   {
     id: 2,
     name: 'Product 2',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quisquam inventore possimus rem quis rerum sunt blanditiis expedita optio molestiae libero id iusto laborum, deleniti dolorum enim suscipit doloremque voluptate?',
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     price: 3000,
     image: 'https://storage.googleapis.com/stormie-portfolio-bucket/media/blog/user_2/Google-devs-app-script-social-20230323092429-20230331232535.png',
     category: 'MT4, MT5, USDAUX',
@@ -38,7 +38,7 @@ export const dummyData = [
   templateUrl: './product-index.page.html',
   styleUrls: ['./product-index.page.scss']
 })
-export class ProductIndexPage extends BaseComponent {
+export class ProductIndexPage extends BasePage {
   isHandset$ = this.layoutService.getIsHandset()
   public productData$ =  new BehaviorSubject(dummyData);
   layoutType = 1

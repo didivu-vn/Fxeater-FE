@@ -13,7 +13,9 @@ export class LgProductCardComponent implements OnInit {
 
   blogSlug:string =''
 
-  constructor() { }
+  constructor() { 
+    console.log(this.productData)
+  }
 
   ngOnInit(): void {
     this.blogSlug = slugify(this.productData.name, {locale: 'vi'}).toLowerCase()

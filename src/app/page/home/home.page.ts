@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { BaseComponent, IMetaData } from 'src/app/shared/interface/base.component';
+import { BasePage, IMetaData } from 'src/app/shared/interface/base.component';
 import { dummyData } from '../product/product-index/product-index.page';
 
 @Component({
@@ -8,7 +8,8 @@ import { dummyData } from '../product/product-index/product-index.page';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.css']
 })
-export class HomePage extends BaseComponent {
+export class HomePage extends BasePage {
+  isHandset$ = this.layoutService.getIsHandset()
   public productData$ =  new BehaviorSubject(dummyData);
   override metaData: IMetaData = {
     breadcrumb:[
