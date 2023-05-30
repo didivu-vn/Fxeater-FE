@@ -15,12 +15,14 @@ import { ZorroModule } from './shared/lib';
 import { 
   AboutPage, 
   HomePage, 
+  PageNotFoundComponent, 
   ProductDetailPage, 
   ProductIndexPage 
 } from './page';
 
 import { 
   BreadcrumbComponent,
+  EmailSubComponent,
   HeaderComponent,
   LgProductCardComponent, 
   LoaderSpinerComponent, 
@@ -49,7 +51,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ProductCardComponent, 
     LgProductCardComponent, 
     SmProductCardComponent, 
-    HeaderComponent, BreadcrumbComponent, NavbarComponent, LoaderSpinerComponent, ProductTableComponent, FadeInAnimationDirective],
+    HeaderComponent, BreadcrumbComponent, NavbarComponent, LoaderSpinerComponent, ProductTableComponent, FadeInAnimationDirective, PageNotFoundComponent, EmailSubComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,

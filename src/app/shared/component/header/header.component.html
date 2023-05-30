@@ -1,5 +1,5 @@
 <!-- not-done-yet -->
-<div class="row bg-white px-3 pt-3">
+<div class="row bg-white px-3 p-2">
     <div class="col">
         <h1 class="fs-3" *ngIf="header.title">{{header.title}}</h1>
     </div>
@@ -9,10 +9,12 @@
 
     <div class="col-xl-3 col-md-5 ms-auto col-12 d-flex justify-items-end flex-row">
         <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-            <input type="text" nz-input placeholder="name, author, type,..." />
+            <input type="text" nz-input placeholder="name, author, type,..." [(ngModel)]="searchKW" />
         </nz-input-group>
         <ng-template #suffixIconButton>
-            <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+            <button nz-button nzType="primary" nzSearch (click)="search()">
+                <span nz-icon nzType="search"></span>
+            </button>
         </ng-template>
     </div>
 </div>
