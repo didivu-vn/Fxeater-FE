@@ -45,7 +45,7 @@
         </li>
         <ng-container *ngIf="(userInfo$ | async) as userInfo">
           <li *ngIf="isLoggedIn" class="nav-item">
-            <a class="mx-2 text-uppercase">
+            <a class="mx-2 text-uppercase" *ngIf="!isCollapsed">
               <i class="fa-solid fa-circle-user me-1"></i>
               Hi <strong>{{userInfo.base_user?.username}}</strong>
             </a>
