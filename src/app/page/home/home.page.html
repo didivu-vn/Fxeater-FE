@@ -3,15 +3,26 @@
         <div class="row">
             <div class="col-xl-6 col-12">
                 <h2 class="cs__text-3 pb-3" gsapFadeIn [delay]="0.2" [duration]="0.5" [direct]="'s'">
-                    Access all of the best FX Expert Advisors and Indicators from Japan
+                    Welcome to FXeater blog!
                 </h2>
                 <h5 class="cs__text-2 pb-3" gsapFadeIn [delay]="0.6" [duration]="0.5" [direct]="'s'">
-                    Ton of resources that we have tried and will definitely continue using. All with reviews, useage and
-                    detail manual.
+                    Here, we share ton of resources that we have tried and will definitely continue using. All with
+                    reviews, useage and detail manual.
                 </h5>
-                <div class="cs__cta-1 cs__pointer" [routerLink]="['/product']" routerLinkActive="router-link-active"
-                    gsapFadeIn [delay]="1" [duration]="0.5" [direct]="'s'">
-                    View Products
+                <h5 class="cs__text-2 pb-3" gsapFadeIn [delay]="1" [duration]="0.5" [direct]="'s'">
+                    Some products come from Japan which so good but never be exposed
+                    to the rest of the world.
+                </h5>
+                <div class="row">
+
+                    <div class="cs__cta-1 cs__pointer" [routerLink]="['/product']" routerLinkActive="router-link-active"
+                        gsapFadeIn [delay]="1" [duration]="0.5" [direct]="'s'">
+                        View Products
+                    </div>
+                    <div class="cs__cta-2 cs__pointer ms-3" [routerLink]="['/blog']"
+                        routerLinkActive="router-link-active" gsapFadeIn [delay]="1" [duration]="0.5" [direct]="'s'">
+                        View Blogs
+                    </div>
                 </div>
             </div>
             <div class="col-xl-3 ms-auto">
@@ -44,13 +55,13 @@
             <div class="suggest" style="height: 200px;"></div>
         </div>
         <div class="col-xl-2 p-3 ms-auto" *ngIf="!(isHandset$ | async)">
-            <div class="promotion__banner green-color-gradient p-3 text-center" gsapFadeIn [delay]="2.75"
+            <!-- <div class="promotion__banner green-color-gradient p-3 text-center" gsapFadeIn [delay]="2.75"
                 [duration]="0.75" [direct]="'e'" style="height: 500px;">
                 <p class="fs-1 cs__text-2" gsapFadeIn [delay]="3" [duration]="0.75" [direct]="'e'">Choose wisely</p>
                 <p class="fs-1 cs__text-2" gsapFadeIn [delay]="3.5" [duration]="0.75" [direct]="'e'">Escape the matrix
                 </p>
                 <p class="fs-1 cs__text-2" gsapFadeIn [delay]="4" [duration]="0.75" [direct]="'e'">Find freedom</p>
-            </div>
+            </div> -->
             <div class="email__subscriber light-color-gradient p-3 mt-3">
                 <div class="row">
                     <app-email-sub></app-email-sub>
