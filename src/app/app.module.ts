@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { httpInterceptorProviders } from "./middleware/interceptor.provider";
 
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
@@ -31,6 +32,15 @@ import {
   ProductTableComponent, 
   SmProductCardComponent 
 } from './shared/component';
+
+import { 
+  ApiService, 
+  AuthService, 
+  CacheResolverService, 
+  MetadataService, 
+  SlugService 
+} from './service';
+
 import { FadeInAnimationDirective } from './shared/derective/fade-in-animation.directive';
 
 
@@ -57,12 +67,22 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AppRoutingModule,
     FormsModule,
     ZorroModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   exports:[
     ZorroModule
   ],
-  providers: [{ provide: NZ_ICONS, useValue: icons }],
+  providers: [
+    { provide: NZ_ICONS, useValue: icons },        
+    ApiService,
+    AuthService,
+    SlugService,
+    CacheResolverService,
+    httpInterceptorProviders,
+    MetadataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
