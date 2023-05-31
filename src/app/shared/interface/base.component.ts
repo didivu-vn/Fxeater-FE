@@ -14,7 +14,7 @@ interface IBreadcrumbData {
 }
 
 @Component({template:''})
-export class BaseComponent implements OnInit {
+export class BasePage implements OnInit {
   
     protected layoutService = inject(LayoutService)
     protected metaDateService = inject(MetadataService)

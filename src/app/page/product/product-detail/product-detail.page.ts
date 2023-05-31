@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs';
-import { BaseComponent, IMetaData } from 'src/app/shared/interface/base.component';
+import { BasePage, IMetaData } from 'src/app/shared/interface/base.component';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.page.html',
   styleUrls: ['./product-detail.page.scss']
 })
-export class ProductDetailPage extends BaseComponent {
+export class ProductDetailPage extends BasePage {
   
   productId = 0
   productName = ''
