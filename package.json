@@ -24,6 +24,7 @@
     "@ng-web-apis/universal": "^2.1.0",
     "@nguniversal/express-engine": "~15.1.0",
     "google-one-tap": "^1.0.6",
+    "gsap": "^3.11.5",
     "isbot": "^3.6.10",
     "morgan": "^1.10.0",
     "ng-zorro-antd": "^15.1.0",

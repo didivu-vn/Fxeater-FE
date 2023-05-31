@@ -16,6 +16,11 @@
     --cs-header-font:'Playfair Display', serif;
 }
 
+.cs__bg-text {
+    background-color: var(--cs-color-text);
+}
+
+
 .cs__text-1 {
     font-family: var(--cs-main-font);
 }
@@ -31,4 +36,11 @@
 .cs__pointer	{
     cursor: pointer;
 }
-  
+
+nz-content {
+    margin: 0px !important;
+}
+
+.inner-content {
+    padding: 0px !important;
+}

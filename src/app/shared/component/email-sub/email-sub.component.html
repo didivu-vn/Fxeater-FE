@@ -1,0 +1,10 @@
+<h5 class="cs__text-3">Subscribe</h5>
+<p class="cs__text-2">Subscribe to our newsletter, Cancel any time</p>
+
+<nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+    <input type="email" nz-input placeholder="mail@example.com" />
+</nz-input-group>
+<ng-template #suffixIconButton>
+    <button nz-button nzType="primary" nzSearch><span nz-icon nzType="send" nzTheme="outline"></span></button>
+
+</ng-template>

@@ -1,38 +1,39 @@
-<div class="row" *ngIf="!(isHandset$ | async)">
-    <div class="col-12 d-flex justify-content-end">
-        <nz-segmented [nzOptions]="options" [(ngModel)]="layoutType" [nzSize]="'large'"></nz-segmented>
+<div class="container-fluid p-3">
+    <div class="row" *ngIf="!(isHandset$ | async)">
+        <div class="col-12 d-flex justify-content-end">
+            <nz-segmented [nzOptions]="options" [(ngModel)]="layoutType" [nzSize]="'large'"></nz-segmented>
+        </div>
     </div>
-</div>
-<div class="row" *ngIf="layoutType == 1; else elseTemplate">
-    <div class="col-xl-6 col-md-12 col-12 p-2">
-        <nz-divider nzText="Best rating" nzOrientation="left"></nz-divider>
-        <div class="best__rating__product" *ngIf="(productData$ | async) as items">
-            <ng-container *ngFor="let item of items; let i=index">
-                <ng-container>
-                    <app-lg-product-card [productData]="item"></app-lg-product-card>
+    <div class="row" *ngIf="layoutType == 1; else elseTemplate">
+        <div class="col-xl-6 col-md-12 col-12 p-2">
+            <nz-divider nzText="Best rating" nzOrientation="left"></nz-divider>
+            <div class="best__rating__product" *ngIf="(productData$ | async) as items">
+                <ng-container *ngFor="let item of items; let i=index">
+                    <ng-container>
+                        <app-lg-product-card [productData]="item"></app-lg-product-card>
+                    </ng-container>
                 </ng-container>
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-8 col-12 p-2">
+            <nz-divider nzText="Free but good" nzOrientation="left"></nz-divider>
+            <div class="free__product" *ngIf="(productData$ | async) as items">
+
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-8 col-12 p-2">
+            <nz-divider nzText="Best with Fee" nzOrientation="left"></nz-divider>
+            <div class="Fee__product" *ngIf="(productData$ | async) as items">
+
+            </div>
+        </div>
+    </div>
+    <ng-template #elseTemplate>
+        <div class="p-2">
+            <nz-divider nzText="Best rating" nzOrientation="left"></nz-divider>
+            <ng-container *ngIf="(productData$ | async) as items">
+                <app-product-table [items]="items"></app-product-table>
             </ng-container>
         </div>
-    </div>
-    <div class="col-xl-6 col-md-8 col-12 p-2">
-        <nz-divider nzText="Free but good" nzOrientation="left"></nz-divider>
-        <div class="free__product" *ngIf="(productData$ | async) as items">
-
-        </div>
-    </div>
-    <div class="col-xl-6 col-md-8 col-12 p-2">
-        <nz-divider nzText="Best with Fee" nzOrientation="left"></nz-divider>
-        <div class="Fee__product" *ngIf="(productData$ | async) as items">
-
-        </div>
-    </div>
+    </ng-template>
 </div>
-
-<ng-template #elseTemplate>
-    <div class="row p-2">
-        <nz-divider nzText="Best rating" nzOrientation="left"></nz-divider>
-        <ng-container *ngIf="(productData$ | async) as items">
-            <app-product-table [items]="items"></app-product-table>
-        </ng-container>
-    </div>
-</ng-template>

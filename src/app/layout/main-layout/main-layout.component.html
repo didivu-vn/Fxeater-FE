@@ -8,22 +8,21 @@
         </span>
       </div>
       <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-menu-item [routerLink]="['/search']">
+          <span nz-icon nzType="search" nzTheme="outline"></span>
+          <span>Search</span>
+        </li>
         <li nz-menu-item [routerLink]="['/product']">
           <span nz-icon nzType="radar-chart" nzTheme="outline"></span>
           <span>All Products</span>
         </li>
-        <li nz-submenu nzTitle="EA" nzIcon="desktop">
+        <!-- <li nz-submenu nzTitle="Search" nzIcon="search">
           <ul>
             <li nz-menu-item>All</li>
             <li nz-menu-item>Popular</li>
           </ul>
-        </li>
-        <li nz-submenu nzTitle="Indicator" nzIcon="pie-chart">
-          <ul>
-            <li nz-menu-item>All</li>
-            <li nz-menu-item>Popular</li>
-          </ul>
-        </li>
+        </li> -->
+
         <li nz-menu-item [routerLink]="['/about']">
           <span nz-icon nzType="question-circle" nzTheme="outline"></span>
           <span>About Us</span>

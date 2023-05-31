@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +8,23 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
 
+  searchKW = ''
+
   @Input() header = {
     title: '',
     subtitle: '',
   }
 
-  constructor() {} 
+  constructor(
+    private router: Router
+  ) {} 
+
+  search():void {
+    this.searchKW &&
+    this.router.navigate(['/search'],
+      { 
+        queryParams: {kw:this.searchKW}
+      });
+  }
+
 }
