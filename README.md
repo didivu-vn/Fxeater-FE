@@ -22,6 +22,11 @@ Using https://ng.ant.design/docs/introduce/en for styling, so not yet supported 
 - `node` is stand for nodejs, use can use fixed version or using node version manager `nvm`
 - 
 
+## Replace those things
+- find `angular-universal-starter` and replace with `your-app-name`
+- find `AngularUniversalStarter` and replace with `YourAppName`
+
+
 ## Run CLI
 - First thing first >> Install dependencies
 ```
