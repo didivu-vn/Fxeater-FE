@@ -29,6 +29,10 @@ const routes: Routes = [
     loadChildren: () => import('./page/about/about-page-routing.module').then(mod => mod.AboutRoutingModule)
   },
   {
+    path: 'blog',
+    loadChildren: () => import('./page/blog/blog.module').then(mod => mod.BlogRoutingModule)
+  },
+  {
     path:'**',
     pathMatch: 'full',
     component: PageNotFoundComponent
@@ -37,8 +41,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
+    initialNavigation: 'enabledBlocking',
+    scrollPositionRestoration: 'enabled',
+    anchorScrolling: 'enabled',
+    scrollOffset: [0, 64], // [x, y] - adjust scroll offset
     preloadingStrategy: PreloadAllModules
-  })],
+})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

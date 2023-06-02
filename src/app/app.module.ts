@@ -15,6 +15,7 @@ import { MainLayoutComponent } from './layout';
 import { ZorroModule } from './shared/lib';
 import { 
   AboutPage, 
+  BlogRoutingModule, 
   HomePage, 
   PageNotFoundComponent, 
   ProductDetailPage, 
@@ -30,6 +31,7 @@ import {
   NavbarComponent, 
   ProductCardComponent, 
   ProductTableComponent, 
+  QuillEditorComponent, 
   SmProductCardComponent 
 } from './shared/component';
 
@@ -42,8 +44,13 @@ import {
 } from './service';
 
 import { FadeInAnimationDirective } from './shared/derective/fade-in-animation.directive';
-
-
+import { QuillModule } from 'ngx-quill';
+import { BlogReplyComponent } from './page/blog/components/blog-reply/blog-reply.component';
+import { BlogCardComponent } from './page/blog/components/blog-card/blog-card.component';
+import { RelatedPostComponent } from './page/blog/components/related-post/related-post.component';
+import { AllBlogsComponent } from './page/blog/page/view-blog/view-blog.component';
+import { ToCComponent } from './page/blog/components/t-o-c/t-o-c.component';
+import { BlogPageComponent } from './page/blog/page/single-page/blog-page.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -61,7 +68,21 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ProductCardComponent, 
     LgProductCardComponent, 
     SmProductCardComponent, 
-    HeaderComponent, BreadcrumbComponent, NavbarComponent, LoaderSpinerComponent, ProductTableComponent, FadeInAnimationDirective, PageNotFoundComponent, EmailSubComponent],
+    HeaderComponent, 
+    BreadcrumbComponent, 
+    NavbarComponent, 
+    LoaderSpinerComponent, 
+    ProductTableComponent, 
+    FadeInAnimationDirective, 
+    PageNotFoundComponent, 
+    EmailSubComponent, 
+    QuillEditorComponent,
+    BlogReplyComponent,
+    RelatedPostComponent,
+    AllBlogsComponent,
+    ToCComponent,
+    BlogPageComponent
+  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
@@ -69,7 +90,10 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ZorroModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    QuillModule.forRoot(),
+    BlogRoutingModule,
+    BlogCardComponent
   ],
   exports:[
     ZorroModule
