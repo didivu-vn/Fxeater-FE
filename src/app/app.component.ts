@@ -20,6 +20,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    console.log('FXeater run in mode ', environment.production)
     environment.production && this.isPlatFormBrowser && this.grabTheTrackId()
     this.isPlatFormBrowser && setTimeout(() => {this.userService.updateUserStorage()}, 300)
   }

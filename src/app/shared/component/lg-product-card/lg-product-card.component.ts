@@ -14,7 +14,7 @@ export class LgProductCardComponent implements OnInit {
   blogSlug:string =''
 
   constructor() { 
-    console.log(this.productData)
+    // console.log(this.productData)
   }
 
   ngOnInit(): void {
