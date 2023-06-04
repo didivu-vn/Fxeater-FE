@@ -24,6 +24,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 const TARGET_COMPONENTS = [
     NzIconModule,
@@ -50,7 +52,9 @@ const TARGET_COMPONENTS = [
     NzSpinModule,
     NzInputModule,
     NzTableModule,
-    NzResultModule
+    NzResultModule,
+    NzDrawerModule,
+    NzFormModule
 ]
 
 @NgModule({
