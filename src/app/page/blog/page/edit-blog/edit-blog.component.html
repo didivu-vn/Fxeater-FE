@@ -1,0 +1,101 @@
+<form name="form" #f="ngForm" novalidate>
+    <div class="row">
+        <div class="mb-3 col-lg-4 col-sm-6">
+            <label for="title" class="form-label">Tiêu đề</label>
+            <input type="email" class="form-control" id="title" aria-describedby="title" [(ngModel)]="form.title"
+                name="title" #title="ngModel" required [ngClass]="{ 'is-invalid': f.submitted && title.errors }">
+            <div *ngIf="title.errors && f.submitted" class="invalid-feedback">
+                Title is required
+            </div>
+        </div>
+        <div class="mb-3 col-lg-4 col-sm-6">
+            <label for="sub_title" class="form-label">Tiêu đề phụ</label>
+            <input type="email" class="form-control" id="sub_title" aria-describedby="sub_title"
+                [(ngModel)]="form.sub_title" [ngModelOptions]="{standalone: true}" required>
+        </div>
+
+        <div class="mb-3 col-lg-8 col-sm-12">
+            <label for="description" class="form-label">Description</label>
+            <textarea type="description" class="form-control" id="description" aria-describedby="description" rows="3"
+                [(ngModel)]="form.description" required name="description" #description="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && description.errors }"></textarea>
+
+            <div *ngIf="description.errors && f.submitted" class="invalid-feedback">
+                <div *ngIf="description.errors['required']">Description is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 col-lg-4 col-sm-12 py-2">
+            <mat-dialog-content class="mat-typography">
+                <label for="input-file-2" class="md-button md-raised md-primary mb-2">Ảnh bìa</label>
+                <input class="ng-hide" id="input-file-2" type="file" class="form-control"
+                    (change)="onFileChange($event,'thumbnail')" />
+                <p-image src="{{form.thumbnail_image_url}}" alt="cover" width="250" *ngIf="form.thumbnail_image_url"
+                    class="mt-3"></p-image>
+            </mat-dialog-content>
+        </div>
+        <div class="mb-3 col-lg-4 col-sm-12 py-2">
+            <label for="series" class="form-label">Series</label>
+            <select class="form-select" aria-label="series" (change)="selectedSeries(series.value)" #series>
+                <option selected value="0">--</option>
+                <option *ngFor="let item of (seriesData$ | async)" value="{{item.id}}">{{item.name}}</option>
+            </select>
+        </div>
+    </div>
+    <app-quill-editor (htmlstring)="updateHttmlString($event)" inHtmlString="{{quillInitValue}}">
+    </app-quill-editor>
+    <!-- <quill-editor [styles]="{height:'600px'}" ngClass="mw-75" [modules]="modules"
+            (onEditorChanged)="changedEditor($event)" >
+        </quill-editor> -->
+    <div class="row mt-3">
+        <div class="col">
+            <button pButton pRipple type="button" label="Summit" class="p-button me-1"
+                (click)="f.form.valid && sendForm()"></button>
+            <button pButton pRipple type="button" label="Cancel" (click)="cancelForm()"
+                class="p-button-secondary me-1"></button>
+            <button pButton pRipple type="button" icon="pi pi-eye" class="p-button-rounded p-button-text"
+                pTooltip="preview" (click)="isPreviewContent = true"></button>
+
+            <ng-container *ngIf="isFormError">
+                <p-messages [(value)]="formErrorMsg" [enableService]="false"></p-messages>
+            </ng-container>
+
+        </div>
+    </div>
+</form>
+
+
+<p-sidebar [(visible)]="isPreviewContent" [fullScreen]="true" [autoZIndex]="true" [baseZIndex]="-1" appendTo="body">
+    <div class="container px-3">
+        <ng-container *ngIf="htmlstring; else elseTemplate">
+            <div class="row border-bottom">
+                <div class="col-lg-12">
+                    <h1 class="fs-2 blog__name">{{form.title}}</h1>
+                    <h3>by <strong>your account name</strong>, at {{ currentDate | date:'short'}}</h3>
+                    <span>
+                        <blockquote>{{form.description}}</blockquote>
+                    </span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-1 border-sm-bottom">
+                    <div class="d-flex justify-content-center align-item-center flex-lg-column flex-sm-row">
+                        <div class="blog__cta me-3 mt-3">
+                            <i class="fa-regular fa-heart fs-5" pTooltip="Like"></i>
+                        </div>
+                        <div class="blog__cta me-3 mt-3"><i class="fa-regular fa-star fs-5" pTooltip="Super Like"></i>
+                        </div>
+                        <div class="blog__cta mt-3"><i class="fa-regular fa-comment fs-5" pTooltip="Comment"></i></div>
+                    </div>
+                </div>
+                <div class="col-lg-11">
+                    <quill-view-html [content]="htmlstring" theme="snow"></quill-view-html>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <p>Ủa bạn, chưa nhập gì mà.</p>
+        </ng-template>
+    </div>
+</p-sidebar>

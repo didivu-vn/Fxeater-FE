@@ -8,13 +8,21 @@
         </span>
       </div>
       <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-menu-item [routerLink]="['/home']">
+          <span nz-icon nzType="home" nzTheme="outline"></span>
+          <span>Home</span>
+        </li>
         <li nz-menu-item [routerLink]="['/search']">
           <span nz-icon nzType="search" nzTheme="outline"></span>
           <span>Search</span>
         </li>
+        <li nz-menu-item [routerLink]="['/blog']">
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+          <span>Blog</span>
+        </li>
         <li nz-menu-item [routerLink]="['/product']">
           <span nz-icon nzType="radar-chart" nzTheme="outline"></span>
-          <span>All Products</span>
+          <span>Product</span>
         </li>
         <!-- <li nz-submenu nzTitle="Search" nzIcon="search">
           <ul>
@@ -28,8 +36,25 @@
           <span>About Us</span>
         </li>
       </ul>
+      <div class="cs__user-profile">
+        <li *ngIf="!isLoggedIn" class="nav-item">
+          <a nz-button nzType="link" (click)="isShowLoginModal = true">
+            <span nz-icon nzType="login"></span>
+            Log in
+          </a>
+        </li>
+        <ng-container *ngIf="(userInfo$ | async) as userInfo">
+          <li *ngIf="isLoggedIn" class="nav-item">
+            <a class="mx-2 text-uppercase" *ngIf="!isCollapsed">
+              <i class="fa-solid fa-circle-user me-1"></i>
+              Hi <strong>{{userInfo.base_user?.username}}</strong>
+            </a>
+          </li>
+        </ng-container>
+      </div>
     </nz-sider>
     <nz-layout>
+      <app-loader-spiner></app-loader-spiner>
       <!-- header section -->
       <app-navbar *ngIf="(isHandset$ | async); else temname"></app-navbar>
       <ng-template #temname>
@@ -50,3 +75,30 @@
     </nz-layout>
   </nz-layout>
 </ng-container>
+
+<nz-drawer [nzClosable]="false" [nzVisible]="isShowLoginModal" nzPlacement="right" nzTitle="Log In"
+  (nzOnClose)="isShowLoginModal = false">
+  <ng-container *nzDrawerContent>
+    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item ngClass="mb-2">
+        <nz-form-control nzErrorTip="Please input your username!">
+          <nz-input-group nzPrefixIcon="user">
+            <input formControlName="username" nz-input placeholder="username" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group nzPrefixIcon="lock">
+            <input formControlName="password" nz-input type="password" placeholder="Password" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" [disabled]="!validateForm.valid">Log in</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-drawer>

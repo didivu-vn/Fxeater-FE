@@ -1,1 +1,16 @@
 export const HOST_URL = ''
+export class END_POINT_URL_LIST {
+    static UPDATE_PROFILE = 'v1/me/#id'
+    static MY_ACCOUNT_SHOP = 'v1/shop-me/'
+    static MY_ACCOUNT_SERVICE = 'v1/service-me/'
+    static ALL_SERVICE = 'v1/api-service/'
+    static SHOP_CATEGORY = 'v1/api-shop-cate/'
+    static SERVICE_CATEGORY = 'v1/api-service-cate/'
+    static SERVIEW_REVIEW = 'v1/api-review/'
+    static REPLY_BLOG = 'v1/api-reply/'
+    static BLOG = 'v1/api-blog/'
+    static SEARCH_v1 = 'v1/api-search/'
+    static BLOG_SERIES = 'v1/api-series/'
+    static LIKE_BLOG = 'v1/api-blog-like/'
+    static RANDOM_QUOTE = 'v1/func/random-quote/'
+}
