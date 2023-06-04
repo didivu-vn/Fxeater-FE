@@ -54,6 +54,7 @@
       </div>
     </nz-sider>
     <nz-layout>
+      <app-loader-spiner></app-loader-spiner>
       <!-- header section -->
       <app-navbar *ngIf="(isHandset$ | async); else temname"></app-navbar>
       <ng-template #temname>
