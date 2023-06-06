@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './page/home/home.page';
-import { ProductDetailPage } from './page/product/product-detail/product-detail.page';
-import { ProductIndexPage } from './page/product/product-index/product-index.page';
 import { PageNotFoundComponent } from './page';
 
 
@@ -17,20 +15,16 @@ const routes: Routes = [
     component: HomePage
   },
   {
-    path: 'product',
-    component:ProductIndexPage
-  },
-  {
-    path: 'product/:id',
-    component:ProductDetailPage
-  },
-  {
     path: 'about',
     loadChildren: () => import('./page/about/about-page-routing.module').then(mod => mod.AboutRoutingModule)
   },
   {
+    path: 'product',
+    loadChildren: () => import('./page/product/product.module').then(mod => mod.ProductModule)
+  },
+  {
     path: 'blog',
-    loadChildren: () => import('./page/blog/blog.module').then(mod => mod.BlogRoutingModule)
+    loadChildren: () => import('./page/blog/blog.module').then(mod => mod.BlogPageModule)
   },
   {
     path:'**',

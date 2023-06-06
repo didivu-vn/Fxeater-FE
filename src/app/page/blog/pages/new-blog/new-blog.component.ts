@@ -7,13 +7,17 @@ import { VideoHandler, ImageHandler, Options } from 'ngx-quill-upload';
 import BlotFormatter from 'quill-blot-formatter';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { TITLE_LIST } from 'src/app/utils';
-import { Message } from 'primeng/api';
 import { map, tap } from 'rxjs';
+import { BlogService } from '../../services/blog.service';
+import { NzUploadFile } from 'ng-zorro-antd/upload';
 
 Quill.register('modules/imageHandler', ImageHandler);
 Quill.register('modules/videoHandler', VideoHandler);
 Quill.register('modules/blotFormatter', BlotFormatter);
+
+// We do not add Aref Ruqaa since it is the default
+const font = Quill.import('formats/font')
+font.whitelist = ['roboto', 'montserrat','opensans','playfair']
 
 @Component({
   selector: 'app-new-blog',
@@ -40,7 +44,6 @@ export class NewBlogComponent implements OnInit {
   }
 
   isFormError = false
-  formErrorMsg  = [{ severity: 'error', summary: 'Error', detail: 'Các mục cần thiết chưa được điền đủ.' }] as Message[]
 
   blurred = false
   focused = false
@@ -48,15 +51,17 @@ export class NewBlogComponent implements OnInit {
   file: File | null = null; // Variable to store file
   modules: any
   thumbnailFile: File | null = null;
-
-
+  
+  uploading = false;
+  fileList: NzUploadFile[] = [];
 
   constructor(
     private apiService:ApiService,
+    private blogService: BlogService,
     private router:Router,
     private titleService: Title
   ) { 
-    this.titleService.setTitle(TITLE_LIST.NEW_BLOG)
+    this.titleService.setTitle('new blog')
   }
 
   ngOnInit(): void {
@@ -65,7 +70,7 @@ export class NewBlogComponent implements OnInit {
         // empty object for default behaviour.
       },
       toolbar: [
-        [{ 'font': [] }],
+        [{ 'font': ['roboto', 'montserrat','opensans','playfair'] }],
 
         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
         ['blockquote', 'code-block'],
@@ -116,6 +121,11 @@ export class NewBlogComponent implements OnInit {
     }
   }
 
+  beforeUpload = (file: NzUploadFile): boolean => {
+    this.fileList = this.fileList.concat(file);
+    return false;
+  };
+
   onFileChange(event:any,type:'thumbnail') {  
     if (event.target.files.length > 0) {
 
@@ -128,16 +138,17 @@ export class NewBlogComponent implements OnInit {
 
   sendForm(){
     // bad code here, sorry
-    if (!this.form.title || !this.htmlstring || !this.thumbnailFile){
+    if (!this.form.title || !this.htmlstring || !this.fileList){
       this.isFormError = true
       return
     }
 
     this.form.html_string = this.htmlstring
     this.form.name = this.form.title
-    this.form.thumbnail_image = this.thumbnailFile
+    this.form.thumbnail_image = this.fileList[0]
 
-    this.apiService.postBlog(this.form).subscribe(
+
+    this.blogService.postBlog(this.form).subscribe(
       data => {
         this.router.navigateByUrl(`/blog/${data.id}`)
       },

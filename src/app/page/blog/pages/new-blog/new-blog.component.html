@@ -1,0 +1,68 @@
+<div class="container py-3">
+    <form name="form" #f="ngForm" novalidate>
+        <div class="row">
+            <div class="mb-3 col-lg-4 col-sm-6">
+                <label for="title" class="form-label">Tiêu đề</label>
+                <input type="email" class="form-control" id="title" aria-describedby="title" [(ngModel)]="form.title"
+                    name="title" #title="ngModel" required [ngClass]="{ 'is-invalid': f.submitted && title.errors }">
+                <div *ngIf="title.errors && f.submitted" class="invalid-feedback">
+                    Title is required
+                </div>
+            </div>
+            <div class="mb-3 col-lg-4 col-sm-6">
+                <label for="sub_title" class="form-label">Tiêu đề phụ</label>
+                <input type="email" class="form-control" id="sub_title" aria-describedby="sub_title" name="sub_title"
+                    [(ngModel)]="form.sub_title" required [ngClass]="{ 'is-invalid': f.submitted && title.errors }">
+                <div *ngIf="title.errors && f.submitted" class="invalid-feedback">
+                    Title is required
+                </div>
+            </div>
+
+            <div class="mb-3 col-lg-8 col-sm-12">
+                <label for="description" class="form-label">Description</label>
+                <textarea type="description" class="form-control" id="description" aria-describedby="description"
+                    rows="3" [(ngModel)]="form.description" required name="description" #description="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && description.errors }"></textarea>
+
+                <div *ngIf="description.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="description.errors['required']">Description is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-lg-4 col-sm-12 py-2">
+                <label for="input-file-2" class="md-button md-raised md-primary mb-2">Ảnh bìa</label>
+                <div class="d-block">
+                    <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload" [nzLimit]="1">
+                        <button nz-button>
+                            <span nz-icon nzType="upload"></span>
+                            Select File
+                        </button>
+                    </nz-upload>
+                </div>
+            </div>
+            <div class="mb-3 col-lg-4 col-sm-12 py-2">
+                <label for="series" class="form-label">Series</label>
+                <select class="form-select" aria-label="series" (change)="selectedSeries(series.value)" #series>
+                    <option selected value="0">--</option>
+                    <option *ngFor="let item of (seriesData$ | async)" value="{{item.id}}">{{item.name}}</option>
+                </select>
+            </div>
+        </div>
+        <quill-editor [styles]="{height:'600px'}" ngClass="mw-75" [modules]="modules"
+            (onEditorChanged)="changedEditor($event)">
+        </quill-editor>
+        <div class="row mt-3">
+            <div class="col">
+                <button nz-button nzType="primary" class="px-3 me-1" (click)="sendForm()">Post</button>
+                <button nz-button nzType="default" (click)="cancelForm()" class="me-1">Cancel</button>
+                <span nz-icon nzType="eye" nzTheme="outline" (click)="isPreviewContent = true"></span>
+
+                <ng-container *ngIf="isFormError">
+                    <p>error</p>
+                </ng-container>
+
+            </div>
+        </div>
+    </form>
+</div>

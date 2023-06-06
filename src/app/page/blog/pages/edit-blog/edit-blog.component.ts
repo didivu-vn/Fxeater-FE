@@ -7,11 +7,11 @@ import { VideoHandler, ImageHandler, Options } from 'ngx-quill-upload';
 import BlotFormatter from 'quill-blot-formatter';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { END_POINT_URL_LIST, TITLE_LIST } from 'src/app/utils';
-import { Message } from 'primeng/api';
 import { map, tap } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { IBlogRelatedData } from 'src/app/interface/blog-reply.interface';
+import { END_POINT_URL_LIST } from 'src/app/util';
+import { IBlogRelatedData } from '../../interfaces/blog-reply.interface';
+import { BlogService } from '../../services/blog.service';
 
 Quill.register('modules/imageHandler', ImageHandler);
 Quill.register('modules/videoHandler', VideoHandler);
@@ -44,7 +44,6 @@ export class EditBlogComponent implements OnInit {
   }
 
   isFormError = false
-  formErrorMsg  = [{ severity: 'error', summary: 'Error', detail: 'Các mục cần thiết chưa được điền đủ.' }] as Message[]
 
   file: File | null = null; // Variable to store file
   modules: any
@@ -55,11 +54,12 @@ export class EditBlogComponent implements OnInit {
 
   constructor(
     private apiService:ApiService,
+    private blogService: BlogService,
     private router:Router,
     private route: ActivatedRoute,
     private titleService: Title
   ) { 
-    this.titleService.setTitle(TITLE_LIST.EDIT_BLOG)
+    this.titleService.setTitle('Edit blog')
   }
 
   ngOnInit(): void {
@@ -145,7 +145,7 @@ export class EditBlogComponent implements OnInit {
     this.form.thumbnail_image = this.thumbnailFile
 
     if (Object.keys(this.form).length > 0 && this.blogId) {
-      this.apiService.putBlog(this.form, this.blogId).subscribe(
+      this.blogService.putBlog(this.form, this.blogId).subscribe(
         data => {
           this.router.navigateByUrl(`/blog/${this.blogId}`)
         },

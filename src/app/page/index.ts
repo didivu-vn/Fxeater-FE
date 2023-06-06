@@ -1,6 +1,5 @@
 export * from './about/about.page'
 export * from './home/home.page'
-export * from './product/product-detail/product-detail.page'
-export * from './product/product-index/product-index.page'
+export * from './product/product.module'
 export * from './page-not-found/page-not-found.component'
 export * from './blog/blog.module'
