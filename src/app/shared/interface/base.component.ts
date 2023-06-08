@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from "@angular/core"
 import { IHeaderData, LayoutService } from "../../service/layout.service"
 import { IPageMetadata, MetadataService } from "src/app/service"
+import { ViewportScroller } from "@angular/common"
 
 export interface IMetaData {
   layout: IHeaderData,
@@ -10,31 +11,57 @@ export interface IMetaData {
 
 interface IBreadcrumbData {
   name: string
-  url: string
+  url?: string
+}
+
+const sample_metaData: IMetaData = {
+  breadcrumb: [
+    {
+      name: 'Products',
+      url: '/product'
+    },
+    {
+      name: 'Detail ' ,
+      url: '/product/'
+    }
+  ],
+  layout:{
+    title: 'Product Detail',
+    subtitle: 'Everything you need to know about.'
+  },
+  page: {
+    title: `FXeater | productname`,
+    description: 'Everything you need to know about.'
+  }
 }
 
 @Component({template:''})
 export class BasePage implements OnInit {
   
-    protected layoutService = inject(LayoutService)
-    protected metaDateService = inject(MetadataService)
-    protected metaData: IMetaData = {} as IMetaData
+  protected layoutService = inject(LayoutService)
+  protected metaDateService = inject(MetadataService)
+  protected viewPortScroller = inject(ViewportScroller)
+  protected metaData: IMetaData = {} as IMetaData
 
-    constructor( ) {}
-  
-    ngOnInit(): void {
-      this.updateLayout()
-      this.updateSEO()
-    }
+  constructor( ) {}
 
-    updateLayout(){
-      this.metaData.breadcrumb && this.layoutService.setBreadbrumbData(this.metaData.breadcrumb)
-      this.metaData.layout && this.layoutService.setHeaderData(this.metaData.layout)
-    }
-
-    updateSEO(){
-      this.metaDateService.updateMetadata(this.metaData.page || {})
-    }
-
+  ngOnInit(): void {
+    this.updateLayout()
+    this.updateSEO()
   }
+
+  updateLayout(){
+    this.metaData.breadcrumb && this.layoutService.setBreadbrumbData(this.metaData.breadcrumb)
+    this.metaData.layout && this.layoutService.setHeaderData(this.metaData.layout)
+  }
+
+  updateSEO(){
+    this.metaDateService.updateMetadata(this.metaData.page || {})
+  }
+
+  scrollTop(){
+    this.viewPortScroller.scrollToPosition([0, 0])
+  }
+
+}
   

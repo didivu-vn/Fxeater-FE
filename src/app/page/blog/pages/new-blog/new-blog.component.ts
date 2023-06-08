@@ -7,9 +7,12 @@ import { VideoHandler, ImageHandler, Options } from 'ngx-quill-upload';
 import BlotFormatter from 'quill-blot-formatter';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { map, tap } from 'rxjs';
+import { BehaviorSubject, map, tap } from 'rxjs';
 import { BlogService } from '../../services/blog.service';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { BasePage } from 'src/app/shared/interface';
+
 
 Quill.register('modules/imageHandler', ImageHandler);
 Quill.register('modules/videoHandler', VideoHandler);
@@ -19,12 +22,18 @@ Quill.register('modules/blotFormatter', BlotFormatter);
 const font = Quill.import('formats/font')
 font.whitelist = ['roboto', 'montserrat','opensans','playfair']
 
+const MSG_TYPE ={
+  OK:'success',
+  ERROR:'error',
+  WARNING:'warning'
+}
+
 @Component({
   selector: 'app-new-blog',
   templateUrl: './new-blog.component.html',
   styleUrls: ['./new-blog.component.css']
 })
-export class NewBlogComponent implements OnInit {
+export class NewBlogComponent extends BasePage {
 
   isPreviewContent = false
   currentDate = new Date();
@@ -32,7 +41,6 @@ export class NewBlogComponent implements OnInit {
   seriesUrl = 'v1/api-series/'
   seriesData$ = this.apiService.getDataWithUrl(this.seriesUrl).pipe(
     map(data => data.results),
-    tap(data => console.log(data)),
   )
   
 
@@ -43,7 +51,7 @@ export class NewBlogComponent implements OnInit {
     series: null,
   }
 
-  isFormError = false
+  isFormError$ = new BehaviorSubject(false)
 
   blurred = false
   focused = false
@@ -59,12 +67,12 @@ export class NewBlogComponent implements OnInit {
     private apiService:ApiService,
     private blogService: BlogService,
     private router:Router,
-    private titleService: Title
+    private messageService: NzMessageService
   ) { 
-    this.titleService.setTitle('new blog')
+    super()
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.modules = {
       blotFormatter: {
         // empty object for default behaviour.
@@ -110,6 +118,43 @@ export class NewBlogComponent implements OnInit {
         accepts: ['png', 'jpg', 'jpeg', 'jfif'] 
       } as Options
     };
+
+    // set up alert
+    this.isFormError$.pipe(
+      tap(isError => 
+        {
+          if(isError) {
+            this.scrollTop()
+            setTimeout(() => {
+              this.messageService.create(MSG_TYPE.ERROR,'Create blog fail, some fiels are empty.')
+            }, 700);
+          } 
+        }
+      ),
+    ).subscribe()
+
+
+    this.metaData ={
+      breadcrumb: [
+        {
+          name: 'All Blog',
+          url: '/blog'
+        },
+        {
+          name: 'New Blog',
+        }
+      ],
+      layout:{
+        title: 'Blog New',
+        subtitle: 'Daily reading is a must.'
+      },
+      page: {
+        title: `FXeater | Blog | Create new blog`,
+        description: 'Daily reading is a must.'
+      }
+    }
+    this.updateLayout()
+    this.updateSEO()
   }
 
   changedEditor(event: EditorChangeContent | EditorChangeSelection) {
@@ -138,8 +183,8 @@ export class NewBlogComponent implements OnInit {
 
   sendForm(){
     // bad code here, sorry
-    if (!this.form.title || !this.htmlstring || !this.fileList){
-      this.isFormError = true
+    if (!this.form.title || !this.htmlstring || !this.fileList){ 
+      this.isFormError$.next(true)
       return
     }
 

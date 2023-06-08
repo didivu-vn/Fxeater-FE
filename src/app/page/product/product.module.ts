@@ -5,8 +5,7 @@ import { CommonModule } from "@angular/common";
 
 import { ZorroModule } from "src/app/shared/lib";
 
-import { AllBlogsComponent } from "../blog/pages/view-blog/view-blog.component";
-import { BlogPageComponent } from "../blog/pages/single-page/blog-page.component";
+
 import { ProductCardComponent } from "./components/product-card/product-card.component";
 import { LgProductCardComponent } from "./components/lg-product-card/lg-product-card.component";
 import { SmProductCardComponent } from "./components/sm-product-card/sm-product-card.component";
@@ -18,11 +17,11 @@ import { ProductDetailPage } from "./pages/product-detail/product-detail.page";
 const routes: Routes = [
     {
         path: '',
-        component: AllBlogsComponent,
+        component: ProductIndexPage,
     },
     {
         path: ':id',
-        component: BlogPageComponent,
+        component: ProductDetailPage,
     },
 ];
 

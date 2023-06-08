@@ -2,7 +2,7 @@
     <form name="form" #f="ngForm" novalidate>
         <div class="row">
             <div class="mb-3 col-lg-4 col-sm-6">
-                <label for="title" class="form-label">Tiêu đề</label>
+                <label for="title" class="form-label">Title</label>
                 <input type="email" class="form-control" id="title" aria-describedby="title" [(ngModel)]="form.title"
                     name="title" #title="ngModel" required [ngClass]="{ 'is-invalid': f.submitted && title.errors }">
                 <div *ngIf="title.errors && f.submitted" class="invalid-feedback">
@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="mb-3 col-lg-4 col-sm-6">
-                <label for="sub_title" class="form-label">Tiêu đề phụ</label>
+                <label for="sub_title" class="form-label">Sub Title</label>
                 <input type="email" class="form-control" id="sub_title" aria-describedby="sub_title" name="sub_title"
                     [(ngModel)]="form.sub_title" required [ngClass]="{ 'is-invalid': f.submitted && title.errors }">
                 <div *ngIf="title.errors && f.submitted" class="invalid-feedback">
@@ -31,7 +31,7 @@
         </div>
         <div class="row">
             <div class="mb-3 col-lg-4 col-sm-12 py-2">
-                <label for="input-file-2" class="md-button md-raised md-primary mb-2">Ảnh bìa</label>
+                <label for="input-file-2" class="md-button md-raised md-primary mb-2">Cover Image</label>
                 <div class="d-block">
                     <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload" [nzLimit]="1">
                         <button nz-button>
@@ -55,14 +55,49 @@
         <div class="row mt-3">
             <div class="col">
                 <button nz-button nzType="primary" class="px-3 me-1" (click)="sendForm()">Post</button>
-                <button nz-button nzType="default" (click)="cancelForm()" class="me-1">Cancel</button>
-                <span nz-icon nzType="eye" nzTheme="outline" (click)="isPreviewContent = true"></span>
-
-                <ng-container *ngIf="isFormError">
-                    <p>error</p>
-                </ng-container>
+                <button nz-button nzType="default" class="px-3 me-1" (click)="cancelForm()" class="me-1">Cancel</button>
+                <button nz-button nzType="dashed" (click)="isPreviewContent = true">
+                    <span nz-icon nzType="eye" nzTheme="outline"></span>
+                </button>
 
             </div>
         </div>
     </form>
 </div>
+
+<nz-drawer [nzClosable]="false" [nzSize]="'large'" [(nzVisible)]="isPreviewContent" nzPlacement="right"
+    nzTitle="Preview" (nzOnClose)="isPreviewContent = false">
+    <ng-container *nzDrawerContent>
+        <ng-container *ngIf="htmlstring; else elseTemplate">
+            <div class="row border-bottom">
+                <div class="col-lg-12">
+                    <h1 class="fs-3 blog__name cs__text-3">{{form.title}}</h1>
+                    <h3 class="fs-6 cs__text-2">by <strong>your account name</strong>, at {{ currentDate |
+                        date:'short'}}
+                    </h3>
+                    <span>
+                        <h3 class="blog__description fs-5 cs__text-2">{{form.description}}</h3>
+                    </span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-1 border-sm-bottom">
+                    <div class="d-flex justify-content-center align-item-center flex-lg-column flex-sm-row">
+                        <div class="blog__cta me-3 mt-3">
+                            <i class="fa-regular fa-heart fs-5" pTooltip="Like"></i>
+                        </div>
+                        <div class="blog__cta me-3 mt-3"><i class="fa-regular fa-star fs-5" pTooltip="Super Like"></i>
+                        </div>
+                        <div class="blog__cta mt-3"><i class="fa-regular fa-comment fs-5" pTooltip="Comment"></i></div>
+                    </div>
+                </div>
+                <div class="col-lg-11">
+                    <quill-view-html [content]="htmlstring" theme="snow"></quill-view-html>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <p>Empty content</p>
+        </ng-template>
+    </ng-container>
+</nz-drawer>

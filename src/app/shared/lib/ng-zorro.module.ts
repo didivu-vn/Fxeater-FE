@@ -27,6 +27,8 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 const TARGET_COMPONENTS = [
     NzIconModule,
@@ -56,7 +58,9 @@ const TARGET_COMPONENTS = [
     NzResultModule,
     NzDrawerModule,
     NzFormModule,
-    NzUploadModule
+    NzUploadModule,
+    NzAlertModule,
+    NzMessageModule
 ]
 
 @NgModule({
