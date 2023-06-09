@@ -49,9 +49,10 @@
                 </select>
             </div>
         </div>
-        <quill-editor [styles]="{height:'600px'}" ngClass="mw-75" [modules]="modules"
-            (onEditorChanged)="changedEditor($event)">
-        </quill-editor>
+
+        <app-quill-editor (htmlstring)="updateHttmlString($event)" inHtmlString="{{quillInitValue}}">
+        </app-quill-editor>
+
         <div class="row mt-3">
             <div class="col">
                 <button nz-button nzType="primary" class="px-3 me-1" (click)="sendForm()">Post</button>

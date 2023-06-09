@@ -1,26 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill'
+import { Component } from '@angular/core';
 import { ApiService } from 'src/app/service';
-
-import Quill from 'quill';
-import { VideoHandler, ImageHandler, Options } from 'ngx-quill-upload';
-import BlotFormatter from 'quill-blot-formatter';
 import { Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+
 import { BehaviorSubject, map, tap } from 'rxjs';
-import { BlogService } from '../../services/blog.service';
-import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { BasePage } from 'src/app/shared/interface';
+import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { BlogService } from '../../services/blog.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
-
-Quill.register('modules/imageHandler', ImageHandler);
-Quill.register('modules/videoHandler', VideoHandler);
-Quill.register('modules/blotFormatter', BlotFormatter);
-
-// We do not add Aref Ruqaa since it is the default
-const font = Quill.import('formats/font')
-font.whitelist = ['roboto', 'montserrat','opensans','playfair']
 
 const MSG_TYPE ={
   OK:'success',
@@ -42,7 +29,7 @@ export class NewBlogComponent extends BasePage {
   seriesData$ = this.apiService.getDataWithUrl(this.seriesUrl).pipe(
     map(data => data.results),
   )
-  
+  quillInitValue = ''
 
   form: any = {
     title: '',
@@ -51,15 +38,12 @@ export class NewBlogComponent extends BasePage {
     series: null,
   }
 
-  isFormError$ = new BehaviorSubject(false)
+  isFormError = false
 
   blurred = false
   focused = false
   htmlstring = ''
-  file: File | null = null; // Variable to store file
-  modules: any
-  thumbnailFile: File | null = null;
-  
+  isFormError$ = new BehaviorSubject(false)
   uploading = false;
   fileList: NzUploadFile[] = [];
 
@@ -67,58 +51,12 @@ export class NewBlogComponent extends BasePage {
     private apiService:ApiService,
     private blogService: BlogService,
     private router:Router,
-    private messageService: NzMessageService
+    private messageService: NzMessageService,
   ) { 
     super()
   }
 
   override ngOnInit(): void {
-    this.modules = {
-      blotFormatter: {
-        // empty object for default behaviour.
-      },
-      toolbar: [
-        [{ 'font': ['roboto', 'montserrat','opensans','playfair'] }],
-
-        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-        ['blockquote', 'code-block'],
-
-        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-        [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
-        [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
-        [{ 'direction': 'rtl' }],                         // text direction
-
-        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-        [{ 'align': [] }],
-
-        ['link','image'],
-
-        ['clean'],                                         // remove formatting button
-
-      ],
-      imageHandler: {
-        upload: (file) => {
-         return new Promise((resolve, reject) =>{
-          return this.apiService.postImg(file)
-          .toPromise()
-          .then(result => {
-            resolve(result.img_file); 
-           })
-          .catch(error => {
-            reject('Upload failed'); 
-            // Handle error control
-            console.error('Error:', error);
-            })
-         })
-        },
-        accepts: ['png', 'jpg', 'jpeg', 'jfif'] 
-      } as Options
-    };
-
     // set up alert
     this.isFormError$.pipe(
       tap(isError => 
@@ -132,7 +70,6 @@ export class NewBlogComponent extends BasePage {
         }
       ),
     ).subscribe()
-
 
     this.metaData ={
       breadcrumb: [
@@ -157,28 +94,13 @@ export class NewBlogComponent extends BasePage {
     this.updateSEO()
   }
 
-  changedEditor(event: EditorChangeContent | EditorChangeSelection) {
-    // tslint:disable-next-line:no-console
-    // console.log('editor-change', event)
-    if ('html' in event){
-      event.html && (this.htmlstring = event.html)
-      // console.log(event)
-    }
-  }
-
   beforeUpload = (file: NzUploadFile): boolean => {
     this.fileList = this.fileList.concat(file);
     return false;
   };
 
-  onFileChange(event:any,type:'thumbnail') {  
-    if (event.target.files.length > 0) {
-
-      if(type == 'thumbnail') {
-        this.thumbnailFile = event.target.files[0];
-        return
-      }    
-    }
+  updateHttmlString(htmlString:string){
+    this.htmlstring = htmlString
   }
 
   sendForm(){

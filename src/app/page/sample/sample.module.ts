@@ -3,7 +3,6 @@ import { RouterModule, Routes } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { ZorroModule } from "src/app/shared/lib";
-import { QuillModule } from "ngx-quill";
 
 // list your feature components here
 const _feature_local_components: any[] | Type<any> = [
@@ -31,7 +30,6 @@ const routes: Routes = [
         ZorroModule,
         CommonModule,
         ReactiveFormsModule,
-        QuillModule.forRoot(),
     ],
     exports: [
         RouterModule,
