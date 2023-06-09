@@ -71,7 +71,7 @@ export class BlogPageComponent extends BasePage {
       breadcrumb: [
         {
           name: 'All Blog',
-          url: '/blog'
+          url: '/blog/all'
         },
         {
           name: this.blogData.name,

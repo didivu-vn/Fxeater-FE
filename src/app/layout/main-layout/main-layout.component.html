@@ -1,6 +1,6 @@
 <ng-container>
   <nz-layout>
-    <nz-sider nzCollapsible nzWidth="200px" [nzCollapsed]="isCollapsed" [nzCollapsedWidth]="80"
+    <nz-sider nzCollapsible nzWidth="200px" [(nzCollapsed)]="isCollapsed" [nzCollapsedWidth]="80"
       *ngIf="!(isHandset$ | async)">
       <div class="logo text-center cs__pointer" [routerLink]="['/']" routerLinkActive="router-link-active">
         <span class="cs__text-1">
@@ -45,16 +45,17 @@
         </li>
         <ng-container *ngIf="(userInfo$ | async) as userInfo">
           <li *ngIf="isLoggedIn" class="nav-item">
-            <a class="mx-2 text-uppercase" *ngIf="!isCollapsed">
+            <a class="mx-2 text-uppercase">
               <i class="fa-solid fa-circle-user me-1"></i>
-              Hi <strong>{{userInfo.base_user?.username}}</strong>
+              <ng-container *ngIf="!isCollapsed">
+                Hi <strong>{{userInfo.base_user?.username}}</strong>
+              </ng-container>
             </a>
           </li>
         </ng-container>
       </div>
     </nz-sider>
     <nz-layout>
-      <app-loader-spiner></app-loader-spiner>
       <!-- header section -->
       <app-navbar *ngIf="(isHandset$ | async); else temname"></app-navbar>
       <ng-template #temname>
@@ -67,7 +68,8 @@
         </ng-container>
 
         <!-- main content section -->
-        <div class="inner-content">
+        <div class="inner-content pb-5">
+          <app-loader-spiner></app-loader-spiner>
           <ng-content></ng-content>
         </div>
       </nz-content>

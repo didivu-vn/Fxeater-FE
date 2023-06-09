@@ -7,6 +7,7 @@ import { BasePage } from 'src/app/shared/interface';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { BlogService } from '../../services/blog.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { END_POINT_URL_LIST } from 'src/app/util';
 
 
 const MSG_TYPE ={
@@ -25,7 +26,7 @@ export class NewBlogComponent extends BasePage {
   isPreviewContent = false
   currentDate = new Date();
 
-  seriesUrl = 'v1/api-series/'
+  seriesUrl = END_POINT_URL_LIST.BLOG_SERIES
   seriesData$ = this.apiService.getDataWithUrl(this.seriesUrl).pipe(
     map(data => data.results),
   )
@@ -75,7 +76,7 @@ export class NewBlogComponent extends BasePage {
       breadcrumb: [
         {
           name: 'All Blog',
-          url: '/blog'
+          url: '/blog/all'
         },
         {
           name: 'New Blog',

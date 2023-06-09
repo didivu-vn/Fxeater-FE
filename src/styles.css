@@ -42,7 +42,7 @@ nz-content {
 }
 
 .inner-content {
-    padding: 0px !important;
+    padding: 0 0 24px 0 !important;
 }
 
 .ql-snow .ql-editor img{

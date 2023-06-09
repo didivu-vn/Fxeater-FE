@@ -1,28 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill'
+import { Component } from '@angular/core';
 import { ApiService } from 'src/app/service';
 
-import Quill from 'quill';
-import { VideoHandler, ImageHandler, Options } from 'ngx-quill-upload';
-import BlotFormatter from 'quill-blot-formatter';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { map, tap } from 'rxjs';
+import { BehaviorSubject, map, tap } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { END_POINT_URL_LIST } from 'src/app/util';
 import { IBlogRelatedData } from '../../interfaces/blog-reply.interface';
 import { BlogService } from '../../services/blog.service';
+import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { BasePage } from 'src/app/shared/interface';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
-Quill.register('modules/imageHandler', ImageHandler);
-Quill.register('modules/videoHandler', VideoHandler);
-Quill.register('modules/blotFormatter', BlotFormatter);
+const MSG_TYPE ={
+  OK:'success',
+  ERROR:'error',
+  WARNING:'warning'
+}
+
 
 @Component({
   selector: 'app-edit-blog',
   templateUrl: './edit-blog.component.html',
   styleUrls: ['./edit-blog.component.scss']
 })
-export class EditBlogComponent implements OnInit {
+export class EditBlogComponent extends BasePage {
 
   quillInitValue = ''
   htmlstring = ''
@@ -43,106 +44,79 @@ export class EditBlogComponent implements OnInit {
     series: null,
   }
 
-  isFormError = false
-
-  file: File | null = null; // Variable to store file
-  modules: any
-  thumbnailFile: File | null = null;
-
   blogId?:number
   blogData: any
+  
+  isFormError$ = new BehaviorSubject(false)
+  uploading = false;
+  fileList: NzUploadFile[] = [];
 
   constructor(
     private apiService:ApiService,
     private blogService: BlogService,
     private router:Router,
     private route: ActivatedRoute,
-    private titleService: Title
+    private messageService: NzMessageService,
   ) { 
-    this.titleService.setTitle('Edit blog')
+    super()
   }
 
-  ngOnInit(): void {
-    this.modules = {
-      blotFormatter: {
-        // empty object for default behaviour.
-      },
-      toolbar: [
-        [{ 'font': [] }],
-
-        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-        ['blockquote', 'code-block'],
-
-        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-        [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
-        [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
-        [{ 'direction': 'rtl' }],                         // text direction
-
-        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-        [{ 'align': [] }],
-
-        ['link','image'],
-
-        ['clean'],                                         // remove formatting button
-
-      ],
-      imageHandler: {
-        upload: (file) => {
-         return new Promise((resolve, reject) =>{
-          return this.apiService.postImg(file)
-          .toPromise()
-          .then(result => {
-            resolve(result.img_file); 
-           })
-          .catch(error => {
-            reject('Upload failed'); 
-            // Handle error control
-            console.error('Error:', error);
-            })
-         })
-        },
-        accepts: ['png', 'jpg', 'jpeg', 'jfif'] 
-      } as Options
-    }
+  override ngOnInit(): void {
+    // set up alert
+    this.isFormError$.pipe(
+      tap(isError => 
+        {
+          if(isError) {
+            this.scrollTop()
+            setTimeout(() => {
+              this.messageService.create(MSG_TYPE.ERROR,'Create blog fail, some fiels are empty.')
+            }, 700);
+          } 
+        }
+      ),
+    ).subscribe()
 
     this.route.params.subscribe(
       data => {
         this.blogId = data['id'].split('-')[0]
         this.getBlogData(false)
+
+        this.metaData ={
+          breadcrumb: [
+            {
+              name: 'All Blog',
+              url: '/blog/all'
+            },
+            {
+              name: 'Edit Blog',
+            }
+          ],
+          layout:{
+            title: 'Edit Blog',
+            subtitle: 'Daily reading is a must.'
+          },
+        }
+        this.updateLayout()
       }
     )
   }
 
-  changedEditor(event: EditorChangeContent | EditorChangeSelection) {
-    if ('html' in event){
-      event.html && (this.htmlstring = event.html)
-    }
-  }
+  beforeUpload = (file: NzUploadFile): boolean => {
+    this.fileList = this.fileList.concat(file);
+    return false;
+  };
 
-  onFileChange(event:any,type:'thumbnail') {  
-    if (event.target.files.length > 0) {
-
-      if(type == 'thumbnail') {
-        this.thumbnailFile = event.target.files[0];
-        return
-      }    
-    }
-  }
 
   sendForm(){
     // bad code here, sorry
     if (!this.form.title || !this.htmlstring){
-      this.isFormError = true
+      this.isFormError$.next(true)
       return
     }
 
     this.form.html_string = this.htmlstring
     this.form.name = this.form.title
-    this.form.thumbnail_image = this.thumbnailFile
+    this.form.thumbnail_image =  this.fileList[0]
 
     if (Object.keys(this.form).length > 0 && this.blogId) {
       this.blogService.putBlog(this.form, this.blogId).subscribe(
@@ -152,7 +126,7 @@ export class EditBlogComponent implements OnInit {
         error => console.log(error)
       )
     } else {
-      this.isFormError = true
+      this.isFormError$.next(true)
     }
   }
 
@@ -179,6 +153,12 @@ export class EditBlogComponent implements OnInit {
       (data:IBlogData) => {
         this.blogData = data
         this.updateDataToForm(data)
+
+        this.metaData.page ={
+          title: `FXeater | Edit | ${this.blogData.name}`,
+          description: 'Sharing with other.'
+        }
+        this.updateSEO()
       }
     )
   }
