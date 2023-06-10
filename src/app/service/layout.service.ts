@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 export interface IBreadcrumbData {
   name: string
-  url: string
+  url?: string
   icon?: string
 }
 

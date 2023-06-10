@@ -3,8 +3,16 @@
         <nz-breadcrumb-item>
             <span nz-icon nzType="home" [routerLink]="['/']"></span>
         </nz-breadcrumb-item>
-        <nz-breadcrumb-item *ngFor="let item of breadcrumb" [routerLink]="[item.url]">
-            {{item.name}}
-        </nz-breadcrumb-item>
+        <ng-container *ngFor="let item of breadcrumb">
+            <nz-breadcrumb-item [routerLink]="[item.url]" *ngIf="item.url;else noUrlBreadCrum">
+                {{item.name}}
+            </nz-breadcrumb-item>
+            <ng-template #noUrlBreadCrum>
+                <nz-breadcrumb-item>
+                    {{item.name}}
+                </nz-breadcrumb-item>
+            </ng-template>
+        </ng-container>
+
     </nz-breadcrumb>
 </div>

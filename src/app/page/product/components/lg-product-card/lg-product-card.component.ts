@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import slugify from 'slugify';
-import { IProduct } from '../../interface/common.interface';
+import { IProduct } from '../../../../shared/interface/common.interface';
 
 @Component({
   selector: 'app-lg-product-card',
