@@ -45,7 +45,7 @@
         </li>
         <ng-container *ngIf="(userInfo$ | async) as userInfo">
           <li *ngIf="isLoggedIn" class="nav-item">
-            <a class="mx-2 text-uppercase">
+            <a class="mx-2 text-uppercase" [routerLink]="['/mypage']" routerLinkActive="router-link-active">
               <i class="fa-solid fa-circle-user me-1"></i>
               <ng-container *ngIf="!isCollapsed">
                 Hi <strong>{{userInfo.base_user?.username}}</strong>
@@ -69,7 +69,6 @@
 
         <!-- main content section -->
         <div class="inner-content pb-5">
-          <app-loader-spiner></app-loader-spiner>
           <ng-content></ng-content>
         </div>
       </nz-content>

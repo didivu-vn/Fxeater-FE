@@ -1,0 +1,76 @@
+<div class="container-fluid p-3">
+    <div class="row mt-3">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <button nz-button nzType="primary" routerLink="/blog/new/">
+                New blog
+            </button>
+        </div>
+    </div>
+    <div class="row mt-3" *ngIf="(apiData$ | async)">
+        <div class="col-lg-4 col-6" *ngFor="let item of blogData">
+            <div class="blog__card border px-3 pt-3 pb-2 mb-3 bg-light">
+                <div class="blog__card__header">
+                    <span class="fs-5">
+                        <a class="text-reset" routerLink="{{generateUrl(item)}}">{{item.name}}</a>
+                    </span>
+                    <p class="fst-italic mt-1">created at: <strong>{{item.created_at | date:'short'}}</strong>, status:
+                        <strong [ngClass]="{'text-danger': !getStatus(item).isCanEdit}">{{getStatus(item).msg}}</strong>
+                    </p>
+                </div>
+                <nz-divider></nz-divider>
+                <div class="blog__card__content mt-2">
+                    <div class="row">
+                        <div class="col-9">
+                            {{item.description}}
+                        </div>
+                        <div class="col-3">
+                            <!-- <p-image src="{{item.thumbnail_image_url}}" alt="Image" width="100%"></p-image> -->
+                        </div>
+                    </div>
+                </div>
+                <nz-divider></nz-divider>
+                <div class="blog__card__index row px-3">
+                    <span class="col-lg-2 col-3 views">
+                        <i class="fa-regular fa-eye me-1"></i>{{item.view_count}}
+                    </span>
+                    <span class="col-lg-2 col-3 likes">
+                        <i class="fa-regular fa-heart me-1"
+                            [ngStyle]="{color:'var(--pink-500)'}"></i>{{item.like_count}}
+                    </span>
+                    <span class="col-lg-2 col-3 comments">
+                        <i class="fa-regular fa-comment me-1"
+                            [ngStyle]="{color:'var(--blue-500)'}"></i>{{item.replies.length}}
+                    </span>
+                </div>
+                <nz-divider></nz-divider>
+                <div class="blog__card_status d-flex justify-content-between">
+                    <div class="blog__cta">
+                        <button nz-button nzType="link" (click)="gotoEdit(item)" [disabled]="!getStatus(item).isCanEdit"
+                            class="me-2 py-1">Edit</button>
+                        <button nz-button nzType="text" nzDanger (click)="deleteItem(item)"
+                            [disabled]="!getStatus(item).isCanEdit" class="me-2 py-1">Delete</button>
+
+
+                        <ng-container *ngIf="item.is_deleting">
+                            <button nz-button nzType="text" (click)="deleteItemCancle(item)"><span nz-icon
+                                    nzType="close" nzTheme="outline" class="me-1"></span></button>
+                            <button nz-button nzType="text" nzDanger (click)="deleteItemOK(item)"><span nz-icon
+                                    nzType="check" nzTheme="outline"></span></button>
+                        </ng-container>
+
+                    </div>
+                    <div class="blog__status__update">
+                        <button nz-button nzType="primary" (click)="toogleBlog(item)"
+                            [disabled]="!getStatus(item).isCanEdit">{{item.status_type == 2 ? 'Hide' :
+                            'Publish'}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-3" *ngIf="isLoadMore">
+        <div class="col-lg-12 col-12 d-flex justify-content-end">
+            <button nz-button nzType="primary" (click)="loadMore()">Load more</button>
+        </div>
+    </div>
+</div>

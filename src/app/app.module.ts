@@ -56,6 +56,7 @@ import { SmProductCardComponent } from './page/product/components/sm-product-car
 import { ProductTableComponent } from './page/product/components/product-table/product-table.component';
 import { ProductIndexPage } from './page/product/pages/product-index/product-index.page';
 import { ProductDetailPage } from './page/product/pages/product-detail/product-detail.page';
+import { MypagePageModule } from './page/mypage/mypage.module';
 
 
 
@@ -116,7 +117,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BlogCardComponent
+    BlogCardComponent,
+    MypagePageModule
   ],
 })
 export class AppModule { }

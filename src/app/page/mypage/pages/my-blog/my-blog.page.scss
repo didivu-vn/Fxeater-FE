@@ -1,0 +1,12 @@
+
+.blog__card {
+    border-radius: 5px;
+}
+
+.blog__card__content {
+    text-align: justify;
+}
+
+:host ::ng-deep nz-divider {
+    margin: 0.5rem 0 !important;
+}

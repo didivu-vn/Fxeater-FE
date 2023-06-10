@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Upload new avatar</h2>
+<mat-dialog-content class="mat-typography">
+    <label for="input-file-id" class="md-button md-raised md-primary"></label>
+    <input class="ng-hide" id="input-file-id" type="file" class="form-control" (change)="onFileChange($event)" />
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onSubmit()" color="primary">Upload</button>
+</mat-dialog-actions>

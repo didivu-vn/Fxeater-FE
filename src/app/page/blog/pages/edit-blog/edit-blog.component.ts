@@ -202,4 +202,8 @@ export interface IBlogData {
 	sub_title: string;
 	view_count: number;
 	replies: Reply[];
+  is_deleting?: boolean
+  is_valid?: number
+  status_type?: number
+  like_count?:number
 }

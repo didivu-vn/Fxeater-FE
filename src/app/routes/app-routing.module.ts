@@ -32,6 +32,10 @@ const routes: Routes = [
     loadChildren: () => import('../page/blog/blog-other-routing.module').then(mod => mod.BlogOtherRoutingModule)
   },
   {
+    path: 'mypage',
+    loadChildren: () => import('../page/mypage/mypage.module').then(mod => mod.MypagePageModule)
+  },
+  {
     path:'**',
     pathMatch: 'full',
     component: PageNotFoundComponent
