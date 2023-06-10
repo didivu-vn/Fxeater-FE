@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { BasePage, IMetaData } from 'src/app/shared/interface/base.component';
-import { dummyData } from '../product/product-index/product-index.page';
-
+import { dummyData } from '../product/pages/product-index/product-index.page';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',

@@ -1,8 +1,8 @@
-<app-blog-layout>
+<div class="container py-3">
     <form name="form" #f="ngForm" novalidate>
         <div class="row">
             <div class="mb-3 col-lg-4 col-sm-6">
-                <label for="title" class="form-label">Tiêu đề</label>
+                <label for="title" class="form-label">Title</label>
                 <input type="email" class="form-control" id="title" aria-describedby="title" [(ngModel)]="form.title"
                     name="title" #title="ngModel" required [ngClass]="{ 'is-invalid': f.submitted && title.errors }">
                 <div *ngIf="title.errors && f.submitted" class="invalid-feedback">
@@ -10,9 +10,12 @@
                 </div>
             </div>
             <div class="mb-3 col-lg-4 col-sm-6">
-                <label for="sub_title" class="form-label">Tiêu đề phụ</label>
-                <input type="email" class="form-control" id="sub_title" aria-describedby="sub_title"
-                    [(ngModel)]="form.sub_title" [ngModelOptions]="{standalone: true}" required>
+                <label for="sub_title" class="form-label">Sub Title</label>
+                <input type="email" class="form-control" id="sub_title" aria-describedby="sub_title" name="sub_title"
+                    [(ngModel)]="form.sub_title" required [ngClass]="{ 'is-invalid': f.submitted && title.errors }">
+                <div *ngIf="title.errors && f.submitted" class="invalid-feedback">
+                    Title is required
+                </div>
             </div>
 
             <div class="mb-3 col-lg-8 col-sm-12">
@@ -28,11 +31,15 @@
         </div>
         <div class="row">
             <div class="mb-3 col-lg-4 col-sm-12 py-2">
-                <mat-dialog-content class="mat-typography">
-                    <label for="input-file-2" class="md-button md-raised md-primary mb-2">Ảnh bìa</label>
-                    <input class="ng-hide" id="input-file-2" type="file" class="form-control"
-                        (change)="onFileChange($event,'thumbnail')" />
-                </mat-dialog-content>
+                <label for="input-file-2" class="md-button md-raised md-primary mb-2">Cover Image</label>
+                <div class="d-block">
+                    <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload" [nzLimit]="1">
+                        <button nz-button>
+                            <span nz-icon nzType="upload"></span>
+                            Select File
+                        </button>
+                    </nz-upload>
+                </div>
             </div>
             <div class="mb-3 col-lg-4 col-sm-12 py-2">
                 <label for="series" class="form-label">Series</label>
@@ -42,36 +49,35 @@
                 </select>
             </div>
         </div>
-        <quill-editor [styles]="{height:'600px'}" ngClass="mw-75" [modules]="modules"
-            (onEditorChanged)="changedEditor($event)">
-        </quill-editor>
+
+        <app-quill-editor (htmlstring)="updateHttmlString($event)" inHtmlString="{{quillInitValue}}">
+        </app-quill-editor>
+
         <div class="row mt-3">
             <div class="col">
-                <button pButton pRipple type="button" label="Summit" class="p-button me-1"
-                    (click)="f.form.valid && sendForm()"></button>
-                <button pButton pRipple type="button" label="Cancel" (click)="cancelForm()"
-                    class="p-button-secondary me-1"></button>
-                <button pButton pRipple type="button" icon="pi pi-eye" class="p-button-rounded p-button-text"
-                    pTooltip="preview" (click)="isPreviewContent = true"></button>
-
-                <ng-container *ngIf="isFormError">
-                    <p-messages [(value)]="formErrorMsg" [enableService]="false"></p-messages>
-                </ng-container>
+                <button nz-button nzType="primary" class="px-3 me-1" (click)="sendForm()">Post</button>
+                <button nz-button nzType="default" class="px-3 me-1" (click)="cancelForm()" class="me-1">Cancel</button>
+                <button nz-button nzType="dashed" (click)="isPreviewContent = true">
+                    <span nz-icon nzType="eye" nzTheme="outline"></span>
+                </button>
 
             </div>
         </div>
     </form>
-</app-blog-layout>
+</div>
 
-<p-sidebar [(visible)]="isPreviewContent" [fullScreen]="true" [autoZIndex]="true" [baseZIndex]="-1" appendTo="body">
-    <div class="container px-3">
+<nz-drawer [nzClosable]="false" [nzSize]="'large'" [(nzVisible)]="isPreviewContent" nzPlacement="right"
+    nzTitle="Preview" (nzOnClose)="isPreviewContent = false">
+    <ng-container *nzDrawerContent>
         <ng-container *ngIf="htmlstring; else elseTemplate">
             <div class="row border-bottom">
                 <div class="col-lg-12">
-                    <h1 class="fs-2 blog__name">{{form.title}}</h1>
-                    <h3>by <strong>your account name</strong>, at {{ currentDate | date:'short'}}</h3>
+                    <h1 class="fs-3 blog__name cs__text-3">{{form.title}}</h1>
+                    <h3 class="fs-6 cs__text-2">by <strong>your account name</strong>, at {{ currentDate |
+                        date:'short'}}
+                    </h3>
                     <span>
-                        <blockquote>{{form.description}}</blockquote>
+                        <h3 class="blog__description fs-5 cs__text-2">{{form.description}}</h3>
                     </span>
                 </div>
             </div>
@@ -92,7 +98,7 @@
             </div>
         </ng-container>
         <ng-template #elseTemplate>
-            <p>Ủa bạn, chưa nhập gì mà.</p>
+            <p>Empty content</p>
         </ng-template>
-    </div>
-</p-sidebar>
+    </ng-container>
+</nz-drawer>

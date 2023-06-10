@@ -42,7 +42,7 @@ nz-content {
 }
 
 .inner-content {
-    padding: 0px !important;
+    padding: 0 0 24px 0 !important;
 }
 
 .ql-snow .ql-editor img{
@@ -52,4 +52,35 @@ nz-content {
 
 .ql-container {
   font-size: 1rem !important;
+}
+
+/* Set dropdown font-families */
+
+.ql-toolbar .ql-font span[data-value="montserrat"]::before {
+    font-family: var(--cs-main-font);
+    content: 'montserrat' !important;
+  }
+  
+.ql-toolbar .ql-font span[data-value="opensans"]::before {
+    font-family:var(--cs-second-font);
+    content: 'opensans' !important;
+}
+
+.ql-toolbar .ql-font span[data-value="playfair"]::before {
+    font-family: var(--cs-header-font);
+    content: 'playfair' !important;
+}
+
+/* Set content font-families */
+
+.ql-font-montserrat {
+    font-family: var(--cs-main-font) !important;
+}
+
+.ql-font-opensans {
+    font-family: var(--cs-second-font) !important;
+}
+
+.ql-font-playfair {
+    font-family: var(--cs-header-font) !important;
 }

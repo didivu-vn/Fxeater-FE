@@ -10,7 +10,7 @@ import { tap } from 'rxjs';
 import { IPageMetadata, MetadataService } from 'src/app/service/metadata-service.service';
 import * as cheerio from 'cheerio';
 import slugify from 'slugify';
-import { IUserInfo } from 'src/app/shared/interface';
+import { BasePage, IUserInfo } from 'src/app/shared/interface';
 import { IBlogRelatedData, IBlogReply } from '../../interfaces/blog-reply.interface';
 import { END_POINT_URL_LIST } from 'src/app/util';
 
@@ -24,7 +24,7 @@ export interface IToCData {
   templateUrl: './blog-page.component.html',
   styleUrls: ['./blog-page.component.scss'],
 })
-export class BlogPageComponent implements OnInit {
+export class BlogPageComponent extends BasePage {
 
   userData: IUserInfo = {} as IUserInfo
   userInfo$ = this.userService.userInfoStorage.pipe(
@@ -51,22 +51,41 @@ export class BlogPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService:ApiService,
-    private titleService: Title,    
-    private meta: Meta,
     private breakpointObserver: BreakpointObserver,
     private userService: UserService,
-    @Optional() private meadataService :MetadataService,
   ) {
-    this.titleService.setTitle('blog')
+    super()
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.route.params.subscribe(
       data => {
         this.blogId = data['id'].split('-')[0]
         this.getBlogData(true)
       }
     )
+  }
+
+  setupMetaData(){
+    this.metaData ={
+      breadcrumb: [
+        {
+          name: 'All Blog',
+          url: '/blog/all'
+        },
+        {
+          name: this.blogData.name,
+        }
+      ],
+      layout:{
+        title: 'Blog Detail',
+        subtitle: 'Daily reading is a must.'
+      },
+      page: {
+        title: `FXeater | Blog | ${this.blogData.name}`,
+        description: 'Daily reading is a must.'
+      }
+    }
   }
 
   getBlogData(is_no_cache = false){
@@ -79,14 +98,9 @@ export class BlogPageComponent implements OnInit {
       tap(
         data  => {
           this.blogData = data
-          const metaData: IPageMetadata = {
-            title: `FXeater | Blog | ${this.blogData.name}`,
-            description: this.blogData.description,
-            author: this.blogData.author,
-            keywords: `FXeater|skill share|${this.blogData.name}`.split('|'),
-            type: 'website'
-          }
-          this.meadataService.updateMetadata(metaData)
+          this.setupMetaData()
+          this.updateLayout()
+          this.updateSEO()
           this.initReplyData(data.replies)
           this.relatedPost = data.related_blog
         }

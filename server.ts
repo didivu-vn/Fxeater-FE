@@ -23,25 +23,10 @@ global['window'] = win;
 global['document'] = win.document;
 global['self'] = win
 global['IDBIndex'] = win.IDBIndex
-global['document'] = win.document
 global['navigator'] = win.navigator
 global['getComputedStyle'] = win.getComputedStyle
 global['localStorage'] = win.localStorage
 
-
-global['requestAnimationFrame'] = function(callback) {
-  let lastTime = 0;
-  const currTime = new Date().getTime();
-  const timeToCall = Math.max(0, 16 - (currTime - lastTime));
-  const id = setTimeout(function() { callback(currTime + timeToCall); },
-    timeToCall);
-  lastTime = currTime + timeToCall;
-  return id as unknown as number;
-};
-
-global['cancelAnimationFrame'] = function(id) {
-  clearTimeout(id);
-};
 
 import { AppServerModule } from './src/main.server';
 
