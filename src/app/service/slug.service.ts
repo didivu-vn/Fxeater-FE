@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import slugify from 'slugify';
-import { IBlogData } from "../page/blog";
+import { IBlogData } from "../shared/interface";
 
 @Injectable({
     providedIn: 'root'

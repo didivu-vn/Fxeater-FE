@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import slugify from 'slugify';
-import { IBlogRelatedData } from '../../interfaces/blog-reply.interface';
+import { IBlogRelatedData } from 'src/app/shared/interface';
 
 @Component({
   selector: 'app-related-post',

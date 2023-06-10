@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map, tap } from 'rxjs';
-import { IBlogData } from 'src/app/page/blog';
 import { ApiService, SlugService } from 'src/app/service';
-import { BasePage, IMetaData } from 'src/app/shared/interface';
+import { BasePage, IBlogData, IMetaData } from 'src/app/shared/interface';
 
 const metaData: IMetaData = {
   breadcrumb: [

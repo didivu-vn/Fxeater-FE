@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IBlogReply } from '../../interfaces/blog-reply.interface';
+import { IBlogReply } from 'src/app/shared/interface';
 
 @Component({
   selector: 'app-blog-reply',

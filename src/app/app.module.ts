@@ -56,6 +56,7 @@ import { SmProductCardComponent } from './page/product/components/sm-product-car
 import { ProductTableComponent } from './page/product/components/product-table/product-table.component';
 import { ProductIndexPage } from './page/product/pages/product-index/product-index.page';
 import { ProductDetailPage } from './page/product/pages/product-detail/product-detail.page';
+
 import { MypageIndexPage } from './page/mypage/pages/mypage-index/mypage-index.page';
 import { MyBlogPage } from './page/mypage/pages/my-blog/my-blog.page';
 import { AllInfoComponent } from './page/mypage/pages/all-info/all-info.component';
@@ -114,9 +115,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
   bootstrap: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    QuillModule.forRoot(),
     AppRoutingModule,
     ZorroModule,
-    QuillModule.forRoot(),
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
