@@ -60,7 +60,7 @@
 
                     </div>
                     <div class="blog__status__update">
-                        <button nz-button nzType="primary" (click)="toogleBlog(item)"
+                        <button nz-button nzType="text" (click)="toogleBlog(item)"
                             [disabled]="!getStatus(item).isCanEdit">{{item.status_type == 2 ? 'Hide' :
                             'Publish'}}</button>
                     </div>

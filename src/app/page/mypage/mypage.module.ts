@@ -5,11 +5,13 @@ import { CommonModule } from "@angular/common";
 import { ZorroModule } from "src/app/shared/lib";
 import { MypageIndexPage } from "./pages/mypage-index/mypage-index.page";
 import { MyBlogPage } from "./pages/my-blog/my-blog.page";
+import { AllInfoComponent } from "./pages/all-info/all-info.component";
 
 // list your feature components here
 const _feature_local_components: any[] | Type<any> = [
     MypageIndexPage,
-    MyBlogPage
+    MyBlogPage,
+    AllInfoComponent
 ]
 
 // list your feature routes here, then go
@@ -23,6 +25,10 @@ const routes: Routes = [
     {
         path: 'blog',
         component: MyBlogPage,
+    },
+    {
+        path: 'info',
+        component: AllInfoComponent,
     },
 ];
 

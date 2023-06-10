@@ -1,4 +1,4 @@
-<ng-container *ngIf="userInfo$ | async">
+<div class="container p-3" *ngIf="userInfo$ | async">
     <div class="row">
         <div class="col-lg-12 d-flex justify-content-center">
             <ng-container *ngIf="userInfo?.avatar; else elseTemplate">
@@ -12,36 +12,52 @@
 
         </div>
         <div class="col-12 d-flex justify-content-center">
-            <button mat-button (click)="openDialog()">Change Avatar</button>
+            <!-- <button mat-button (click)="openDialog()">Change Avatar</button> -->
         </div>
     </div>
-    <form [formGroup]="formUser" ngClass="p-3">
-        <div class="row">
-            <mat-form-field ngClass="col-lg-4">
-                <mat-label>Username</mat-label>
-                <input matInput type="text" name="username" formControlName="username">
-            </mat-form-field>
-        </div>
-        <div class="row mt-3">
-
-            <mat-form-field ngClass="col-lg-4">
-                <mat-label>Email</mat-label>
-                <input matInput type="email" name="email" formControlName="email" readonly>
-            </mat-form-field>
-            <mat-form-field ngClass="col-lg-4">
-                <mat-label>Gender</mat-label>
-                <mat-select name="gender" formControlName="gender" [(value)]="userInfo.gender" required>
-                    <mat-option value="N">Not set</mat-option>
-                    <mat-option value="F">Female</mat-option>
-                    <mat-option value="M">Male</mat-option>
-                    <mat-option value="O">Other</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="row mt-3">
-            <div class="col-lg-4 col-md-6">
-                <button pButton pRipple type="button" label="Update" (click)="onSubmit()"></button>
+    <nz-divider></nz-divider>
+    <div class="row">
+        <form [formGroup]="formUser" ngClass="p-3">
+            <div class="row">
+                <div class="col-4">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7" nzRequired>Username</nz-form-label>
+                        <nz-form-control [nzSpan]="12">
+                            <input nz-input formControlName="username" placeholder="change user name" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
             </div>
+            <div class="row mt-3">
+                <div class="col-4">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7" nzRequired>E-mail</nz-form-label>
+                        <nz-form-control [nzSpan]="12">
+                            <input nz-input formControlName="email" placeholder="email" type="email" readonly />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div class="col-4">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="5" nzFor="gender" nzRequired>Gender</nz-form-label>
+                        <nz-form-control [nzSpan]="12" nzErrorTip="Please select your gender!">
+                            <nz-select id="gender" formControlName="gender"
+                                nzPlaceHolder="Select a option and change input text above">
+                                <nz-option nzValue="N" nzLabel="Not set"></nz-option>
+                                <nz-option nzValue="F" nzLabel="Female"></nz-option>
+                                <nz-option nzValue="M" nzLabel="Male"></nz-option>
+                                <nz-option nzValue="O" nzLabel="Other"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+    </div>
+    <nz-divider></nz-divider>
+    <div class="row mt-3">
+        <div class="col-lg-12 col-md-12 d-flex justify-content-end">
+            <button nz-button nzType="primary" (click)="onSubmit()">Update</button>
         </div>
-    </form>
-</ng-container>
+    </div>
+</div>

@@ -1,11 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
-import { IUserInfo } from 'src/app/interface/user.interface';
-import { ApiService, UserService } from 'src/app/service';
-import {MatDialog} from '@angular/material/dialog';
-import { GENDER_MAP, TITLE_LIST } from 'src/app/utils';
-import { Title } from '@angular/platform-browser';
 import { tap } from 'rxjs';
+import { ApiService, UserService } from 'src/app/service';
+import { BasePage, IMetaData, IUserInfo } from 'src/app/shared/interface';
+
+const metaData: IMetaData = {
+  breadcrumb: [
+    {
+      name: 'My Page',
+      url: '/mypage'
+    },
+    {
+      name: 'Profile',
+    }
+  ],
+  layout:{
+    title: 'My Profile',
+    subtitle: 'Manage your resource.'
+  },
+  page: {
+    title: `FXeater | My Profile`,
+    description: 'Manage your resource.'
+  }
+}
 
 @Component({
   selector: 'app-all-info',
@@ -19,7 +36,7 @@ import { tap } from 'rxjs';
     }
   ]
 })
-export class AllInfoComponent implements OnInit {
+export class AllInfoComponent extends BasePage {
 
   formUser: FormGroup
   userInfo: IUserInfo = {
@@ -40,30 +57,18 @@ export class AllInfoComponent implements OnInit {
     })
   )
 
+  protected override metaData: IMetaData = metaData;
+
   constructor(
     private apiService: ApiService,
     private formBuilder: FormBuilder,
     private userService:UserService,
-    public dialog: MatDialog,
-    private titleService: Title
   ) {
-
-    this.titleService.setTitle(TITLE_LIST.ME_INFO)
-
+    super()
     this.formUser = this.formBuilder.group({
       'username': [null],
       'email': [null, [Validators.email,Validators.required]],
       'gender': [null],
-    });
-   }
-
-  ngOnInit(): void { }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogUploadAvatarDialog);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -102,34 +107,3 @@ export class AllInfoComponent implements OnInit {
 
 }
 
-
-@Component({
-  selector: 'dialog-upload-avatar',
-  templateUrl: 'dialog-upload-avatar.html',
-})
-export class DialogUploadAvatarDialog {  
-  file: File | null = null; // Variable to store file
-
-  constructor(
-    private apiService:ApiService,
-    private userService:UserService
-  ){}
-
-  onFileChange(event:any) {  
-    if (event.target.files.length > 0) {
-      console.log('update file')
-      this.file = event.target.files[0];
-    }
-  }
-
-  onSubmit(){
-    const userInfo = this.userService.userInfoStorage.value
-    const requestURL = `v1/me/${userInfo?.id}/`
-    const formData = new FormData();   
-    this.file &&  formData.append('avatar',this.file)    
-    this.apiService.patchDataWithUrl(requestURL,formData).subscribe(
-      result => this.userService.update_userInfo(result),
-      err => console.log(err)
-    )
-  }  
-}
