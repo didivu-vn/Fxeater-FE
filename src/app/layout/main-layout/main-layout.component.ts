@@ -28,6 +28,7 @@ export class MainLayoutComponent implements OnInit {
     tap(data => {
       if (data && Object.keys(data).length !== 0){
         this.isLoggedIn = true
+        this.isShowLoginModal = false
       }
     })
   )
