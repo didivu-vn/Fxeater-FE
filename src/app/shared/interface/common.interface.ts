@@ -63,6 +63,7 @@ export interface IBlogData {
   status_type?:number
   is_valid?:number
   is_deleting?:boolean
+  slug?:string
 }
 
 export interface IBlogRelatedData {
