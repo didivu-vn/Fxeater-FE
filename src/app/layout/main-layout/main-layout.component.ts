@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs';
 import { AuthService } from 'src/app/service';
 import { LayoutService } from 'src/app/service/layout.service';
@@ -18,7 +19,7 @@ export class MainLayoutComponent implements OnInit {
 
   isLoggedIn: boolean = false
   isShowLoginModal = false
-  
+
   isLoading = false
   isLoginFailed = false
   errorMessage = ''
@@ -36,8 +37,9 @@ export class MainLayoutComponent implements OnInit {
   constructor( 
     private layoutService: LayoutService,
     private userService: UserService,
+    private authService: AuthService,
     private fb: UntypedFormBuilder,
-    private authService: AuthService
+    private route: ActivatedRoute,
   ) {}    
 
   ngOnInit(): void {
@@ -46,6 +48,14 @@ export class MainLayoutComponent implements OnInit {
       password: [null, [Validators.required]],
       remember: [true]
     });
+
+    this.route.queryParams.pipe(
+      tap(data => {
+        if ('lg' in data && !this.isLoggedIn ){
+            this.isShowLoginModal = data['lg'] === '1'
+        }
+      })
+    ).subscribe()
   }
 
   onBack(in_data = '/') {

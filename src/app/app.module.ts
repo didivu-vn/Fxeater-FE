@@ -60,6 +60,7 @@ import { ProductDetailPage } from './page/product/pages/product-detail/product-d
 import { MypageIndexPage } from './page/mypage/pages/mypage-index/mypage-index.page';
 import { MyBlogPage } from './page/mypage/pages/my-blog/my-blog.page';
 import { AllInfoComponent } from './page/mypage/pages/all-info/all-info.component';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 
 
@@ -110,7 +111,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     CacheResolverService,
     httpInterceptorProviders,
     MetadataService,
-    BlogService
+    BlogService,
+    AuthGuard
   ],
   bootstrap: [AppComponent],
   imports: [
