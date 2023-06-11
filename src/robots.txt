@@ -1,0 +1,4 @@
+User-agent: Googlebot
+Disallow:
+Host: www.redamancy.blog
+Sitemap: https://www.redamancy.blog/sitemap.xml
