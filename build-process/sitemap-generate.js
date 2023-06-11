@@ -38,7 +38,7 @@ async function main() {
             //build index item
             url: [
                 {
-                    loc: "https://www.redamancy.blog",
+                    loc: "https://www.fxeater.com",
                 },
                 {
                     lastmod: get_last_mod(pages)
@@ -50,7 +50,7 @@ async function main() {
         {
             url: [
                 {
-                    loc: "https://www.redamancy.blog/about",
+                    loc: "https://www.fxeater.com/about",
                 },
                 {
                     lastmod: get_last_mod(pages)
@@ -61,7 +61,7 @@ async function main() {
         {
             url: [
                 {
-                    loc: "https://www.redamancy.blog/home",
+                    loc: "https://www.fxeater.com/home",
                 },
                 {
                     lastmod: get_last_mod(pages)
@@ -76,7 +76,7 @@ async function main() {
         items.push({
             url: [
                 {
-                    loc: `https://www.redamancy.blog/blog/${item.id}-${slugify(item.title, { locale: 'vi' }).toLowerCase()}`,
+                    loc: `https://www.fxeater.com/blog/${item.id}-${slugify(item.title, { locale: 'vi' }).toLowerCase()}`,
                 },
                 {
                     lastmod: new Date(item.lastModified ?? item.created)
