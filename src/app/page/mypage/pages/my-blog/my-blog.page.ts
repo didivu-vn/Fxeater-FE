@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable, map, tap } from 'rxjs';
 import { ApiService, SlugService } from 'src/app/service';
 import { BasePage, IBlogData, IMetaData } from 'src/app/shared/interface';
+import { END_POINT_URL_LIST } from 'src/app/util';
 
 const metaData: IMetaData = {
   breadcrumb: [
@@ -31,8 +32,8 @@ const metaData: IMetaData = {
 })
 export class MyBlogPage extends BasePage {
 
-  myBlogEndpoint = 'v1/my-blog/'
-  updateStatusEndpoint = 'v1/api-publish-blog/'
+  myBlogEndpoint = END_POINT_URL_LIST.MY_BLOG
+  updateStatusEndpoint = END_POINT_URL_LIST.PUBLISH_BLOG
   blogData : IBlogData[] = []
   isLoadMore = false
   apiData$: Observable<IBlogData[]>  = 
@@ -62,7 +63,7 @@ export class MyBlogPage extends BasePage {
     if (this.getStatus(data).isCanEdit){
       data.is_deleting = false
       data.is_valid = 0
-      this.apiService.deleteDataWithUrl(`v1/my-blog/${data.id}/`).subscribe()  
+      this.apiService.deleteDataWithUrl(`${END_POINT_URL_LIST.MY_BLOG}${data.id}/`).subscribe()  
     }
   }
 
@@ -102,8 +103,12 @@ export class MyBlogPage extends BasePage {
     if (this.getStatus(data).isCanEdit) {
       const newStatus = data.status_type == 1 ? 2 : 1
       data.status_type = newStatus
-      this.apiService.putDataWithUrl(`${this.updateStatusEndpoint}${data.id}/`,{status_type:newStatus}).subscribe(
+      this.apiService.putDataWithUrl(`${this.updateStatusEndpoint}${data.id}/`,{status_type:newStatus})
+      .pipe(
         tap(_ => console.log(_))
+      )
+      .subscribe(
+
       )  
     }
   }

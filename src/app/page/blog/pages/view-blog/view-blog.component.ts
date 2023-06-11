@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, map, shareReplay, tap } from 'rxjs';
 import { ApiService, UserService } from 'src/app/service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { BasePage, IBlogData, IMetaData } from 'src/app/shared/interface';
+import { END_POINT_URL_LIST } from 'src/app/util';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class AllBlogsComponent extends BasePage {
   blogData : IBlogData[] = []
   filterData: IBlogData[] = []
 
-  targetEndpoint = 'v1/api-blog/'
+  targetEndpoint = END_POINT_URL_LIST.BLOG
   isLoadMore = false
   apiData$: Observable<IBlogData[]>  = 
     this.apiService.getDataWithUrl(this.targetEndpoint).pipe(
@@ -76,7 +77,7 @@ export class AllBlogsComponent extends BasePage {
 
   setUpApi(data:any){
     // update next endpoint
-    this.targetEndpoint = data.next ? 'v1/api-blog/?' + data.next.split('?')[1] : this.targetEndpoint
+    this.targetEndpoint = data.next ? `${this.targetEndpoint}?` + data.next.split('?')[1] : this.targetEndpoint
     this.isLoadMore = !!data.next
   }
   

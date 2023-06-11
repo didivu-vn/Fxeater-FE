@@ -171,20 +171,3 @@ export class EditBlogComponent extends BasePage {
     this.updateHttmlString(data.html_string)
   }
 }
-
-export interface Author_info {
-	author_id: number;
-	avatar: string;
-}
-
-export interface Author {
-	user: string;
-	avatar: string;
-}
-
-export interface Reply {
-	content: string;
-	created_at: string;
-	author: Author;
-}
-
