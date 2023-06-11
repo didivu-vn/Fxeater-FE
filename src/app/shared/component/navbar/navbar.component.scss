@@ -24,7 +24,8 @@ a {
 }
 
 .active {
-  color: var(--cs-color-primary) !important;
+  color: white !important;
+  text-decoration: underline;
 }
 
 .navbar__content{

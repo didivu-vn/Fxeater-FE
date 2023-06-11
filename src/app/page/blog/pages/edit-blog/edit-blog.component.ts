@@ -5,10 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { END_POINT_URL_LIST } from 'src/app/util';
-import { IBlogRelatedData } from '../../interfaces/blog-reply.interface';
 import { BlogService } from '../../services/blog.service';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { BasePage } from 'src/app/shared/interface';
+import { BasePage, IBlogData, IBlogRelatedData } from 'src/app/shared/interface';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 const MSG_TYPE ={
@@ -189,17 +188,3 @@ export interface Reply {
 	author: Author;
 }
 
-export interface IBlogData {
-	id: number;
-	created_at: string;
-	author: string;
-	author_info: Author_info;
-	related_blog: IBlogRelatedData[];
-	thumbnail_image_url: string;
-	description: string;
-	html_string: string;
-	name: string;
-	sub_title: string;
-	view_count: number;
-	replies: Reply[];
-}

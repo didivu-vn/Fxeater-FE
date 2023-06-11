@@ -57,6 +57,11 @@ import { ProductTableComponent } from './page/product/components/product-table/p
 import { ProductIndexPage } from './page/product/pages/product-index/product-index.page';
 import { ProductDetailPage } from './page/product/pages/product-detail/product-detail.page';
 
+import { MypageIndexPage } from './page/mypage/pages/mypage-index/mypage-index.page';
+import { MyBlogPage } from './page/mypage/pages/my-blog/my-blog.page';
+import { AllInfoComponent } from './page/mypage/pages/all-info/all-info.component';
+import { AuthGuard } from './shared/guard/auth.guard';
+
 
 
 const antDesignIcons = AllIcons as {
@@ -91,6 +96,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ProductTableComponent,
     ProductIndexPage,
     ProductDetailPage,
+    MypageIndexPage,
+    MyBlogPage,
+    AllInfoComponent
   ],
   exports:[
     ZorroModule
@@ -103,20 +111,21 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     CacheResolverService,
     httpInterceptorProviders,
     MetadataService,
-    BlogService
+    BlogService,
+    AuthGuard
   ],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    QuillModule.forRoot(),
     AppRoutingModule,
     ZorroModule,
-    QuillModule.forRoot(),
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BlogCardComponent
+    BlogCardComponent,
   ],
 })
 export class AppModule { }

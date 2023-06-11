@@ -3,8 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { BehaviorSubject, Observable, map, shareReplay, tap } from 'rxjs';
 import { ApiService, UserService } from 'src/app/service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { IBlogData } from '../../interfaces/blog-reply.interface';
-import { BasePage, IMetaData } from 'src/app/shared/interface';
+import { BasePage, IBlogData, IMetaData } from 'src/app/shared/interface';
 
 
 @Component({

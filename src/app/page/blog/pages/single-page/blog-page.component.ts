@@ -2,16 +2,13 @@ import { Component, OnInit, Optional } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService, UserService } from 'src/app/service';
-import { Meta } from '@angular/platform-browser';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs';
-import { IPageMetadata, MetadataService } from 'src/app/service/metadata-service.service';
 import * as cheerio from 'cheerio';
 import slugify from 'slugify';
-import { BasePage, IUserInfo } from 'src/app/shared/interface';
-import { IBlogRelatedData, IBlogReply } from '../../interfaces/blog-reply.interface';
+import { BasePage, IBlogRelatedData, IBlogReply, IUserInfo } from 'src/app/shared/interface';
 import { END_POINT_URL_LIST } from 'src/app/util';
 
 export interface IToCData {

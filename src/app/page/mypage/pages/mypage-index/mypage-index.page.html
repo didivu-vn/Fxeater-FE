@@ -1,0 +1,45 @@
+<div class="container-fluid p-3 vh-100">
+    <div class="row">
+        <div class="col-xl-3 col-md-12 d-flex justify-content-center">
+            <div class="my-info-card p-3">
+                <nz-card style="width:300px;" [nzTitle]="info_title" [nzExtra]="info">
+                    <p>Change your avatar</p>
+                    <p>Change nickname</p>
+                    <p>Change other basic info</p>
+                </nz-card>
+                <ng-template #info_title>
+                    <span class="d-flex align-items-center">
+                        <span nz-icon nzType="user" nzTheme="outline" class="me-2"></span>
+                        To My Profile
+                    </span>
+                </ng-template>
+
+                <ng-template #info>
+                    <a [routerLink]="['/mypage/info']" routerLinkActive="router-link-active">
+                        <span nz-icon nzType="right" nzTheme="outline"></span>
+                    </a>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-12 d-flex justify-content-center">
+            <div class="my-blog-card p-3">
+                <nz-card style="width:300px;" [nzTitle]="blog_title" [nzExtra]="blog">
+                    <p>Change blog visibility</p>
+                    <p>Delete blog</p>
+                    <p>Check blog react overview</p>
+                </nz-card>
+                <ng-template #blog_title>
+                    <span class="d-flex align-items-center">
+                        <span nz-icon nzType="edit" nzTheme="outline" class="me-2"></span>
+                        To My Blog
+                    </span>
+                </ng-template>
+                <ng-template #blog>
+                    <a [routerLink]="['/mypage/blog']" routerLinkActive="router-link-active">
+                        <span nz-icon nzType="right" nzTheme="outline"></span>
+                    </a>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
