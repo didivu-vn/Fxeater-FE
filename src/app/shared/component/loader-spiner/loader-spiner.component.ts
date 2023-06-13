@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { LoaderService } from 'src/app/service/loader.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { LoaderService } from 'src/app/service/loader.service';
   styleUrls: ['./loader-spiner.component.scss']
 })
 export class LoaderSpinerComponent implements OnInit {
-  isLoading: Subject<boolean> = this.loaderService.isLoading;
+  isLoading: BehaviorSubject<boolean> = this.loaderService.isLoading;
   constructor(
     private loaderService: LoaderService
   ) { }

@@ -1,0 +1,4 @@
+User-agent: Googlebot
+Disallow:
+Host: www.fxeater.com
+Sitemap: https://www.fxeater.com/sitemap.xml
