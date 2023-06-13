@@ -1,6 +1,6 @@
 <div class="container-fluid py-2 bg-white border-top border-bottom border-1">
     <div class="row">
-        <div class="col-lg-6 col-md-12 col-12">
+        <div class="col-lg-5 col-12">
             <nz-breadcrumb nzSeparator=">">
                 <nz-breadcrumb-item>
                     <span nz-icon nzType="home" [routerLink]="['/']"></span>
@@ -17,7 +17,7 @@
                 </ng-container>
             </nz-breadcrumb>
         </div>
-        <div class="col-lg-6 cs__quote d-none d-md-block">
+        <div class="col-lg-7 cs__quote d-none d-lg-block">
             <nz-divider nzType="vertical"></nz-divider>
             <ng-container *ngIf="(quote$ | async) as quote">
                 <span class="ms-1"> {{quote.text}} -- by <strong>{{quote.author}}</strong>

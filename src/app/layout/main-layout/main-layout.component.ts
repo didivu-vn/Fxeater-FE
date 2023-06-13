@@ -16,6 +16,11 @@ export class MainLayoutComponent implements OnInit {
   breadcrumb$ = this.layoutService.getBreadcrumbData()
   header$ = this.layoutService.getHeaderData()
   isHandset$ = this.layoutService.getIsHandset()
+  breakPoint$ = this.layoutService.breakPoint$.pipe(
+    tap(bp => {
+      this.isCollapsed = ['sm','md'].includes(bp)
+    })
+  )
 
   isLoggedIn: boolean = false
   isShowLoginModal = false
@@ -29,6 +34,8 @@ export class MainLayoutComponent implements OnInit {
       if (data && Object.keys(data).length !== 0){
         this.isLoggedIn = true
         this.isShowLoginModal = false
+      } else {
+        this.isLoggedIn = false
       }
     })
   )

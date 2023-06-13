@@ -15,3 +15,36 @@
 :host ::ng-deep .ant-card-head-title {
     text-wrap: initial;
 }
+
+:host ::ng-deep .ant-card-body {
+    padding: 1rem;
+}
+
+.item-thumb .image{
+    height: 100%;
+    min-width: 100%;
+    width: 189px;
+    max-width: 189px;
+    min-height: 120px;
+    border-color: transparent;
+    background-color: darkgrey;
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    transform: translate(0);
+    transition: transform .25s,opacity .25s;
+}
+
+.article-item {
+    position: relative;
+    overflow: hidden;
+
+    .item-content {
+
+        display: flex;
+        overflow: hidden;
+        // background-color: var(--module-bg);
+        // transition: background-color .1s;
+
+    }
+}

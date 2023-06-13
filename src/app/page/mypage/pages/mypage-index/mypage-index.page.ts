@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { BasePage, IMetaData } from 'src/app/shared/interface';
+import { AuthService, UserService } from 'src/app/service';
+import { BasePage, IMetaData, IUserInfo } from 'src/app/shared/interface';
 
 const metaData: IMetaData = {
   breadcrumb: [
@@ -27,8 +28,17 @@ export class MypageIndexPage extends BasePage {
 
   protected override metaData: IMetaData = metaData
 
-  constructor(){
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ){
     super()
   }
   
+  logOut(){
+    this.authService.clean()
+    this.userService.updateUserStorage()
+    this.userService.userInfoStorage.next({} as IUserInfo)
+  }
+
 }

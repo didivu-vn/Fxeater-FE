@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SlugService } from 'src/app/service';
+import { LayoutService } from 'src/app/service/layout.service';
 import { IBlogData } from 'src/app/shared/interface';
 
 
@@ -12,8 +13,11 @@ export class HomeBlogComponent implements OnInit {
 
   @Input() blogsData = [] as IBlogData[]
 
+  isHandset$ = this.layoutService.getIsHandset()
+
   constructor( 
-    private slugService: SlugService
+    private slugService: SlugService,
+    private layoutService: LayoutService
   ) {}
 
   ngOnInit(): void {
