@@ -1,16 +1,16 @@
 <div class="row">
     <ng-container *ngFor="let item of blogsData">
-        <div class="col-xl-4 col-12 my-info-card p-3">
+        <div class="col-xl-6 col-12 my-info-card p-3">
             <nz-card style="width:100%;" [nzTitle]="info_title" [nzExtra]="info">
                 <div class="article-item">
                     <div class="item-content">
-                        <a class="item-thumb" [routerLink]="'/blog/'+item.id+'-'+item.slug"
-                            routerLinkActive="router-link-active" *ngIf="!(isHandset$ | async)">
+                        <a class="item-thumb" [routerLink]="[item.slug]" routerLinkActive="router-link-active"
+                            *ngIf="!(isHandset$ | async)">
                             <div class="image"
                                 [ngStyle]="{'background-image': 'url(' + item.thumbnail_image_url + ')'}">
                             </div>
                         </a>
-                        <div class="item-body px-lg-3 p-1">
+                        <div class="item-body px-lg-2 p-1">
                             <span class="description">{{item.description}}</span>
                         </div>
                     </div>
@@ -18,7 +18,8 @@
 
             </nz-card>
             <ng-template #info_title>
-                <span class="d-flex align-items-center">
+                <span class="d-flex align-items-center" [routerLink]="[item.slug]"
+                    routerLinkActive="router-link-active">
                     <span nz-icon nzType="edit" nzTheme="outline" class="me-2"></span>
                     {{item.name}}
                 </span>

@@ -1,9 +1,9 @@
-<div class="article-item p-lg-3 p-3 mb-3 bg-light">
+<div class="article-item p-lg-3 p-2 mb-2 bg-light">
     <div class="item-content">
         <a class="item-thumb" [routerLink]="'/blog/'+blogData.id+'-'+blogSlug" routerLinkActive="router-link-active">
             <div class="image" [ngStyle]="{'background-image': 'url(' + blogData.thumbnail_image_url + ')'}"></div>
         </a>
-        <div class="item-body px-lg-3">
+        <div class="item-body px-lg-3 px-2">
             <div class="item-body-content">
                 <h6 class="description">{{blogData.sub_title}}</h6>
                 <h2 class="title fs-4">
@@ -11,7 +11,7 @@
                         {{blogData.name}}
                     </a>
                 </h2>
-                <p class="description">{{blogData.description}}</p>
+                <p class="description d-none d-lg-block">{{blogData.description}}</p>
             </div>
             <div class="row item-meta">
                 <span class="col-lg-3 col-6 date">

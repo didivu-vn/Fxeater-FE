@@ -1,8 +1,7 @@
 <div class="row p-2 cs__pointer" *ngFor="let item of relatedDataSlug" [routerLink]="'/blog/'+item.id+'-'+item.slug"
     routerLinkActive="active" #rla="routerLinkActive">
     <span class="d-flex align-items-center">
-
-        <i [class]="rla.isActive ? 'pi pi-eye me-2' : 'pi pi-hashtag me-2'"></i>
+        <span ngClass="px-1" nz-icon [nzType]="rla.isActive ? 'send' : 'branches'" nzTheme="outline"></span>
         {{item.name}}
     </span>
 
