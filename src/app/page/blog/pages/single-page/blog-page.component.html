@@ -39,11 +39,11 @@
             <div class="col-lg-8">
                 <quill-view-html [content]="blogData.html_string" theme="snow"></quill-view-html>
             </div>
-            <div class="col-lg-3 border-start py-3" *ngIf="relatedPost">
-                <p class="ms-1 fs-5">Same Topic ({{relatedPost.length}})</p>
-                <app-related-post [relatedData]="relatedPost"></app-related-post>
-                <p class="ms-1 mt-3 fs-5">Table of contents ({{tocData.length}})</p>
+            <div class="col-lg-3 border-start" *ngIf="relatedPost">
+                <p class="ms-1 fs-5">Table of contents ({{tocData.length}})</p>
                 <app-toc [tocData]="tocData"></app-toc>
+                <p class="ms-1 fs-5 mt-3">Same Topic ({{relatedPost.length}})</p>
+                <app-related-post [relatedData]="relatedPost"></app-related-post>
             </div>
         </div>
     </ng-container>
