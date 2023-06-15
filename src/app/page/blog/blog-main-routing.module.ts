@@ -8,6 +8,10 @@ const routes: Routes = [
         path: '',
         component: AllBlogsComponent,
     },
+    {
+        path: ':lang',
+        component: AllBlogsComponent,
+    },
 ];
 
 @NgModule({

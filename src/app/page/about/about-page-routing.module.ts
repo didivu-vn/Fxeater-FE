@@ -8,6 +8,10 @@ const routes: Routes = [
     path: '',
     component: AboutPage,
   },
+  {
+    path: ':lang',
+    component: AboutPage,
+  },
 ];
 
 @NgModule({

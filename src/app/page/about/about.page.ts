@@ -33,4 +33,8 @@ export class AboutPage extends BasePage {
   ) {
     super();
   }
+
+  override routeChange(data: any): void {
+      const lang = data.lang ? data.lang : ''
+  }
 }
