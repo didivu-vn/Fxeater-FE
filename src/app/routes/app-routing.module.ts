@@ -24,7 +24,6 @@ const routes: Routes = [
   },
   {
     path: 'blog/all',
-    pathMatch: 'full',
     loadChildren: () => import('../page/blog/blog-main-routing.module').then(mod => mod.BlogMainRoutingModule)
   },
   {

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { BehaviorSubject, Observable, map, shareReplay, tap } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map, shareReplay, tap } from 'rxjs';
 import { ApiService, UserService } from 'src/app/service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { BasePage, IBlogData, IMetaData } from 'src/app/shared/interface';
@@ -50,21 +50,28 @@ export class AllBlogsComponent extends BasePage {
 
   targetEndpoint = END_POINT_URL_LIST.BLOG
   isLoadMore = false
-  apiData$: Observable<IBlogData[]>  = 
-    this.apiService.getDataWithUrl(this.targetEndpoint).pipe(
-      tap(data => this.setUpApi(data)),
-      map(data => this.dataProcess(data)),
-      tap(data => this.setUpData(data))
-    )
+  
+  testOb$ = combineLatest([
+    this.route$
+  ])
   
   constructor(
     private apiService:ApiService,
-    private titleService: Title,
     private breakpointObserver: BreakpointObserver,
     private userSerivce: UserService
   ) { 
     super();
-    this.titleService.setTitle('Blog')
+  }
+
+  override routeChange(data: any): void {
+    this.targetEndpoint = data.lang 
+      ? this.targetEndpoint + `?lang=${data.lang}`
+      : this.targetEndpoint
+    this.apiService.getDataWithUrl(this.targetEndpoint).pipe(
+      tap(data => this.setUpApi(data)),
+      map(data => this.dataProcess(data)),
+      tap(data => this.setUpData(data))
+    ).subscribe()
   }
 
   loadMore() {
@@ -77,7 +84,9 @@ export class AllBlogsComponent extends BasePage {
 
   setUpApi(data:any){
     // update next endpoint
-    this.targetEndpoint = data.next ? `${this.targetEndpoint}?` + data.next.split('?')[1] : this.targetEndpoint
+    this.targetEndpoint = data.next 
+      ? (this.targetEndpoint + (this.targetEndpoint.includes('\?') ? '&' : '?') + data.next.split('?')[1] )
+      : this.targetEndpoint
     this.isLoadMore = !!data.next
   }
   
