@@ -13,19 +13,19 @@
                     Some products come from Japan which so good but never be exposed
                     to the rest of the world.
                 </h5>
-                <div class="row">
+                <div class="row p-2">
 
                     <div class="cs__cta-1 cs__pointer" [routerLink]="['/product']" routerLinkActive="router-link-active"
                         gsapFadeIn [delay]="1" [duration]="0.5" [direct]="'s'">
                         View Products
                     </div>
-                    <div class="cs__cta-2 cs__pointer ms-3" [routerLink]="['/blog']"
+                    <div class="cs__cta-2 cs__pointer ms-md-3 ms-1" [routerLink]="['/blog/all']"
                         routerLinkActive="router-link-active" gsapFadeIn [delay]="1" [duration]="0.5" [direct]="'s'">
                         View Blogs
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 ms-auto">
+            <div class="col-xl-3 ms-auto d-none d-xl-block">
                 <img src="/assets/undraw_predictive_analytics_re_wxt8.svg" alt="main finance image" height="250"
                     gsapFadeIn [delay]="0.2" [duration]="1.3" [direct]="'e'">
             </div>
@@ -33,7 +33,15 @@
     </div>
 </div>
 
-<div class="container-fluid">
+
+<ng-container *ngIf="(blogsData$|async) as blogsData ">
+    <div class="container-fluid pt-1" *ngIf="blogsData.length > 0">
+        <nz-divider nzText="New post" nzOrientation="left"></nz-divider>
+        <app-home-blog [blogsData]="blogsData"></app-home-blog>
+    </div>
+</ng-container>
+
+<div class="container-fluid d-none">
     <div class="row">
         <div class="col-xl-6 col-md-12 col-12 p-3">
             <nz-divider nzText="Best rating" nzOrientation="left"></nz-divider>
@@ -55,13 +63,6 @@
             <div class="suggest" style="height: 200px;"></div>
         </div>
         <div class="col-xl-2 p-3 ms-auto" *ngIf="!(isHandset$ | async)">
-            <!-- <div class="promotion__banner green-color-gradient p-3 text-center" gsapFadeIn [delay]="2.75"
-                [duration]="0.75" [direct]="'e'" style="height: 500px;">
-                <p class="fs-1 cs__text-2" gsapFadeIn [delay]="3" [duration]="0.75" [direct]="'e'">Choose wisely</p>
-                <p class="fs-1 cs__text-2" gsapFadeIn [delay]="3.5" [duration]="0.75" [direct]="'e'">Escape the matrix
-                </p>
-                <p class="fs-1 cs__text-2" gsapFadeIn [delay]="4" [duration]="0.75" [direct]="'e'">Find freedom</p>
-            </div> -->
             <div class="email__subscriber light-color-gradient p-3 mt-3">
                 <div class="row">
                     <app-email-sub></app-email-sub>

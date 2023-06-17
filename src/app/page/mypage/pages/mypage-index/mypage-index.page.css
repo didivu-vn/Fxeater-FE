@@ -1,0 +1,12 @@
+
+:host ::ng-deep .my-blog-card .ant-card-body {
+    position: relative;
+    background-color: #f5f6f7;
+    background-image: linear-gradient(54deg, rgba(252, 192, 187, 0.25), rgba(255, 131, 122, 0) 28%), linear-gradient(241deg, rgba(239, 152, 207, 0.25), rgba(239, 152, 207, 0) 36%);
+}
+
+:host ::ng-deep .my-info-card .ant-card-body {
+    position: relative;
+    background-color: #f5f6f7;
+    background-image: linear-gradient(54deg, rgba(235, 252, 187, 0.25), rgba(183, 255, 181, 0) 28%), linear-gradient(241deg, rgba(152, 239, 217, 0.25), rgba(155, 239, 152, 0) 36%);
+}
