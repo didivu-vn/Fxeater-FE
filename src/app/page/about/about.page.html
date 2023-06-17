@@ -1,18 +1,14 @@
 <div class="container" *ngIf="(route$ | async)">
     <div class="text-center pt-3">
-        <h2>All You Need To Know FXeater</h2>
+        <h2>{{ aboutData.title }}</h2>
     </div>
     <div class="text-center pb-3">
-        <h4 class="lead"><em>At FXEater, we are committed to empowering traders with knowledge and resources to navigate
-                the forex market successfully.</em></h4>
+        <h4 class="lead"><em>{{ aboutData.description }}</em></h4>
     </div>
     <div class="row justify-content-between p-3 pb-5">
         <div class="col-xl-6" gsapFadeIn [delay]="0.2" [duration]="0.5" [direct]="'s'">
-            <h2>Who we are</h2>
-            <p>At FXEater, we are a dedicated team of forex enthusiasts who are passionate about sharing knowledge and
-                empowering traders. With years of experience in the forex market, we aim to provide valuable educational
-                resources, insightful analysis, and practical strategies to help traders enhance their skills and
-                achieve their trading goals.</p>
+            <h2>{{ aboutData.section1_title }}</h2>
+            <p>{{ aboutData.section1_description }}</p>
         </div>
         <div class="col-xl-5 d-flex align-items-center justify-content-center" gsapFadeIn [delay]="0.2" [duration]="0.5"
             [direct]="'e'">
@@ -22,12 +18,8 @@
 
     <div class="row flex-row-reverse justify-content-between p-3 pb-5">
         <div class="col-xl-6" gsapFadeIn [delay]="0.8" [duration]="0.5" [direct]="'e'">
-            <h2>What we do</h2>
-            <p>At FXEater, our primary focus is to equip traders with the knowledge and tools they need to navigate the
-                dynamic world of forex trading. We offer comprehensive educational content, including articles,
-                tutorials, and guides, covering a wide range of topics from basic forex concepts to advanced trading
-                strategies. We also provide market analysis, trading tips, and updates to keep traders informed about
-                market trends and opportunities.</p>
+            <h2>{{ aboutData.section2_title }}</h2>
+            <p>{{ aboutData.section2_description }}</p>
         </div>
         <div class="col-xl-5 d-flex align-items-center justify-content-center" gsapFadeIn [delay]="0.8" [duration]="0.5"
             [direct]="'s'">
@@ -37,12 +29,8 @@
 
     <div class="row justify-content-between p-3">
         <div class="col-xl-6" gsapFadeIn [delay]="1.3" [duration]="0.5" [direct]="'s'">
-            <h2>Disclaimer</h2>
-            <p>The information provided on FXEater is for educational and informational purposes only. Trading forex
-                involves substantial risks, and past performance is not indicative of future results. It is essential to
-                conduct thorough research, practice risk management, and consult with a financial advisor before
-                engaging in any trading activities. FXEater does not provide financial advice, and all trading decisions
-                are solely the responsibility of the individual trader.</p>
+            <h2>{{ aboutData.section3_title }}</h2>
+            <p>{{ aboutData.section3_description }}</p>
         </div>
         <div class="col-xl-5 d-flex align-items-center justify-content-center" gsapFadeIn [delay]="1.3" [duration]="0.5"
             [direct]="'e'">
