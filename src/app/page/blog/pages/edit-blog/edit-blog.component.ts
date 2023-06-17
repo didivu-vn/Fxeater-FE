@@ -54,7 +54,6 @@ export class EditBlogComponent extends BasePage {
     private apiService:ApiService,
     private blogService: BlogService,
     private router:Router,
-    private route: ActivatedRoute,
     private messageService: NzMessageService,
   ) { 
     super()

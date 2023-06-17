@@ -2,6 +2,8 @@ import { Component, OnInit, inject } from "@angular/core"
 import { IHeaderData, LayoutService } from "../../service/layout.service"
 import { IPageMetadata, MetadataService } from "src/app/service"
 import { ViewportScroller } from "@angular/common"
+import { ActivatedRoute } from "@angular/router"
+import { tap } from "rxjs"
 
 export interface IMetaData {
   layout: IHeaderData,
@@ -41,7 +43,12 @@ export class BasePage implements OnInit {
   protected layoutService = inject(LayoutService)
   protected metaDateService = inject(MetadataService)
   protected viewPortScroller = inject(ViewportScroller)
+  protected route = inject(ActivatedRoute)
   protected metaData: IMetaData = {} as IMetaData
+
+  route$ = this.route.params.pipe(
+    tap(data => this.routeChange(data))
+  )
 
   constructor( ) {}
 
@@ -61,6 +68,10 @@ export class BasePage implements OnInit {
 
   scrollTop(){
     this.viewPortScroller.scrollToPosition([0, 0])
+  }
+
+  routeChange(data:any){
+    
   }
 
 }

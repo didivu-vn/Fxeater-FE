@@ -34,7 +34,7 @@ export class BlogPageComponent extends BasePage {
   relatedPost?: IBlogRelatedData[]
   visibleSidebarRight = false
   visibleSidebarBottom = false
-  
+  targetEndpoint = ''
   currentTime = Date()
 
   cmtForm = new FormGroup({
@@ -46,7 +46,6 @@ export class BlogPageComponent extends BasePage {
   tocData = [] as IToCData[]
 
   constructor(
-    private route: ActivatedRoute,
     private apiService:ApiService,
     private breakpointObserver: BreakpointObserver,
     private userService: UserService,
@@ -54,13 +53,10 @@ export class BlogPageComponent extends BasePage {
     super()
   }
 
-  override ngOnInit() {
-    this.route.params.subscribe(
-      data => {
-        this.blogId = data['id'].split('-')[0]
-        this.getBlogData(true)
-      }
-    )
+  override routeChange(data: any): void {
+    this.blogId = data['id'].split('-')[0]
+    this.targetEndpoint = `${END_POINT_URL_LIST.BLOG}${this.blogId}/${data.lang ? ('?lang=' + data.lang) : ''}`
+    this.getBlogData(true)
   }
 
   setupMetaData(){
@@ -88,8 +84,8 @@ export class BlogPageComponent extends BasePage {
   getBlogData(is_no_cache = false){
     const header = new HttpHeaders({'x-refresh':'true'})
     let data$ = is_no_cache 
-      ? this.apiService.getDataWithUrl(`${END_POINT_URL_LIST.BLOG}${this.blogId}/`,header) 
-      : this.apiService.getDataWithUrl(`${END_POINT_URL_LIST.BLOG}${this.blogId}/`)
+      ? this.apiService.getDataWithUrl(this.targetEndpoint, header) 
+      : this.apiService.getDataWithUrl(this.targetEndpoint)
 
     data$.pipe(
       tap(

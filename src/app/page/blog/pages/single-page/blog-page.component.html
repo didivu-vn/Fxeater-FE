@@ -1,4 +1,4 @@
-<div class="container px-3">
+<div class="container px-3" *ngIf="route$ | async">
     <ng-container *ngIf="blogData">
         <div class="row border-bottom p-3">
             <div class="col-lg-9">
