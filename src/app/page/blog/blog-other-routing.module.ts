@@ -12,10 +12,15 @@ const routes: Routes = [
     },
     {
         path: ':id/edit',
+        pathMatch: 'full',
         component: EditBlogComponent,
     },
     {
         path: ':id',
+        component: BlogPageComponent,
+    }, 
+    {
+        path: ':id/:lang',
         component: BlogPageComponent,
     }, 
 ];

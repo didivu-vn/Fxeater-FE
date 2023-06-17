@@ -1,10 +1,10 @@
-<div class="container py-lg-3 px-lg-5">
+<div class="container py-lg-3 px-lg-5" *ngIf="(testOb$ | async)">
     <div class="row py-2">
         <div class="col-lg-2" *ngIf="!(isHandset$ | async) && (isLogin$ | async)">
             <button nz-button nzType="primary" [routerLink]="'/blog/new/'">Add blog</button>
         </div>
     </div>
-    <div class="row pt-2 d-flex justify-content-between" *ngIf="(apiData$ | async)">
+    <div class="row pt-2 d-flex justify-content-between">
         <div class="col-xl-9 col-12 order-xl-1 order-2">
             <ng-container *ngFor="let item of blogData">
                 <app-blog-card [blogData]="item" *ngIf="item.isShow"></app-blog-card>

@@ -63,9 +63,7 @@ export class ProductDetailPage extends BasePage {
   ]
 
     
-  constructor(
-    private route: ActivatedRoute,
-  ) {
+  constructor( ) {
     super()
   }
 }
