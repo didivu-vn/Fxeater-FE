@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import slugify from 'slugify';
-import { IBlogData } from '../../interfaces/blog-reply.interface';
+import { IBlogData } from 'src/app/shared/interface';
 
 @Component({
   selector: 'app-blog-card',

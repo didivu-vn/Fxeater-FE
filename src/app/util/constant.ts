@@ -7,10 +7,14 @@ export class END_POINT_URL_LIST {
     static SHOP_CATEGORY = 'v1/api-shop-cate/'
     static SERVICE_CATEGORY = 'v1/api-service-cate/'
     static SERVIEW_REVIEW = 'v1/api-review/'
-    static REPLY_BLOG = 'v1/api-reply/'
-    static BLOG = 'v1/api-blog/'
     static SEARCH_v1 = 'v1/api-search/'
-    static BLOG_SERIES = 'v1/api-series/'
-    static LIKE_BLOG = 'v1/api-blog-like/'
     static RANDOM_QUOTE = 'v1/func/random-quote/'
+
+    static BLOG = 'v1/api-blog-fxeater/'
+    static REPLY_BLOG = 'v1/api-reply-fxeater/'
+    static BLOG_SERIES = 'v1/api-series-fxeater/'
+    static LIKE_BLOG = 'v1/api-blog-fxeater-like/'
+    static PUBLISH_BLOG = 'v1/api-publish-blog-fxeater/'
+    static MY_BLOG = 'v1/my-blog-fxeater/'
+    static HOME_BLOG = 'v1/api-blog-fxeater-home/'
 }

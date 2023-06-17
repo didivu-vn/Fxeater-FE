@@ -1,5 +1,5 @@
 <ng-container>
-  <nz-layout>
+  <nz-layout *ngIf="breakPoint$ | async">
     <nz-sider nzCollapsible nzWidth="200px" [(nzCollapsed)]="isCollapsed" [nzCollapsedWidth]="80"
       *ngIf="!(isHandset$ | async)">
       <div class="logo text-center cs__pointer" [routerLink]="['/']" routerLinkActive="router-link-active">
@@ -20,10 +20,10 @@
           <span nz-icon nzType="edit" nzTheme="outline"></span>
           <span>Blog</span>
         </li>
-        <li nz-menu-item [routerLink]="['/product']">
+        <!-- <li nz-menu-item [routerLink]="['/product']">
           <span nz-icon nzType="radar-chart" nzTheme="outline"></span>
           <span>Product</span>
-        </li>
+        </li> -->
         <!-- <li nz-submenu nzTitle="Search" nzIcon="search">
           <ul>
             <li nz-menu-item>All</li>
@@ -40,12 +40,14 @@
         <li *ngIf="!isLoggedIn" class="nav-item">
           <a nz-button nzType="link" (click)="isShowLoginModal = true">
             <span nz-icon nzType="login"></span>
-            Log in
+            <ng-container *ngIf="!(isHandset$ | async) && !isCollapsed">
+              Log in
+            </ng-container>
           </a>
         </li>
         <ng-container *ngIf="(userInfo$ | async) as userInfo">
           <li *ngIf="isLoggedIn" class="nav-item">
-            <a class="mx-2 text-uppercase">
+            <a class="mx-2 text-uppercase" [routerLink]="['/mypage']" routerLinkActive="router-link-active">
               <i class="fa-solid fa-circle-user me-1"></i>
               <ng-container *ngIf="!isCollapsed">
                 Hi <strong>{{userInfo.base_user?.username}}</strong>
@@ -69,7 +71,6 @@
 
         <!-- main content section -->
         <div class="inner-content pb-5">
-          <app-loader-spiner></app-loader-spiner>
           <ng-content></ng-content>
         </div>
       </nz-content>

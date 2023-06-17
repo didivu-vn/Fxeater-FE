@@ -27,6 +27,34 @@ export class LayoutService {
     shareReplay()
   );
 
+  private displayNameMap = new Map([
+    [Breakpoints.XSmall, 'xsm'],
+    [Breakpoints.Small, 'sm'],
+    [Breakpoints.Medium, 'md'],
+    [Breakpoints.Large, 'lg'],
+    [Breakpoints.XLarge, 'xl'],
+  ]);
+
+
+  breakPoint$ = this.breakpointObserver.observe([
+    Breakpoints.XSmall,
+    Breakpoints.Small,
+    Breakpoints.Medium,
+    Breakpoints.Large,
+    Breakpoints.XLarge,
+  ])
+  .pipe(
+    map(result => {
+      for (const query of Object.keys(result.breakpoints)) {
+        if (result.breakpoints[query]) {
+          return this.displayNameMap.get(query) ?? 'Unknown';
+        }
+      }
+      return 'Unknown'
+    })
+  )
+
+
   constructor(
     private breakpointObserver: BreakpointObserver
   ) { }

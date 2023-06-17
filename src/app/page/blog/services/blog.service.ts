@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { TNewBlogData } from "../interfaces/blog.interface";
 import { environment } from "src/environments/environment";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { END_POINT_URL_LIST } from "src/app/util";
 
 
 @Injectable({
@@ -33,11 +34,11 @@ export class BlogService{
         formData.append('html_string',data.html_string)
         formData.append('thumbnail_image',data.thumbnail_image)
         data.series && formData.append('series', data.series.toString())
-        return this.http.post<any>(`${this.apiUrl}/v1/api-blog/`,formData)
+        return this.http.post<any>(`${this.apiUrl}/${END_POINT_URL_LIST.BLOG}`,formData)
       }
     
       getBlog(id:number){
-        return this.http.get<any>(`${this.apiUrl}/v1/api-blog/${id}/`)
+        return this.http.get<any>(`${this.apiUrl}/${END_POINT_URL_LIST.BLOG}${id}/`)
       }
     
       putBlog(data:TNewBlogData, id:number){
@@ -49,6 +50,6 @@ export class BlogService{
         formData.append('html_string',data.html_string)
         data.thumbnail_image && formData.append('thumbnail_image',data.thumbnail_image)
         data.series && formData.append('series', data.series.toString())
-        return this.http.put<any>(`${this.apiUrl}/v1/api-blog/${id}/`,formData)
+        return this.http.put<any>(`${this.apiUrl}/${END_POINT_URL_LIST.BLOG}${id}/`,formData)
       }
 }
