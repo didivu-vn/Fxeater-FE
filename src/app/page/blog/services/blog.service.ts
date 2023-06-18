@@ -25,31 +25,31 @@ export class BlogService{
         return this.http.post<any>(`${this.apiUrl}/v1/api-img/`,formData)
       }
     
-      postBlog(data:TNewBlogData){
-        
-        const formData = new FormData();
-        formData.append('name',data.name)
-        formData.append('sub_title',data.sub_title)
-        formData.append('description',data.description)
-        formData.append('html_string',data.html_string)
-        formData.append('thumbnail_image',data.thumbnail_image)
-        data.series && formData.append('series', data.series.toString())
-        return this.http.post<any>(`${this.apiUrl}/${END_POINT_URL_LIST.BLOG}`,formData)
-      }
+    postBlog(data:TNewBlogData){
+      
+      const formData = new FormData();
+      formData.append('name',data.name)
+      formData.append('sub_title',data.sub_title)
+      formData.append('description',data.description)
+      formData.append('html_string',data.html_string)
+      formData.append('thumbnail_image',data.thumbnail_image)
+      data.series && formData.append('series', data.series.toString())
+      return this.http.post<any>(`${this.apiUrl}/${END_POINT_URL_LIST.BLOG}`,formData)
+    }
+  
+    getBlog(id:number){
+      return this.http.get<any>(`${this.apiUrl}/${END_POINT_URL_LIST.BLOG}${id}/`)
+    }
     
-      getBlog(id:number){
-        return this.http.get<any>(`${this.apiUrl}/${END_POINT_URL_LIST.BLOG}${id}/`)
-      }
-    
-      putBlog(data:TNewBlogData, id:number){
-        
-        const formData = new FormData();
-        formData.append('name',data.name)
-        formData.append('sub_title',data.sub_title)
-        formData.append('description',data.description)
-        formData.append('html_string',data.html_string)
-        data.thumbnail_image && formData.append('thumbnail_image',data.thumbnail_image)
-        data.series && formData.append('series', data.series.toString())
-        return this.http.put<any>(`${this.apiUrl}/${END_POINT_URL_LIST.BLOG}${id}/`,formData)
-      }
+    putBlog(data:TNewBlogData, id:number){
+      
+      const formData = new FormData();
+      formData.append('name',data.name)
+      formData.append('sub_title',data.sub_title)
+      formData.append('description',data.description)
+      formData.append('html_string',data.html_string)
+      data.thumbnail_image && formData.append('thumbnail_image',data.thumbnail_image)
+      data.series && formData.append('series', data.series.toString())
+      return this.http.put<any>(`${this.apiUrl}/${END_POINT_URL_LIST.BLOG}${id}/`,formData)
+    }
 }
