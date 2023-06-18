@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from "@angular/core"
 import { IHeaderData, LayoutService } from "../../service/layout.service"
-import { IPageMetadata, MetadataService } from "src/app/service"
+import { IPageMetadata, LanguageService, MetadataService } from "src/app/service"
 import { ViewportScroller } from "@angular/common"
 import { ActivatedRoute } from "@angular/router"
 import { tap } from "rxjs"
@@ -41,14 +41,18 @@ const sample_metaData: IMetaData = {
 export class BasePage implements OnInit {
   
   protected layoutService = inject(LayoutService)
+  protected langService = inject(LanguageService)
   protected metaDateService = inject(MetadataService)
   protected viewPortScroller = inject(ViewportScroller)
   protected route = inject(ActivatedRoute)
   protected metaData: IMetaData = {} as IMetaData
 
   route$ = this.route.params.pipe(
-    tap(data => this.routeChange(data))
+    tap(data => this.routeChange(data)),
+    tap(data => this.checkLang(data))
   )
+
+  lang$ = this.langService.lang$
 
   constructor( ) {}
 
@@ -72,6 +76,11 @@ export class BasePage implements OnInit {
 
   routeChange(data:any){
     
+  }
+
+  checkLang(data:any) {
+    const lang = data.lang ? data.lang : '';
+    this.langService.langArray.includes(lang) && lang !== this.lang$.value.lang && this.langService.setLangToStorage(lang)
   }
 
 }

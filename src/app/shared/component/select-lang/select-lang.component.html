@@ -1,0 +1,8 @@
+<ng-container *ngIf="(lang$ | async) as lang">
+  <nz-select [ngModel]="lang.lang" (ngModelChange)="changeValue($event)">
+    <nz-option nzValue="en" nzLabel="English"></nz-option>
+    <nz-option nzValue="ja" nzLabel="日本語"></nz-option>
+    <nz-option nzValue="es" nzLabel="Español"></nz-option>
+    <nz-option nzValue="cn" nzLabel="汉语"></nz-option>
+  </nz-select>
+</ng-container>

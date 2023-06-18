@@ -1,4 +1,4 @@
-<div class="container py-lg-3 px-lg-5" *ngIf="(testOb$ | async)">
+<div class="container py-lg-3 px-lg-5" *ngIf="(allData$ | async)">
     <div class="row py-2">
         <div class="col-lg-2" *ngIf="!(isHandset$ | async) && (isLogin$ | async)">
             <button nz-button nzType="primary" [routerLink]="'/blog/new/'">Add blog</button>

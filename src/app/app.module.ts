@@ -25,7 +25,8 @@ import {
   HeaderComponent,
   LoaderSpinerComponent, 
   NavbarComponent, 
-  QuillEditorComponent, 
+  QuillEditorComponent,
+  SelectLangComponent, 
 } from './shared/component';
 
 import { 
@@ -33,7 +34,8 @@ import {
   AuthService, 
   CacheResolverService, 
   MetadataService, 
-  SlugService 
+  SlugService,
+  LanguageService
 } from './service';
 
 import { FadeInAnimationDirective } from './shared/derective/fade-in-animation.directive';
@@ -100,7 +102,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     MypageIndexPage,
     MyBlogPage,
     AllInfoComponent,
-    HomeBlogComponent
+    HomeBlogComponent,
+    SelectLangComponent
 ],
   exports:[
     ZorroModule
@@ -114,6 +117,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     httpInterceptorProviders,
     MetadataService,
     BlogService,
+    LanguageService,
     AuthGuard
   ],
   bootstrap: [AppComponent],
