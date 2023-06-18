@@ -40,16 +40,7 @@ export class AboutPage extends BasePage {
     },
   };
 
-  aboutData: IAboutData = {
-    title: '',
-    description: '',
-    section1_title: '',
-    section1_description: '',
-    section2_title: '',
-    section2_description: '',
-    section3_title: '',
-    section3_description: '',
-  };
+  aboutData = {} as IAboutData;
 
   constructor(private apiService: ApiService) {
     super();
@@ -59,10 +50,8 @@ export class AboutPage extends BasePage {
     const lang = data.lang ? data.lang : '';
     let targetUrl = 'v1/api-about-us/';
     targetUrl = lang ? targetUrl + `?lang=${lang}` : targetUrl;
-    // console.log(targetUrl);
     this.apiService.getDataWithUrl(targetUrl).subscribe((about) => {
       this.aboutData = about['results'][0];
-      // console.log(this.aboutData);
     });
   }
 }
