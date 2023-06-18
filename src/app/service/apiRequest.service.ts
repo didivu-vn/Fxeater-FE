@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
+import { LanguageService } from './language.service';
+import { DEFAULT_LANG } from '../util';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +12,21 @@ export class ApiService {
   apiUrl:string =  environment.apiUrl
   header = new HttpHeaders({'Content-Type':'multipart/form-data'})
   constructor(
-    private http:HttpClient
+    private http:HttpClient,
+    private langService: LanguageService
   ) { }
 
   getDataWithUrl(requestUrlPath:string, header:any = '') {   
-    const baseUrl = `${this.apiUrl}/${requestUrlPath}`
+    let baseUrl = `${this.apiUrl}/${requestUrlPath}`
+    const currentLang = this.langService.lang$.value.lang
+
+    if (!baseUrl.includes('lang=') && currentLang !== DEFAULT_LANG) {
+      baseUrl = baseUrl.includes('?') 
+        ? `${baseUrl}${'&lang='+ currentLang}`
+        : `${baseUrl}${'?lang='+ currentLang}`
+    }
+
+
     if (!header){
       return this.http.get<any>(baseUrl)
     }

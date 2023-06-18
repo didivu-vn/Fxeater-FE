@@ -51,7 +51,7 @@ export class AllBlogsComponent extends BasePage {
   targetEndpoint = END_POINT_URL_LIST.BLOG
   isLoadMore = false
   
-  testOb$ = combineLatest([
+  allData$ = combineLatest([
     this.route$
   ])
   

@@ -18,3 +18,12 @@ export class END_POINT_URL_LIST {
     static MY_BLOG = 'v1/my-blog-fxeater/'
     static HOME_BLOG = 'v1/api-blog-fxeater-home/'
 }
+
+export const DEFAULT_LANG = 'en'
+
+export const SUPPORT_LANG = [
+    DEFAULT_LANG,
+    'ja',
+    'es',
+    'cn'
+]

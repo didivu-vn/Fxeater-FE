@@ -6,7 +6,7 @@
                 {{header.title}}
             </h1>
         </div>
-        <div class="col mt-2">
+        <div class="col mt-2 d-none d-lg-block">
             <h2 class="fs-6" *ngIf="header.subtitle">{{header.subtitle}}</h2>
         </div>
 
@@ -19,6 +19,10 @@
                     <span nz-icon nzType="search"></span>
                 </button>
             </ng-template>
+        </div>
+
+        <div class="col-xl-1 col-md-2 px-1">
+            <app-select-lang></app-select-lang>
         </div>
     </div>
 </div>
