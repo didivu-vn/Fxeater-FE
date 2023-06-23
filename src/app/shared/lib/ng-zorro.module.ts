@@ -30,6 +30,7 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzImageModule } from 'ng-zorro-antd/image';
 
 const TARGET_COMPONENTS = [
     NzIconModule,
@@ -62,7 +63,8 @@ const TARGET_COMPONENTS = [
     NzUploadModule,
     NzAlertModule,
     NzMessageModule,
-    NzSelectModule
+    NzSelectModule,
+    NzImageModule
 ]
 
 @NgModule({

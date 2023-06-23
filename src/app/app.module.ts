@@ -50,6 +50,7 @@ import { ToCComponent } from './page/blog/components/t-o-c/t-o-c.component';
 import { BlogPageComponent } from './page/blog/pages/single-page/blog-page.component';
 import { NewBlogComponent } from './page/blog/pages/new-blog/new-blog.component';
 import { BlogCardComponent } from './page/blog/components/blog-card/blog-card.component';
+import { BlogCardMobileComponent } from './page/blog/components/blog-card-mobile/blog-card-mobile.component';
 import { EditBlogComponent } from './page/blog';
 
 import { ProductCardComponent } from './page/product/components/product-card/product-card.component';
@@ -103,8 +104,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     MyBlogPage,
     AllInfoComponent,
     HomeBlogComponent,
-    SelectLangComponent
-],
+    SelectLangComponent,
+    BlogCardMobileComponent
+  ],
   exports:[
     ZorroModule
   ],
