@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { BehaviorSubject, Observable, combineLatest, map, shareReplay, tap } from 'rxjs';
 import { ApiService, UserService } from 'src/app/service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -20,7 +19,7 @@ export class AllBlogsComponent extends BasePage {
     [
       {
         name: 'Blog',
-        url: '/blog'
+        url: '/blog/all'
       }
     ],
     layout:

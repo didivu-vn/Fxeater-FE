@@ -7,7 +7,12 @@
     <div class="row pt-2 d-flex justify-content-between">
         <div class="col-xl-9 col-12 order-xl-1 order-2">
             <ng-container *ngFor="let item of blogData">
-                <app-blog-card [blogData]="item" *ngIf="item.isShow"></app-blog-card>
+                <ng-container *ngIf="!(isHandset$ | async); else mobileCard">
+                    <app-blog-card [blogData]="item" *ngIf="item.isShow"></app-blog-card>
+                </ng-container>
+                <ng-template #mobileCard>
+                    <app-blog-card-mobile [blogData]="item" *ngIf="item.isShow"></app-blog-card-mobile>
+                </ng-template>
             </ng-container>
         </div>
         <div class="col-xl-3 col-12 order-xl-2 order-1" [ngClass]="!(isHandset$ | async) ? 'border-left' : ''">
