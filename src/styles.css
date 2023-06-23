@@ -84,3 +84,6 @@ nz-content {
 .ql-font-playfair {
     font-family: var(--cs-header-font) !important;
 }
+
+svg { vertical-align: baseline; }
+

@@ -1,0 +1,15 @@
+<div class="mb_card">
+    <nz-divider></nz-divider>
+    <div class="container">
+        <div class="row">
+            <div class="col-9">
+                <h5 nz-typography [routerLink]="'/blog/'+blogData.id+'-'+blogSlug">{{blogData.name}}</h5>
+                <span nz-icon nzType="clock-circle" nzTheme="outline" class="me-1"></span>{{blogData.created_at |
+                date:'short'}}, by <strong>{{blogData.author}}</strong>
+            </div>
+            <div class="col-3">
+                <img nz-image width="100%" nzSrc="{{blogData.thumbnail_image_url}}" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
