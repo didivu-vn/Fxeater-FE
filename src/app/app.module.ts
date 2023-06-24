@@ -16,6 +16,7 @@ import { ZorroModule } from './shared/lib';
 import { 
   AboutPage, 
   HomePage, 
+  LandingPage, 
   PageNotFoundComponent,
 } from './page';
 
@@ -64,7 +65,7 @@ import { MypageIndexPage } from './page/mypage/pages/mypage-index/mypage-index.p
 import { MyBlogPage } from './page/mypage/pages/my-blog/my-blog.page';
 import { AllInfoComponent } from './page/mypage/pages/all-info/all-info.component';
 import { AuthGuard } from './shared/guard/auth.guard';
-import { HomeBlogComponent } from './page/home/components/home-blog/home-blog.component';
+import { HomeBlogComponent, HomeEasyAccessComponent, HomeNewsComponent } from './page/home';
 
 
 
@@ -105,8 +106,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AllInfoComponent,
     HomeBlogComponent,
     SelectLangComponent,
-    BlogCardMobileComponent
-  ],
+    BlogCardMobileComponent,
+    LandingPage, HomeEasyAccessComponent, HomeNewsComponent],
   exports:[
     ZorroModule
   ],
