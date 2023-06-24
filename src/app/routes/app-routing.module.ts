@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { HomePage, PageNotFoundComponent } from '../page';
+import { HomePage, LandingPage, PageNotFoundComponent } from '../page';
 import { AuthGuard } from '../shared/guard/auth.guard';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    component: HomePage
   },
   {
-    path: 'home',
-    component: HomePage
+    path: 'landing-page',
+    component: LandingPage
   },
   {
     path: 'about',

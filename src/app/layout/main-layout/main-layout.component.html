@@ -1,18 +1,22 @@
 <ng-container>
   <nz-layout *ngIf="breakPoint$ | async">
     <nz-sider nzCollapsible nzWidth="200px" [(nzCollapsed)]="isCollapsed" [nzCollapsedWidth]="80"
-      *ngIf="!(isHandset$ | async)">
+      *ngIf="!(isHandset$ | async)" nzTheme="dark">
       <div class="logo text-center cs__pointer" [routerLink]="['/']" routerLinkActive="router-link-active">
         <span class="cs__text-1">
           FXeater
         </span>
       </div>
       <ul nz-menu nzTheme="dark" nzMode="inline">
-        <li nz-menu-item [routerLink]="['/home']">
+        <li nz-menu-item [routerLink]="['/']">
           <span nz-icon nzType="home" nzTheme="outline"></span>
           <span>Home</span>
         </li>
-        <li nz-menu-item [routerLink]="['/search']">
+        <li nz-menu-item [routerLink]="['/news']" [nzDisabled]="true">
+          <span nz-icon nzType="check" nzTheme="outline"></span>
+          <span>Daily News</span>
+        </li>
+        <li nz-menu-item [routerLink]="['/search']" [nzDisabled]="true">
           <span nz-icon nzType="search" nzTheme="outline"></span>
           <span>Search</span>
         </li>
@@ -24,12 +28,12 @@
           <span nz-icon nzType="radar-chart" nzTheme="outline"></span>
           <span>Product</span>
         </li> -->
-        <!-- <li nz-submenu nzTitle="Search" nzIcon="search">
+        <li nz-submenu nzTitle="Learing" nzIcon="fund" nzOpen="true" [nzDisabled]="true">
           <ul>
-            <li nz-menu-item>All</li>
-            <li nz-menu-item>Popular</li>
+            <li nz-menu-item [routerLink]="['/ask-expert']" [nzDisabled]="true">Ask Expert</li>
+            <li nz-menu-item [routerLink]="['/learn-chart']" [nzDisabled]="true">Read Chart</li>
           </ul>
-        </li> -->
+        </li>
 
         <li nz-menu-item [routerLink]="['/about']">
           <span nz-icon nzType="question-circle" nzTheme="outline"></span>
