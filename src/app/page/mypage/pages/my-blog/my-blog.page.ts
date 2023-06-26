@@ -47,7 +47,6 @@ export class MyBlogPage extends BasePage {
 
   constructor(
     private apiService: ApiService,
-    private slugService: SlugService,
     private router:Router,
   ) {
     super()

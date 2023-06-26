@@ -50,6 +50,7 @@ import { AllBlogsComponent } from './page/blog/pages/view-blog/view-blog.compone
 import { ToCComponent } from './page/blog/components/t-o-c/t-o-c.component';
 import { BlogPageComponent } from './page/blog/pages/single-page/blog-page.component';
 import { NewBlogComponent } from './page/blog/pages/new-blog/new-blog.component';
+import { SeriesPage } from './page/blog/pages/series/series.page';
 import { BlogCardComponent } from './page/blog/components/blog-card/blog-card.component';
 import { BlogCardMobileComponent } from './page/blog/components/blog-card-mobile/blog-card-mobile.component';
 import { EditBlogComponent } from './page/blog';
@@ -66,6 +67,7 @@ import { MyBlogPage } from './page/mypage/pages/my-blog/my-blog.page';
 import { AllInfoComponent } from './page/mypage/pages/all-info/all-info.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { HomeBlogComponent, HomeEasyAccessComponent, HomeNewsComponent } from './page/home';
+
 
 
 
@@ -107,7 +109,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     HomeBlogComponent,
     SelectLangComponent,
     BlogCardMobileComponent,
-    LandingPage, HomeEasyAccessComponent, HomeNewsComponent],
+    LandingPage, HomeEasyAccessComponent, HomeNewsComponent, SeriesPage],
   exports:[
     ZorroModule
   ],
