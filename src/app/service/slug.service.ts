@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import slugify from 'slugify';
-import { IBlogData } from "../shared/interface";
+import { IBlogData, IBlogSlugData } from "../shared/interface";
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +11,7 @@ export class SlugService {
         return slugify(str, {locale: 'vi'}).toLowerCase()
     }
 
-    gerateBlogUrl(blogData: IBlogData){
+    gerateBlogUrl(blogData: IBlogSlugData){
         return '/blog/'+ blogData.id+'-'+ this.getSlug(blogData.name)
     }
 
