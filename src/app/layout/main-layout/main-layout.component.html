@@ -20,14 +20,13 @@
           <span nz-icon nzType="search" nzTheme="outline"></span>
           <span>Search</span>
         </li>
-        <li nz-menu-item [routerLink]="['/blog/all']">
-          <span nz-icon nzType="edit" nzTheme="outline"></span>
-          <span>Blog</span>
+
+        <li nz-submenu nzTitle="Blog" nzIcon="edit" nzOpen="true" [nzDisabled]="false">
+          <ul>
+            <li nz-menu-item [routerLink]="['/blog/all']" [nzDisabled]="false">Blogs</li>
+            <li nz-menu-item [routerLink]="['/blog/series']" [nzDisabled]="false">Series</li>
+          </ul>
         </li>
-        <!-- <li nz-menu-item [routerLink]="['/product']">
-          <span nz-icon nzType="radar-chart" nzTheme="outline"></span>
-          <span>Product</span>
-        </li> -->
         <li nz-submenu nzTitle="Learing" nzIcon="fund" nzOpen="true" [nzDisabled]="true">
           <ul>
             <li nz-menu-item [routerLink]="['/ask-expert']" [nzDisabled]="true">Ask Expert</li>

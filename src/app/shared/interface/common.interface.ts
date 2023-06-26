@@ -66,6 +66,11 @@ export interface IBlogData {
   slug?:string
 }
 
+export interface IBlogSlugData {
+  id: number
+  name: string
+}
+
 export interface IBlogRelatedData {
   id: number
   name: string

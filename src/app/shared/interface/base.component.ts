@@ -1,9 +1,10 @@
 import { Component, OnInit, inject } from "@angular/core"
 import { IHeaderData, LayoutService } from "../../service/layout.service"
-import { IPageMetadata, LanguageService, MetadataService } from "src/app/service"
+import { IPageMetadata, LanguageService, MetadataService, SlugService } from "src/app/service"
 import { ViewportScroller } from "@angular/common"
 import { ActivatedRoute } from "@angular/router"
 import { tap } from "rxjs"
+import { IBlogSlugData } from "./common.interface"
 
 export interface IMetaData {
   layout: IHeaderData,
@@ -44,6 +45,7 @@ export class BasePage implements OnInit {
   protected langService = inject(LanguageService)
   protected metaDateService = inject(MetadataService)
   protected viewPortScroller = inject(ViewportScroller)
+  protected slugService = inject(SlugService)
   protected route = inject(ActivatedRoute)
   protected metaData: IMetaData = {} as IMetaData
 
@@ -81,6 +83,10 @@ export class BasePage implements OnInit {
   checkLang(data:any) {
     const lang = data.lang ? data.lang : '';
     this.langService.langArray.includes(lang) && lang !== this.lang$.value.lang && this.langService.setLangToStorage(lang)
+  }
+
+  genSlug(inData: IBlogSlugData){
+    return this.slugService.gerateBlogUrl(inData)
   }
 
 }
