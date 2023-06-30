@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map, tap } from 'rxjs';
 import { BasePage, IMetaData } from 'src/app/shared/interface/base.component';
 import { dummyData } from '../../product/pages/product-index/product-index.page';
 import { IBlogData } from 'src/app/shared/interface';
@@ -19,6 +19,15 @@ export class HomePage extends BasePage {
   blogsData$: Observable<IBlogData[]>  = this.apiService.getDataWithUrl(END_POINT_URL_LIST.HOME_BLOG).pipe(
     map(data => data['results'])
   )
+  seriesData$ = this.apiService.getDataWithUrl(END_POINT_URL_LIST.BLOG_SERIES).pipe(
+    map(data => data.results)
+  )
+
+  pageData$ = combineLatest([
+    this.blogsData$,
+    this.seriesData$,
+    this.route$,
+  ])
 
   isLoggedIn = false
 
