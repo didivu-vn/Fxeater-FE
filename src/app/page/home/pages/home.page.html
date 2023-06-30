@@ -1,18 +1,53 @@
 <div class="container-fluid p-3">
     <div class="row">
+        <div class="col-lg-4 col-12 justify-content-end">
+            <ng-container *ngTemplateOutlet="homeNavi"></ng-container>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-8 col-12">
             <ng-container *ngTemplateOutlet="homeNews"></ng-container>
         </div>
-        <div class="col-lg-4 col-12 d-flex justify-content-end">
-            <ng-container *ngTemplateOutlet="homeNavi"></ng-container>
+        <div class="col-lg-4">
+
+
         </div>
     </div>
 </div>
 
-<ng-container *ngIf="(blogsData$|async) as blogsData ">
-    <div class="container-fluid pt-1" *ngIf="blogsData.length > 0">
-        <nz-divider nzText="New post" nzOrientation="left"></nz-divider>
-        <app-home-blog [blogsData]="blogsData"></app-home-blog>
+<ng-container *ngIf="(pageData$|async) as pageData">
+    <div class="container-fluid pt-1">
+        <div class="row">
+            <div class="col-lg-6" *ngIf="pageData[0].length > 0">
+                <nz-divider nzText="New post" nzOrientation="left"></nz-divider>
+                <app-home-blog [blogsData]="pageData[0]"></app-home-blog>
+            </div>
+            <div class="col-lg-6">
+                <nz-divider nzText="Series" nzOrientation="left"></nz-divider>
+                <div class="row">
+                    <div class="col-12 mt-3" *ngFor="let item of pageData[1]">
+
+                        <nz-card style="width:100%;" [nzActions]="[]">
+                            <nz-card-meta nzTitle="{{item.name}}" nzDescription="{{item.description}}"
+                                [nzAvatar]="avatarTemplate">
+                            </nz-card-meta>
+
+                            <nz-divider></nz-divider>
+                            <ng-container *ngFor="let blog of item.blogs">
+                                <span nz-typography>
+                                    <a [routerLink]="[genSlug(blog)]">{{blog.name}}</a>
+                                </span>
+                            </ng-container>
+
+                        </nz-card>
+                        <ng-template #avatarTemplate>
+                            <nz-avatar nzSrc="{{item.author_info.avatar}}"></nz-avatar>
+                        </ng-template>
+                    </div>
+                </div>
+                <!-- <app-home-blog [blogsData]="pageData[1]"></app-home-blog> -->
+            </div>
+        </div>
     </div>
 </ng-container>
 
