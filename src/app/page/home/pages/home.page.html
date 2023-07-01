@@ -4,13 +4,12 @@
             <ng-container *ngTemplateOutlet="homeNavi"></ng-container>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-8 col-12">
-            <ng-container *ngTemplateOutlet="homeNews"></ng-container>
+    <div class="row mt-3">
+        <div class="col-lg-6 col-12">
+            <ng-container *ngTemplateOutlet="homeCurPair"></ng-container>
         </div>
-        <div class="col-lg-4">
-
-
+        <div class="col-lg-4 d-lg-block d-none">
+            <ng-container *ngTemplateOutlet="homeCrypto"></ng-container>
         </div>
     </div>
 </div>
@@ -56,6 +55,10 @@
     <app-home-easy-access></app-home-easy-access>
 </ng-template>
 
-<ng-template #homeNews>
+<ng-template #homeCurPair>
     <app-home-news></app-home-news>
+</ng-template>
+
+<ng-template #homeCrypto>
+    <app-home-crypto></app-home-crypto>
 </ng-template>
