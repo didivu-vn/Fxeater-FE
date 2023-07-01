@@ -1,5 +1,6 @@
+
 .live__currency::before{
-    content: "Real-time Data (UTC-4h)";
+    content: "Real-time";
     background-color: white;
     border: 1px solid #eee;
     // opacity: 20%;
@@ -20,6 +21,7 @@ iframe {
 
 .live__currency {
     height: 220px;
+    border-bottom: 1px solid #eee;
 }
 
 @media (max-width: 600px) {
@@ -29,4 +31,3 @@ iframe {
     }
     
 }
-  
