@@ -28,7 +28,7 @@ export interface IBaseUser {
 }
 
 
-interface IAuthor {
+export interface IAuthor {
     user: string,
     avatar:string
 }

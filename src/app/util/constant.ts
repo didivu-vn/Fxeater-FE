@@ -17,6 +17,8 @@ export class END_POINT_URL_LIST {
     static PUBLISH_BLOG = 'v1/api-publish-blog-fxeater/'
     static MY_BLOG = 'v1/my-blog-fxeater/'
     static HOME_BLOG = 'v1/api-blog-fxeater-home/'
+
+    static CHART_PATTERN = 'v1/api-chart-pattern/'
 }
 
 export const DEFAULT_LANG = 'en'
