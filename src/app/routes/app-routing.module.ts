@@ -30,6 +30,10 @@ const routes: Routes = [
     loadChildren: () => import('../page/blog/blog-other-routing.module').then(mod => mod.BlogOtherRoutingModule)
   },
   {
+    path: 'learn',
+    loadChildren: () => import('../page/learning/learning.module').then(mod => mod.LearningPageModule)
+  },
+  {
     path: 'mypage',
     loadChildren: () => import('../page/mypage/mypage.module').then(mod => mod.MypagePageModule),
     canActivate: [AuthGuard]
