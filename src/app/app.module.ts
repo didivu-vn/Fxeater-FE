@@ -39,7 +39,6 @@ import {
   LanguageService
 } from './service';
 
-import { FadeInAnimationDirective } from './shared/derective/fade-in-animation.directive';
 import { QuillModule } from 'ngx-quill';
 import { CommonModule } from '@angular/common';
 import { BlogService } from './page/blog/services/blog.service';
@@ -67,6 +66,9 @@ import { MyBlogPage } from './page/mypage/pages/my-blog/my-blog.page';
 import { AllInfoComponent } from './page/mypage/pages/all-info/all-info.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { HomeBlogComponent, HomeCryptoComponent, HomeEasyAccessComponent, HomeNewsComponent } from './page/home';
+import { ReadChartPage } from './page/learning';
+import { LazyImgDirective } from './shared/derective/lazy-load-img.directive';
+import { FadeInAnimationDirective } from './shared/derective/fade-in-animation.directive';
 
 
 
@@ -86,7 +88,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     BreadcrumbComponent, 
     NavbarComponent, 
     LoaderSpinerComponent, 
-    FadeInAnimationDirective, 
+    FadeInAnimationDirective,
+    LazyImgDirective,
     PageNotFoundComponent, 
     EmailSubComponent, 
     QuillEditorComponent,
@@ -109,7 +112,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     HomeBlogComponent,
     SelectLangComponent,
     BlogCardMobileComponent,
-    LandingPage, HomeEasyAccessComponent, HomeNewsComponent, SeriesPage, HomeCryptoComponent],
+    LandingPage, HomeEasyAccessComponent, HomeNewsComponent, SeriesPage, HomeCryptoComponent, ReadChartPage],
   exports:[
     ZorroModule
   ],

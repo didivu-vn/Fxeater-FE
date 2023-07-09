@@ -1,6 +1,4 @@
 import { Component, OnInit, Optional } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
 import { ApiService, UserService } from 'src/app/service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';

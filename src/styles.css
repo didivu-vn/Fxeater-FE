@@ -87,3 +87,6 @@ nz-content {
 
 svg { vertical-align: baseline; }
 
+.sticky-lg-top {
+    z-index: 999;
+}

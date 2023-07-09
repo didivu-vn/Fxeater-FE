@@ -1,0 +1,48 @@
+<ng-container *ngIf="(pageData$ | async) as pageData">
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-12 mt-3" *ngFor="let item of pageData.patternData">
+                <nz-card nzHoverable style="width:100%" [nzCover]="coverTemplate" [nzActions]="[viewDetail,like]">
+                    <nz-card-meta nzTitle="{{item.name}}" nzDescription="{{item.category}}"></nz-card-meta>
+                </nz-card>
+                <ng-template #coverTemplate>
+                    <picture class="px-3 py-1">
+                        <source media="(max-width:3650px)" srcset="{{item.chart_imgs[0].imgUrl}}">
+                        <img src="" width="100%" height="200px" alt="{{item.name}}" style="object-fit: contain;">
+                    </picture>
+                </ng-template>
+                <ng-template #viewDetail>
+                    <span nz-icon nzType="eye" nzTheme="outline" (click)="viewChartInfo(item.id)"></span>
+                </ng-template>
+                <ng-template #like>
+                    <span nz-icon nzType="heart" nzTheme="outline"></span>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+<nz-drawer [nzClosable]="false" [nzVisible]="isShowChartInfoModal" [nzWidth]="modelSize" [nzHeight]="modelSize"
+    [nzPlacement]="modalPlacement" nzTitle="{{selectedChart.name}} parttern" (nzOnClose)="isShowChartInfoModal = false">
+    <ng-container *nzDrawerContent>
+        <p nz-typography>{{selectedChart.description}}</p>
+        <span nz-typography nzType="secondary">
+            <span nz-icon nzType="exclamation-circle" nzTheme="outline"></span>
+            Click on image to zoom out.
+        </span>
+        <!-- chart image -->
+        <div class="chart__img" *ngFor="let item of selectedChart.chart_imgs">
+            <nz-divider nzText="{{item.name}}" nzOrientation="left"></nz-divider>
+            <!-- <h3 nz-typography>{{item.name}}</h3> -->
+
+            <picture class="px-3 py-1">
+                <img nz-image nzSrc="{{item.imgUrl}}" width="100%" alt="{{item.name}}"
+                    style="object-fit: contain;max-height: 250px;">
+            </picture>
+
+            <p nz-typography class="mt-3">{{item.description}}</p>
+
+        </div>
+    </ng-container>
+</nz-drawer>
