@@ -2,6 +2,10 @@
     line-height: 110%;
 }
 
+.sticky-lg-top{
+    top:10px
+}
+
 :host ::ng-deep .p-inputtext {
     padding-left: 1rem;
 }

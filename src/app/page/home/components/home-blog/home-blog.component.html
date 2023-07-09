@@ -3,13 +3,13 @@
         <div class="col-12 my-info-card p-3">
             <nz-card style="width:100%;" [nzTitle]="info_title" [nzExtra]="info">
                 <div class="article-item">
-                    <div class="item-content">
-                        <a class="item-thumb" [routerLink]="[item.slug]" routerLinkActive="router-link-active"
-                            *ngIf="!(isHandset$ | async)">
+                    <div class="item-content ">
+                        <div class="item-thumb cs__pointer" [routerLink]="[item.slug]"
+                            routerLinkActive="router-link-active" *ngIf="!(isHandset$ | async)">
                             <div class="image"
                                 [ngStyle]="{'background-image': 'url(' + item.thumbnail_image_url + ')'}">
                             </div>
-                        </a>
+                        </div>
                         <div class="item-body px-lg-2 p-1">
                             <span class="description">{{item.description}}</span>
                         </div>
@@ -17,7 +17,7 @@
                 </div>
             </nz-card>
             <ng-template #info_title>
-                <span class="d-flex align-items-center" [routerLink]="[item.slug]"
+                <span class="d-flex align-items-center cs__pointer" [routerLink]="[item.slug]"
                     routerLinkActive="router-link-active">
                     <span nz-icon nzType="edit" nzTheme="outline" class="me-2"></span>
                     {{item.name}}
@@ -25,9 +25,9 @@
             </ng-template>
 
             <ng-template #info>
-                <a [routerLink]="[item.slug]" routerLinkActive="router-link-active">
+                <div [routerLink]="[item.slug]" routerLinkActive="router-link-active" class="cs__pointer">
                     <span nz-icon nzType="right" nzTheme="outline"></span>
-                </a>
+                </div>
             </ng-template>
         </div>
     </ng-container>
