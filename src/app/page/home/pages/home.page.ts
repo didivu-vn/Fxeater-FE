@@ -5,6 +5,7 @@ import { dummyData } from '../../product/pages/product-index/product-index.page'
 import { IBlogData } from 'src/app/shared/interface';
 import { ApiService, UserService } from 'src/app/service';
 import { END_POINT_URL_LIST } from 'src/app/util';
+import { IChartPattern } from '../../learning/interface/interface';
 
 
 @Component({
@@ -23,11 +24,36 @@ export class HomePage extends BasePage {
     map(data => data.results)
   )
 
+  patternData$: Observable<IChartPattern[]>  = this.apiService.getDataWithUrl(END_POINT_URL_LIST.CHART_PATTERN).pipe(
+    map(data => data['results'])
+  )
+
+  currentPageData: any
+
   pageData$ = combineLatest([
     this.blogsData$,
     this.seriesData$,
     this.route$,
-  ])
+    this.patternData$,
+  ]).pipe(
+    map(data => {
+      return {
+        blogData: data[0],
+        seriesData: data[1],
+        route: data[2],
+        patternData: data[3],
+      }
+    }),
+    tap(data => {
+        this.currentPageData = data
+        this.currentPageData.patternData.forEach(
+          (data: IChartPattern) => {
+            data.slug = this.slugService.genChartUrl(data)
+          }
+        )
+      }
+    )
+  )
 
   isLoggedIn = false
 

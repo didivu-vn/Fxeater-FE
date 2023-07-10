@@ -9,6 +9,11 @@ const routes: Routes = [
     {
         path: 'learn-chart',
         component: ReadChartPage,
+        pathMatch: "full"
+    },
+    {
+        path: 'learn-chart/:id',
+        component: ReadChartPage,
     },
 ];
 
