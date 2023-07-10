@@ -1,0 +1,17 @@
+<ng-container>
+    <nz-card nzHoverable style="width:100%" [nzCover]="coverTemplate" [nzActions]="[viewDetail,like]">
+        <nz-card-meta nzTitle="{{item.name}}" nzDescription="{{item.category}}"></nz-card-meta>
+    </nz-card>
+    <ng-template #coverTemplate>
+        <picture class="px-3 py-1">
+            <source media="(max-width:3650px)" srcset="{{item.chart_imgs[0].imgUrl}}">
+            <img src="" width="100%" height="200px" alt="{{item.name}}" style="object-fit: contain;">
+        </picture>
+    </ng-template>
+    <ng-template #viewDetail>
+        <span nz-icon nzType="eye" nzTheme="outline" [routerLink]="item.slug"></span>
+    </ng-template>
+    <ng-template #like>
+        <span nz-icon nzType="heart" nzTheme="outline"></span>
+    </ng-template>
+</ng-container>

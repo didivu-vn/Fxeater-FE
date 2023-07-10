@@ -10,19 +10,41 @@ const distFolder = path.join(process.cwd(), 'dist/apps/ggj-aff-fe/browser/sitema
 
 const getPagesData = async function () {
     try {
-        const apiUrl = 'https://divupro-apidjangobe-production.up.railway.app/v1/api-blog-fxeater/'
+        let apiUrl = 'https://divupro-apidjangobe-production.up.railway.app/v1/api-blog-fxeater/'
 
-        const response = await fetch(apiUrl);
-        const jsonData = await response.json();
-        const outData = jsonData.results.map(
+        let response = await fetch(apiUrl);
+        let jsonData = await response.json();
+        let outData = jsonData.results.map(
             item => {
                 return {
                     title: item.name,
                     created: item.created_at,
-                    id: item.id
+                    id: item.id,
+                    type: 1
                 }
             }
         );
+
+        apiUrl = 'https://divupro-apidjangobe-production.up.railway.app/v1/api-chart-pattern/'
+
+        response = await fetch(apiUrl);
+        jsonData = await response.json();
+        const subData = jsonData.results.map(
+            item => {
+                return {
+                    title: item.name,
+                    created: item.created_at || '2023-06-13T16:03:24Z',
+                    id: item.id,
+                    type: 2
+                }
+            }
+        );
+
+        outData = [
+            ...outData,
+            ...subData
+        ]
+
         return outData;
     } catch (error) {
         return []
@@ -76,7 +98,9 @@ async function main() {
         items.push({
             url: [
                 {
-                    loc: `https://www.fxeater.com/blog/${item.id}-${slugify(item.title, { locale: 'vi' }).toLowerCase()}`,
+                    loc: item.type == 1
+                        ? `https://www.fxeater.com/blog/${item.id}-${slugify(item.title, { locale: 'vi' }).toLowerCase()}`
+                        : `https://www.fxeater.com/learn/learn-chart/${item.id}-${slugify(item.title, { locale: 'vi' }).toLowerCase()}`,
                 },
                 {
                     lastmod: new Date(item.lastModified ?? item.created)
