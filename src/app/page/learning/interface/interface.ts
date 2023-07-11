@@ -14,4 +14,5 @@ export interface IChartPattern {
 	chart_imgs: IChartImage[];
 	category: string;
 	description: string;
+	slug?: string
 }

@@ -37,6 +37,8 @@ export class ReadChartPage extends BasePage {
   modalPlacement: 'right' | 'bottom' = 'right'
   modelSize: number = 640
 
+
+  currentChartId = 0
   currentPageData = {} as {patternData:IChartPattern[]}
 
   selectedChart = {} as IChartPattern
@@ -54,8 +56,17 @@ export class ReadChartPage extends BasePage {
         patternData: data[0],
       }
     }),
-    tap(data => 
-      this.currentPageData = data
+    tap(data => {
+        this.currentPageData = data
+        this.currentPageData.patternData.forEach(
+          (data: IChartPattern) => {
+            data.slug = this.slugService.genChartUrl(data)
+          }
+        )
+        this.currentChartId && setTimeout(() => {
+          this.viewChartInfo(+this.currentChartId)
+        }, 300);
+      }
     )
   )
 
@@ -65,6 +76,12 @@ export class ReadChartPage extends BasePage {
     private breakpointObserver: BreakpointObserver,
   ) {
     super()
+  }
+
+  override routeChange(data:any){
+    if (data['id']) {
+      this.currentChartId = data['id'].split('-')[0] 
+    }
   }
 
   viewChartInfo(inID: number) {

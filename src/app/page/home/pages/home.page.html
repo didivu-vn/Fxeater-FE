@@ -5,26 +5,26 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-lg-6 col-12">
+        <div class="col-lg-6 col-md-7 col-12">
             <ng-container *ngTemplateOutlet="homeCurPair"></ng-container>
         </div>
-        <div class="col-lg-4 d-lg-block d-none">
+        <div class="col-lg-4 col-md-5 d-md-block d-none">
             <ng-container *ngTemplateOutlet="homeCrypto"></ng-container>
         </div>
     </div>
 </div>
 
-<ng-container *ngIf="(pageData$|async) as pageData">
+<ng-container *ngIf="(pageData$|async)">
     <div class="container-fluid pt-1">
         <div class="row">
-            <div class="col-lg-6" *ngIf="pageData[0].length > 0">
+            <div class="col-lg-6" *ngIf="currentPageData.blogData.length > 0">
                 <nz-divider nzText="New post" nzOrientation="left"></nz-divider>
-                <app-home-blog [blogsData]="pageData[0]"></app-home-blog>
+                <app-home-blog [blogsData]="currentPageData.blogData"></app-home-blog>
             </div>
             <div class="col-lg-6">
                 <nz-divider nzText="Series" nzOrientation="left"></nz-divider>
                 <div class="row">
-                    <div class="col-12 mt-3" *ngFor="let item of pageData[1]">
+                    <div class="col-12 mt-3" *ngFor="let item of currentPageData.seriesData">
 
                         <nz-card style="width:100%;" [nzActions]="[]">
                             <nz-card-meta nzTitle="{{item.name}}" nzDescription="{{item.description}}"
@@ -46,6 +46,14 @@
                 </div>
                 <!-- <app-home-blog [blogsData]="pageData[1]"></app-home-blog> -->
             </div>
+        </div>
+        <div class="row">
+            <nz-divider nzText="Learn Chart Patterns" nzOrientation="left"></nz-divider>
+            <ng-container *ngFor="let item of currentPageData.patternData">
+                <div class="col-lg-4 col-md-6 col-12 mt-3">
+                    <app-chart-pattern-card [item]="item"></app-chart-pattern-card>
+                </div>
+            </ng-container>
         </div>
     </div>
 </ng-container>

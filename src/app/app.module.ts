@@ -22,6 +22,7 @@ import {
 
 import { 
   BreadcrumbComponent,
+  ChartPatternCardComponent,
   EmailSubComponent,
   HeaderComponent,
   LoaderSpinerComponent, 
@@ -112,7 +113,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     HomeBlogComponent,
     SelectLangComponent,
     BlogCardMobileComponent,
-    LandingPage, HomeEasyAccessComponent, HomeNewsComponent, SeriesPage, HomeCryptoComponent, ReadChartPage],
+    LandingPage, HomeEasyAccessComponent, HomeNewsComponent, SeriesPage, HomeCryptoComponent, ReadChartPage, ChartPatternCardComponent],
   exports:[
     ZorroModule
   ],
