@@ -91,6 +91,11 @@ export class ReadChartPage extends BasePage {
 
     this.isShowChartInfoModal = true
     this.selectedChart = this.currentPageData.patternData.find(_ => _.id == inID) || {} as IChartPattern
+    this.metaData.page =  {
+      title: `FXeater | Learn Chart | ${this.selectedChart.name}`,
+      description: this.selectedChart.description
+    }
+    this.updateSEO()
   }
 }
 
