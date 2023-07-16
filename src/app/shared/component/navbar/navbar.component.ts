@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
 
-  logoUrl = '/assets/FX.png'
+  logoUrl = '/assets/icon/FX.png'
 
 
   constructor(

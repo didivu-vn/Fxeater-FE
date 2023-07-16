@@ -14,6 +14,7 @@
     --cs-main-font: 'Montserrat', sans-serif;
     --cs-second-font: 'Open Sans', sans-serif;
     --cs-header-font:'Playfair Display', serif;
+    --cs-avatar-font:'Pacifico', cursive;
 }
 
 .cs__bg-text {
@@ -47,6 +48,10 @@ nz-content {
 
 .ql-snow .ql-editor img{
   height: auto !important;
+}
+
+.ql-snow .ql-editor :is(h1, h2, h3) {
+    font-family: var(--cs-main-font) !important;
 }
 
 
