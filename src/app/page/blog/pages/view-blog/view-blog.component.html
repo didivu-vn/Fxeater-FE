@@ -16,7 +16,7 @@
             </ng-container>
         </div>
         <div class="col-xl-3 col-12 order-xl-2 order-1" [ngClass]="!(isHandset$ | async) ? 'border-left' : ''">
-            <div class="row pb-3 pe-2 sticky-lg-top">
+            <div class="row pb-3 pe-2 sticky-lg-top section__filter">
                 <div class="col-lg-12 col-12">
                     <div class="row">
                         <div class="col-9">
@@ -35,6 +35,12 @@
                     <nz-tag [nzColor]="'red'" class="ms-1 mt-2 cs__pointer" (click)=" clear()"
                         *ngIf="filterKW">#clear</nz-tag>
                 </div>
+            </div>
+            <div class="row py-2 d-lg-block d-none">
+                <img nz-image nzSrc="assets/public/cat_boss.jpg" alt="">
+                <p class="text-center">
+                    Be your own boss.
+                </p>
             </div>
         </div>
     </div>
