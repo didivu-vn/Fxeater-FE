@@ -5,13 +5,13 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-lg-6 col-md-7 col-12">
+        <div class="col-lg-5 col-md-6 col-12 px-3">
             <ng-container *ngTemplateOutlet="homeCurPair"></ng-container>
         </div>
-        <div class="col-lg-4 col-md-5 d-md-block d-none">
+        <div class="col-lg-5 col-md-6 d-md-block d-none px-3">
             <ng-container *ngTemplateOutlet="homeCrypto"></ng-container>
         </div>
-        <div class="col-lg-2 col-md-6 d-lg-block d-none ms-auto">
+        <div class="col-lg-2 col-md-6 d-lg-block d-none ms-auto px-3">
             <img nz-image [responsive]="true" nzSrc="assets/public/grow_in_hand.jpg" alt="grow_in_hand">
             <p class="text-center">Future in your hand</p>
         </div>
@@ -21,11 +21,11 @@
 <ng-container *ngIf="(pageData$|async)">
     <div class="container-fluid pt-1">
         <div class="row">
-            <div class="col-lg-5" *ngIf="currentPageData.blogData.length > 0">
+            <div class="col-lg-5  px-3" *ngIf="currentPageData.blogData.length > 0">
                 <nz-divider nzText="New post" nzOrientation="left"></nz-divider>
                 <app-home-blog [blogsData]="currentPageData.blogData"></app-home-blog>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-5 px-3">
                 <nz-divider nzText="Series" nzOrientation="left"></nz-divider>
                 <div class="row">
                     <div class="col-12 mt-3" *ngFor="let item of currentPageData.seriesData">
@@ -50,15 +50,15 @@
                 </div>
                 <!-- <app-home-blog [blogsData]="pageData[1]"></app-home-blog> -->
             </div>
-            <div class="col-lg-2 col-md-6 d-lg-block d-none ms-auto">
+            <div class="col-lg-2 col-md-6 d-lg-block d-none ms-auto px-3">
                 <img nz-image [responsive]="true" nzSrc="assets/public/calculate_head.jpg" alt="calculate_head">
                 <p class="text-center">Train your mind</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-10 col-12">
+            <div class="col-lg-10 col-12 px-3">
+                <nz-divider nzText="Learn Chart Patterns" nzOrientation="left"></nz-divider>
                 <div class="row">
-                    <nz-divider nzText="Learn Chart Patterns" nzOrientation="left"></nz-divider>
                     <ng-container *ngFor="let item of currentPageData.patternData">
                         <div class="col-lg-3 col-md-6 col-12 mt-3">
                             <app-chart-pattern-card [item]="item"></app-chart-pattern-card>

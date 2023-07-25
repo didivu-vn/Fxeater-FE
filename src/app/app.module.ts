@@ -11,7 +11,7 @@ import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 
-import { MainLayoutComponent } from './layout';
+import { FooterComponent, MainLayoutComponent } from './layout';
 import { ZorroModule } from './shared/lib';
 import { 
   AboutPage, 
@@ -113,7 +113,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     HomeBlogComponent,
     SelectLangComponent,
     BlogCardMobileComponent,
-    LandingPage, HomeEasyAccessComponent, HomeNewsComponent, SeriesPage, HomeCryptoComponent, ReadChartPage, ChartPatternCardComponent],
+    LandingPage, HomeEasyAccessComponent, HomeNewsComponent, SeriesPage, HomeCryptoComponent, ReadChartPage, ChartPatternCardComponent, FooterComponent],
   exports:[
     ZorroModule
   ],
