@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { HOST_URL } from '../util';
 
 export interface IPageMetadata {
-  title: string;
+  title?: string;
   // image will be added later
-  description: string;
+  description?: string;
   author?: string;
   keywords?: string[];
   type?: string;
@@ -30,7 +30,7 @@ export class MetadataService {
     ) {}
 
     public updateMetadata(metadata: Partial<IPageMetadata>, index: boolean = true): void {
-      const pageMetadata: IPageMetadata = {...defaultMetadata, ...metadata};
+      const pageMetadata: IPageMetadata = {...metadata};
       const metatags: MetaDefinition[] = this.generateMetaDefinitions(pageMetadata);
   
       this.metaTagService.addTags([
@@ -40,15 +40,15 @@ export class MetadataService {
        { 'http-equiv': 'Content-Type', content: 'text/html; charset=utf-8' },
       ]);
   
-      this.titleService.setTitle(pageMetadata.title);
+      this.titleService.setTitle(pageMetadata.title || '');
     }
   
     private generateMetaDefinitions(metadata: IPageMetadata): MetaDefinition[] {
       return [
-        { name: 'title', content: metadata.title },
-        { property: 'og:title', content: metadata.title },  
-        { name: 'description', content: metadata.description },
-        { property: 'og:description', content: metadata.description },  
+        { name: 'title', content: metadata.title || defaultMetadata.title || '' },
+        { property: 'og:title', content: metadata.title || defaultMetadata.title || '' },  
+        { name: 'description', content: metadata.description || defaultMetadata.description || ''},
+        { property: 'og:description', content: metadata.description || defaultMetadata.description || '' },  
         { name: 'author', content: metadata.author || '' },
         { property: 'og:author', content: metadata.author || '' },  
         { name: 'keywords', content: metadata.keywords?.join(', ') || defaultMetadata.keywords?.join(', ') || '' },  

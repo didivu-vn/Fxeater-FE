@@ -1,4 +1,4 @@
-export const HOST_URL = ''
+export const HOST_URL = 'https://www.fxeater.com'
 export class END_POINT_URL_LIST {
     static UPDATE_PROFILE = 'v1/me/#id'
     static MY_ACCOUNT_SHOP = 'v1/shop-me/'

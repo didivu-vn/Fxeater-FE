@@ -69,6 +69,7 @@ export class BasePage implements OnInit {
   }
 
   updateSEO(){
+    this.metaData.page &&
     this.metaDateService.updateMetadata(this.metaData.page || {})
   }
 
