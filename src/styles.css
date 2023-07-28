@@ -51,7 +51,7 @@ nz-content {
 }
 
 .ql-snow .ql-editor :is(h1, h2, h3) {
-    font-family: var(--cs-main-font) !important;
+    font-family: var(--cs-header-font) !important;
 }
 
 
