@@ -35,7 +35,7 @@ export function app(): express.Express {
   const server = express();
 
   server.use(compression());
-  server.use(morgan('common'));
+  // server.use(morgan('common'));
 
   const distFolder = join(process.cwd(), 'dist/apps/ggj-aff-fe/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
@@ -71,7 +71,7 @@ export function app(): express.Express {
 
     // check whether User-Agent is bot
     if (isbot(req.header('User-Agent'))) {
-      console.log(`SSR -- ${new Date().toUTCString()} -- ${req.header('User-Agent')}`);
+      console.log(`SSR -- ${new Date().toUTCString()} -- ${req.path} -- ${req.header('User-Agent')}`);
 
       // render app page on the server
       res.render(indexHtml, { req, providers: [
@@ -79,7 +79,7 @@ export function app(): express.Express {
         // { provide: HOST_URL, useValue: hostUrl },
       ] });
     } else {
-      console.log(`No SSR -- ${new Date().toUTCString()} -- ${req.header('User-Agent')}`);
+      console.log(`No SSR -- ${new Date().toUTCString()} -- ${req.path} -- ${req.header('User-Agent')}`);
       // return index.html without pre-rendering
       // app will get rendered on the client
       res.sendFile(path.join(__dirname, '../browser/index.html'));
