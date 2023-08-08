@@ -12,7 +12,8 @@
 
         <div class="col-xl-5 col-md-7 ms-auto col-12 d-flex justify-items-end flex-row">
             <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-                <input type="text" nz-input placeholder="name, author, type,..." [(ngModel)]="searchKW" />
+                <input type="text" nz-input placeholder="name, author, type,..." [(ngModel)]="searchKW"
+                    (keydown.enter)="search()" />
             </nz-input-group>
             <ng-template #suffixIconButton>
                 <button nz-button nzType="primary" nzSearch (click)="search()">

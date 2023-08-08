@@ -34,6 +34,10 @@ const routes: Routes = [
     loadChildren: () => import('../page/learning/learning.module').then(mod => mod.LearningPageModule)
   },
   {
+    path: 'search',
+    loadChildren: () => import('../page/search/search.module').then(mod => mod.SearchPageModule)
+  },
+  {
     path: 'mypage',
     loadChildren: () => import('../page/mypage/mypage.module').then(mod => mod.MypagePageModule),
     canActivate: [AuthGuard]
