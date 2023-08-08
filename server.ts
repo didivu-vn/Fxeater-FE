@@ -77,11 +77,11 @@ export function app(): express.Express {
       console.log(`No SSR -- ${new Date().toUTCString()} -- ${req.path} -- ${req.header('User-Agent')}`);
       // return index.html without pre-rendering
       // app will get rendered on the client
-      // res.sendFile(path.join(__dirname, '../browser/index.html'));
-      res.render(indexHtml, { req, providers: [
-        { provide: APP_BASE_HREF, useValue: req.baseUrl },
-        // { provide: HOST_URL, useValue: hostUrl },
-      ] });
+      res.sendFile(path.join(__dirname, '../browser/index.html'));
+      // res.render(indexHtml, { req, providers: [
+      //   { provide: APP_BASE_HREF, useValue: req.baseUrl },
+      //   // { provide: HOST_URL, useValue: hostUrl },
+      // ] });
     }
   });
 
