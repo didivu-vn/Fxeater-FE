@@ -25,7 +25,7 @@ export class LanguageService {
   }
 
   getLangFromStorage () {
-    const localLang =  localStorage.getItem(USER_LANG) as LANG
+    const localLang = localStorage &&  localStorage.getItem(USER_LANG) as LANG
     return localLang || DEFAULT_LANG
   }
 
