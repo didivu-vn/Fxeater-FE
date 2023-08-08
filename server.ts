@@ -50,11 +50,6 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
-  // Example Express Rest API endpoints
-  // TODO: implement data requests securely
-  server.get('/api/**', (req, res) => {
-    res.status(404).send('data requests are not yet supported');
-  });
   // Serve static files from /browser
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
@@ -82,7 +77,11 @@ export function app(): express.Express {
       console.log(`No SSR -- ${new Date().toUTCString()} -- ${req.path} -- ${req.header('User-Agent')}`);
       // return index.html without pre-rendering
       // app will get rendered on the client
-      res.sendFile(path.join(__dirname, '../browser/index.html'));
+      // res.sendFile(path.join(__dirname, '../browser/index.html'));
+      res.render(indexHtml, { req, providers: [
+        { provide: APP_BASE_HREF, useValue: req.baseUrl },
+        // { provide: HOST_URL, useValue: hostUrl },
+      ] });
     }
   });
 
