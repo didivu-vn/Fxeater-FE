@@ -68,6 +68,8 @@ import { AllInfoComponent } from './page/mypage/pages/all-info/all-info.componen
 import { AuthGuard } from './shared/guard/auth.guard';
 import { HomeBlogComponent, HomeCryptoComponent, HomeEasyAccessComponent, HomeNewsComponent } from './page/home';
 import { ReadChartPage } from './page/learning';
+import { SearchIndexComponent } from './page/search/services/search-index/search-index.component';
+
 import { LazyImgDirective } from './shared/derective/lazy-load-img.directive';
 import { FadeInAnimationDirective } from './shared/derective/fade-in-animation.directive';
 
@@ -82,8 +84,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
 @NgModule({
   declarations: [
     AppComponent, 
-    HomePage, 
-    AboutPage, 
+    HomePage, AboutPage, 
     MainLayoutComponent, 
     HeaderComponent, 
     BreadcrumbComponent, 
@@ -112,7 +113,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AllInfoComponent,
     HomeBlogComponent,
     SelectLangComponent,
-    BlogCardMobileComponent,
+    BlogCardMobileComponent, SearchIndexComponent,
     LandingPage, HomeEasyAccessComponent, HomeNewsComponent, SeriesPage, HomeCryptoComponent, ReadChartPage, ChartPatternCardComponent, FooterComponent],
   exports:[
     ZorroModule
