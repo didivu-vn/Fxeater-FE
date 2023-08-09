@@ -27,4 +27,8 @@ export class HeaderComponent {
       });
   }
 
+  onKeydown(event: any){
+    this.search()
+  }
+
 }

@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xl-8 col-12 py-3">
+            <ng-container *ngIf="(pageData$ | async) as pageData">
+                <ng-container *ngIf="target_kw; else emptyKW">
+                    <h4 nz-typography>Has {{data.length}} result(s) for kw: <strong>{{target_kw}}</strong></h4>
+                    <nz-divider></nz-divider>
+                    <nz-list class="demo-loadmore-list">
+                        <nz-list-item *ngFor="let item of data">
+                            <nz-list-item-meta>
+                                <nz-list-item-meta-title>
+                                    <nz-tag [nzColor]="item.style">
+                                        {{item.type_name}}
+                                    </nz-tag>
+                                    <a routerLink="{{item.url}}">{{ item.name }}</a>
+                                </nz-list-item-meta-title>
+                                <nz-list-item-meta-description>
+                                    {{ item.detail }}
+                                </nz-list-item-meta-description>
+                            </nz-list-item-meta>
+
+                            <nz-list-item-extra>
+                                <img height="120" width="120" style="object-fit: contain;" alt="thumbnail_image"
+                                    src="{{item.thumbnail_image}}" *ngIf="item.thumbnail_image" />
+                            </nz-list-item-extra>
+                        </nz-list-item>
+                    </nz-list>
+                </ng-container>
+                <ng-template #emptyKW>
+                    <nz-empty nzNotFoundContent="No data, please enter your Keyword in top-right conner!"></nz-empty>
+                </ng-template>
+
+
+
+            </ng-container>
+        </div>
+    </div>
+</div>

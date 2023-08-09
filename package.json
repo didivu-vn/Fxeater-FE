@@ -7,7 +7,7 @@
     "test": "nx test",
     "start": "node dist/apps/ggj-aff-fe/server/main.js",
     "build": "nx run ggj-aff-fe:server",
-    "postbuild": "node build-process/post-build.js && node build-process/sitemap-generate.js",
+    "postbuild": "node build-process/sitemap-generate.js",
     "start:lc": "nx run ggj-aff-fe:serve"
   },
   "private": true,

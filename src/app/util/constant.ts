@@ -19,6 +19,7 @@ export class END_POINT_URL_LIST {
     static HOME_BLOG = 'v1/api-blog-fxeater-home/'
 
     static CHART_PATTERN = 'v1/api-chart-pattern/'
+    static SEARCH = 'v1/api-search-fx/'
 }
 
 export const DEFAULT_LANG = 'en'
