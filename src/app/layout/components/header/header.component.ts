@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavigationService } from 'src/app/service';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,8 @@ export class HeaderComponent {
   }
 
   constructor(
-    private router: Router
+    private router: Router,
+    private navigationService: NavigationService
   ) {} 
 
   search():void {
@@ -29,6 +31,10 @@ export class HeaderComponent {
 
   onKeydown(event: any){
     this.search()
+  }
+
+  back(){
+    this.navigationService.back()
   }
 
 }
