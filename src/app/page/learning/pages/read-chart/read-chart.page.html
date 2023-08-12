@@ -24,7 +24,7 @@
 </ng-container>
 
 <nz-drawer [nzClosable]="false" [nzVisible]="isShowChartInfoModal" [nzWidth]="modelSize" [nzHeight]="modelSize"
-    [nzPlacement]="modalPlacement" nzTitle="{{selectedChart.name}} parttern" (nzOnClose)="isShowChartInfoModal = false">
+    [nzPlacement]="modalPlacement" [nzTitle]="title" (nzOnClose)="isShowChartInfoModal = false">
     <ng-container *nzDrawerContent>
         <p nz-typography>{{selectedChart.description}}</p>
         <span nz-typography nzType="secondary">
@@ -45,4 +45,9 @@
 
         </div>
     </ng-container>
+    <ng-template #title>
+        <h1>
+            {{selectedChart.name}} parttern
+        </h1>
+    </ng-template>
 </nz-drawer>
