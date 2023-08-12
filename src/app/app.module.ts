@@ -11,7 +11,7 @@ import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 
-import { FooterComponent, MainLayoutComponent } from './layout';
+import { BreadcrumbComponent, FooterComponent, HeaderComponent, MainLayoutComponent, NavbarComponent } from './layout';
 import { ZorroModule } from './shared/lib';
 import { 
   AboutPage, 
@@ -21,12 +21,10 @@ import {
 } from './page';
 
 import { 
-  BreadcrumbComponent,
   ChartPatternCardComponent,
   EmailSubComponent,
-  HeaderComponent,
   LoaderSpinerComponent, 
-  NavbarComponent, 
+  NoSSRComponent, 
   QuillEditorComponent,
   SelectLangComponent, 
 } from './shared/component';
@@ -37,7 +35,8 @@ import {
   CacheResolverService, 
   MetadataService, 
   SlugService,
-  LanguageService
+  LanguageService,
+  NavigationService
 } from './service';
 
 import { QuillModule } from 'ngx-quill';
@@ -113,7 +112,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AllInfoComponent,
     HomeBlogComponent,
     SelectLangComponent,
-    BlogCardMobileComponent, SearchIndexComponent,
+    BlogCardMobileComponent, SearchIndexComponent, NoSSRComponent,
     LandingPage, HomeEasyAccessComponent, HomeNewsComponent, SeriesPage, HomeCryptoComponent, ReadChartPage, ChartPatternCardComponent, FooterComponent],
   exports:[
     ZorroModule
@@ -128,6 +127,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     MetadataService,
     BlogService,
     LanguageService,
+    NavigationService,
     AuthGuard
   ],
   bootstrap: [AppComponent],

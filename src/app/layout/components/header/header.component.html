@@ -1,13 +1,16 @@
 <div class="header__section">
     <div class="row bg-white py-2 m-0">
         <div class="col">
-            <!-- <span nz-icon nzType="arrow-left" nzTheme="outline"></span> -->
-            <h1 class="fs-3" *ngIf="header.title">
+            <div class="fs-3" *ngIf="header.title">
+                <app-no-ssr>
+                    <span nz-icon nzType="arrow-left" nzTheme="outline" class="cs__pointer fs-5"
+                        (click)="back()"></span>
+                </app-no-ssr>
                 {{header.title}}
-            </h1>
+            </div>
         </div>
         <div class="col mt-2 d-none d-lg-block">
-            <h2 class="fs-6" *ngIf="header.subtitle">{{header.subtitle}}</h2>
+            <div class="fs-6" *ngIf="header.subtitle">{{header.subtitle}}</div>
         </div>
 
         <div class="col-xl-5 col-md-7 ms-auto col-12 d-flex justify-items-end flex-row">
