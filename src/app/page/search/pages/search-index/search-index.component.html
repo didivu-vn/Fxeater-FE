@@ -15,23 +15,23 @@
                                     <a routerLink="{{item.url}}">{{ item.name }}</a>
                                 </nz-list-item-meta-title>
                                 <nz-list-item-meta-description>
-                                    {{ item.detail }}
+                                    <div class="d-flex">
+                                        <span class="pe-2 me-auto">{{ item.detail }}</span>
+                                        <picture *ngIf="item.thumbnail_image">
+                                            <source srcset="{{item.thumbnail_image}}" media="(min-width: 600px)"
+                                                height="120" width="120" style="object-fit: contain;" />
+                                            <img src="{{item.thumbnail_image}}" alt="MDN" height="90" width="90"
+                                                style="object-fit: contain;" />
+                                        </picture>
+                                    </div>
                                 </nz-list-item-meta-description>
                             </nz-list-item-meta>
-
-                            <nz-list-item-extra>
-                                <img height="120" width="120" style="object-fit: contain;" alt="thumbnail_image"
-                                    src="{{item.thumbnail_image}}" *ngIf="item.thumbnail_image" />
-                            </nz-list-item-extra>
                         </nz-list-item>
                     </nz-list>
                 </ng-container>
                 <ng-template #emptyKW>
                     <nz-empty nzNotFoundContent="No data, please enter your Keyword in top-right conner!"></nz-empty>
                 </ng-template>
-
-
-
             </ng-container>
         </div>
     </div>
