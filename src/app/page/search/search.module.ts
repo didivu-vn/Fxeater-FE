@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { SearchIndexComponent } from "./services/search-index/search-index.component";
+import { SearchIndexComponent } from "./pages/search-index/search-index.component";
 
 const routes: Routes = [
     {
