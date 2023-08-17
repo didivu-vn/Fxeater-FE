@@ -10,11 +10,14 @@
     --cs-color-hightlight: #fef6e4;
     --cs-color-stroke: #001858;
 
+    --studio-gray-80: #2c3338;
+    --color-text: var(--studio-gray-80);
 
     --cs-main-font: 'Montserrat', sans-serif;
     --cs-second-font: 'Open Sans', sans-serif;
-    --cs-header-font:'Playfair Display', serif;
-    --cs-avatar-font:'Pacifico', cursive;
+    /* --cs-header-font:'Playfair Display', serif; */
+    --cs-header-font:'Noto Serif', serif;
+    --cs-avatar-font:'Itim', cursive;
 }
 
 .cs__bg-text {
@@ -54,6 +57,18 @@ nz-content {
     font-family: var(--cs-header-font) !important;
 }
 
+:is(h1, h2, h3) {
+    font-family: var(--cs-header-font) !important;   
+}
+
+p {
+    color: var(--color-text) !important;
+}
+
+.ql-syntax {
+    background-color: #f0f0f0 !important; 
+    color: var(--color-text) !important; 
+}
 
 .ql-container {
   font-size: 1rem !important;
