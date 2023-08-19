@@ -5,7 +5,14 @@
         </a>
         <div class="item-body px-lg-3 px-2">
             <div class="item-body-content">
-                <span class="description">{{blogData.sub_title}}</span>
+                <div class="description mb-2">
+                    <ng-container *ngFor="let item of blogHagtag">
+                        <nz-tag>
+                            {{item}}
+                        </nz-tag>
+                    </ng-container>
+                    <!-- {{blogData.sub_title}} -->
+                </div>
                 <h2 class="title fs-5">
                     <a [routerLink]="'/blog/'+blogData.id+'-'+blogSlug" class="link" title="{{blogData.name}}">
                         {{blogData.name}}
