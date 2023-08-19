@@ -12,11 +12,19 @@ export class BlogCardMobileComponent implements OnInit {
   @Input() blogData: IBlogData = {} as IBlogData
 
   blogSlug:string =''
-
+  blogHagtag: string[] = []
   constructor() { }
 
   ngOnInit(): void {
+    this.transformData()
+  }
+
+  transformData(){
+    let hagtag = this.blogData.sub_title
+    this.blogHagtag = hagtag.split(' ')
+
     this.blogSlug = slugify(this.blogData.name, {locale: 'vi'}).toLowerCase()
   }
+
 
 }
