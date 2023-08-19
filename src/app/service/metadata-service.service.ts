@@ -1,7 +1,8 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HOST_URL } from '../util';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface IPageMetadata {
   title?: string;
@@ -24,16 +25,21 @@ const defaultMetadata: IPageMetadata = {
 })
 export class MetadataService {
 
-    constructor(private metaTagService: Meta,
+    constructor(
+      private metaTagService: Meta,
       private titleService: Title,
-      private router: Router
+      private router: Router,
+      @Inject(PLATFORM_ID) private platformId: string,
+
     ) {}
 
     public updateMetadata(metadata: Partial<IPageMetadata>, index: boolean = true): void {
       const pageMetadata: IPageMetadata = {...metadata};
       const metatags: MetaDefinition[] = this.generateMetaDefinitions(pageMetadata);
   
-      this.metaTagService.addTags([
+
+      // add tags lead to duplication when navigation with in page - which is ok because we dont care about meta tag in client site
+      !isPlatformBrowser(this.platformId) && this.metaTagService.addTags([
        ...metatags,
        { property: 'og:url', content: `${HOST_URL}${this.router.url}`},
        { name: 'robots', content: index ? 'index, follow' : 'noindex' },
