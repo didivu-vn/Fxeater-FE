@@ -22,21 +22,24 @@
             </div>
             <div class="row item-meta">
                 <span class="col-lg-3 col-6 date">
-                    <i class="fa-regular fa-clock me-1"></i>{{blogData.created_at | date:'short'}}
+                    <span nz-icon nzType="clock-circle" nzTheme="outline"></span>
+                    {{blogData.created_at | date:'short'}}
                 </span>
                 <span class="col-lg-3 col-6 author">
-                    <i class="fa-regular fa-pen-to-square me-1"></i> by <strong>{{blogData.author}}</strong>
+                    <span nz-icon nzType="fire" nzTheme="outline"></span>
+                    by <strong>{{blogData.author}}</strong>
                 </span>
                 <span class="col-lg-2 col-3 views">
-                    <i class="fa-regular fa-eye me-1"></i>{{blogData.view_count}}
+                    <span nz-icon nzType="eye" nzTheme="outline" [nzTheme]="'twotone'"></span>
+                    {{blogData.view_count}}
                 </span>
                 <span class="col-lg-2 col-3 likes">
-                    <i class="fa-regular fa-heart me-1"
-                        [ngStyle]="{color:'var(--pink-500)'}"></i>{{blogData.like_count}}
+                    <span nz-icon nzType="like" nzTheme="outline"></span>
+                    {{blogData.like_count}}
                 </span>
                 <span class="col-lg-2 col-3 comments">
-                    <i class="fa-regular fa-comment me-1"
-                        [ngStyle]="{color:'var(--blue-500)'}"></i>{{blogData.replies.length}}
+                    <span nz-icon nzType="comment" nzTheme="outline"></span>
+                    {{blogData.replies.length}}
                 </span>
             </div>
         </div>
