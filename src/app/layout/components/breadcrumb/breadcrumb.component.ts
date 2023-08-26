@@ -1,5 +1,6 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { ApiService } from 'src/app/service';
 import { END_POINT_URL_LIST } from 'src/app/util';
 
@@ -11,8 +12,10 @@ import { END_POINT_URL_LIST } from 'src/app/util';
 export class BreadcrumbComponent {
 
   endpoint = END_POINT_URL_LIST.RANDOM_QUOTE
-  quote$ = this.apiService.getDataWithUrl(this.endpoint).pipe(
-    map(data => data)
+  quoteData: any
+  header = new HttpHeaders({'x-refresh':'true', 'x-none-loader':'true'})
+  quote$ = this.apiService.getDataWithUrl(this.endpoint, this.header).pipe(
+    tap(data => this.quoteData = data),
   )
 
   @Input() breadcrumb: any
@@ -20,5 +23,9 @@ export class BreadcrumbComponent {
   constructor(
     private apiService: ApiService
   ) { }
+
+  changeQuote(): void{
+    this.quote$.subscribe()
+  }
 
 }
