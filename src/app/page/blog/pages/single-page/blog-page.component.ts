@@ -1,6 +1,6 @@
 import { Component, OnInit, Optional } from '@angular/core';
 import { ApiService, UserService } from 'src/app/service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs';
@@ -23,23 +23,24 @@ export class BlogPageComponent extends BasePage {
 
   userData: IUserInfo = {} as IUserInfo
   userInfo$ = this.userService.userInfoStorage.pipe(
-    tap(data => this.userData = data )
+    tap(data => this.userData = data ),
+    tap(data => this.crateAndUpadateForm())
   ) 
 
   blogId?:number
   blogData: any
   replyData?: IBlogReply[]
   relatedPost?: IBlogRelatedData[]
-  visibleSidebarRight = false
-  visibleSidebarBottom = false
+  isVisibleSidebar = false
+  visibleSidebarPosition : 'bottom' | 'right' = 'right'
   targetEndpoint = ''
   currentTime = Date()
 
-  cmtForm = new FormGroup({
-    content: new FormControl(``, Validators.required),
-  })
+
+  validateForm!: UntypedFormGroup;
 
   isShowAuthError = false
+  isAllowAddComment = false
 
   tocData = [] as IToCData[]
 
@@ -47,14 +48,29 @@ export class BlogPageComponent extends BasePage {
     private apiService:ApiService,
     private breakpointObserver: BreakpointObserver,
     private userService: UserService,
+    private fb: UntypedFormBuilder,
   ) {
     super()
+  }
+
+  override ngOnInit(): void {
+    this.updateLayout()
+    this.updateSEO()
+    this.crateAndUpadateForm()
   }
 
   override routeChange(data: any): void {
     this.blogId = data['id'].split('-')[0]
     this.targetEndpoint = `${END_POINT_URL_LIST.BLOG}${this.blogId}/${data.lang ? ('?lang=' + data.lang) : ''}`
     this.getBlogData(true)
+  }
+
+  crateAndUpadateForm(){
+    this.isAllowAddComment = this.userData.base_user?.username ? true : false
+    this.validateForm = this.fb.group({
+      username: [ this.userData.base_user?.username || null, [Validators.required]],
+      content: [null, [Validators.required]],
+    });
   }
 
   setupMetaData(){
@@ -110,29 +126,26 @@ export class BlogPageComponent extends BasePage {
 
   onSubmitComment(){
 
-    if (this.userService.isHasUserInfo){
-      const data = {
-        content:this.cmtForm.value.content,
-        target_blog:this.blogId
-      }
-      this.apiService.postDataWithUrl(END_POINT_URL_LIST.REPLY_BLOG,data).subscribe(
-        data=> {
-          this.getBlogData(true)
-          this.cmtForm.reset()
-        }
-      )
-      return
+    const data = {
+      content: this.validateForm.value.content,
+      username: this.validateForm.value.username,
+      target_blog: this.blogId
     }
 
-    // do not have user info
-    this.isShowAuthError = true
+    this.apiService.postDataWithUrl(END_POINT_URL_LIST.REPLY_BLOG,data).pipe(
+      tap(data => {
+        this.validateForm.reset()
+        this.getBlogData(true)
+      }),
+    ).subscribe()
+    return
 
   }
 
   triggerSideBar(){
-    this.breakpointObserver.isMatched('(max-width: 599px)') ?
-    this.visibleSidebarBottom = true :
-    this.visibleSidebarRight = true
+    this.visibleSidebarPosition = this.breakpointObserver.isMatched('(max-width: 599px)') ?
+    'bottom' : 'right'
+    this.isVisibleSidebar = true
   }
 
   like() {
@@ -160,4 +173,5 @@ export class BlogPageComponent extends BasePage {
     )
     this.blogData.html_string = $.html()
   }
+
 }
