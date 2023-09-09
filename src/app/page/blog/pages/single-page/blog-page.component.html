@@ -85,6 +85,11 @@
                 </nz-form-item>
             </div>
         </form>
-        <app-blog-reply ngClass="mt-1" [input]="replyData" *ngIf="replyData"></app-blog-reply>
+        <app-blog-reply ngClass="mt-1" [input]="replyData"
+            *ngIf="replyData && replyData.length > 0; else noReply"></app-blog-reply>
+        <ng-template #noReply>
+            <p class="p-4">Nothing here yet!</p>
+        </ng-template>
+
     </ng-container>
 </nz-drawer>
