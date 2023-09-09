@@ -19,8 +19,9 @@
         </div>
         <div class="col-lg-8 cs__quote d-none d-lg-block">
             <nz-divider nzType="vertical"></nz-divider>
-            <ng-container *ngIf="(quote$ | async) as quote">
-                <span class="ms-1"> {{quote.text}} -- by <strong>{{quote.author}}</strong>
+            <ng-container *ngIf="(quote$ | async)">
+                <span class="ms-1" (click)="changeQuote()"> {{quoteData.text}} -- by
+                    <strong>{{quoteData.author}}</strong>
                 </span>
             </ng-container>
         </div>

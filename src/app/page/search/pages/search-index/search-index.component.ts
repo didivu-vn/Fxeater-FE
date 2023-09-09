@@ -31,7 +31,7 @@ const metaData = {
   ],
   layout:{
     title: 'Search Detail',
-    subtitle: 'Everything you need to know about.'
+    subtitle: 'Looking for some think? Search for it now.'
   },
   page: {
     title: `FXeater | Search`,

@@ -25,8 +25,8 @@
             <div class="col-lg-1 border-sm-bottom d-flex justify-content-center p-lg-0 p-2">
                 <div class="d-flex flex-lg-column flex-sm-row">
                     <div class="blog__cta me-3 mt-3">
-                        <span class="fs-5">
-                            <span nz-icon nzType="like" nzTheme="outline" (click)="like()"></span>
+                        <span class="fs-5" (click)="like()">
+                            <span nz-icon nzType="like" nzTheme="outline"></span>
                             {{blogData.like_count}}
                         </span>
                     </div>
@@ -34,8 +34,8 @@
                         <i class="fa-regular fa-star fs-5" pTooltip="Super Like"></i>
                     </div> -->
                     <div class="blog__cta mt-3">
-                        <span class="fs-5">
-                            <span nz-icon nzType="comment" nzTheme="outline" (click)="triggerSideBar()"></span>
+                        <span class="fs-5" (click)="triggerSideBar()">
+                            <span nz-icon nzType="comment" nzTheme="outline"></span>
                             {{blogData.replies.length}}
                         </span>
                     </div>
@@ -53,3 +53,43 @@
         </div>
     </ng-container>
 </div>
+
+<nz-drawer [nzClosable]="false" [nzVisible]="isVisibleSidebar" [nzPlacement]="visibleSidebarPosition" nzTitle="Comment"
+    (nzOnClose)="isVisibleSidebar = false" [nzSize]="'large'">
+    <ng-container *nzDrawerContent>
+        <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="onSubmitComment()"
+            *ngIf="isAllowAddComment">
+            <div class="container-fluid">
+                <nz-form-item ngClass="mb-2 row">
+                    <nz-form-control nzErrorTip="Please input your name!">
+                        <nz-input-group nzPrefixIcon="user">
+                            <input formControlName="username" nz-input placeholder="your name" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item ngClass="mb-2 row">
+                    <nz-form-control nzErrorTip="Please write something here!">
+                        <nz-textarea-count [nzMaxCharacterCount]="2000">
+                            <textarea formControlName="content" nz-input rows="4"
+                                placeholder="write any thing"></textarea>
+                        </nz-textarea-count>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item ngClass="mb-2 row">
+                    <div class="col-12">
+                        <nz-form-control>
+                            <button nz-button nzType="primary" [disabled]="!validateForm.valid"
+                                class="ms-auto">Post</button>
+                        </nz-form-control>
+                    </div>
+                </nz-form-item>
+            </div>
+        </form>
+        <app-blog-reply ngClass="mt-1" [input]="replyData"
+            *ngIf="replyData && replyData.length > 0; else noReply"></app-blog-reply>
+        <ng-template #noReply>
+            <p class="p-4">Nothing here yet!</p>
+        </ng-template>
+
+    </ng-container>
+</nz-drawer>
