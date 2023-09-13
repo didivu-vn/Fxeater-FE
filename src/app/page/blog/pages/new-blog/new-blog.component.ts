@@ -55,6 +55,9 @@ export class NewBlogComponent extends BasePage {
     private messageService: NzMessageService,
   ) { 
     super()
+    window.addEventListener('beforeunload', (event) => {
+      event.returnValue = `Are you sure you want to leave?`;
+    });
   }
 
   override ngOnInit(): void {
