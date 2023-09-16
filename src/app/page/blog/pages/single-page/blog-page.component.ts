@@ -89,7 +89,7 @@ export class BlogPageComponent extends BasePage {
         subtitle: 'Daily reading is a must.'
       },
       page: {
-        title: `FXeater | Blog | ${this.blogData.name}`,
+        title: `${this.blogData.name} | FXeater | Blog`,
         description: this.blogData.description
       }
     }
