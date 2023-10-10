@@ -34,6 +34,10 @@ const routes: Routes = [
     loadChildren: () => import('../page/learning/learning.module').then(mod => mod.LearningPageModule)
   },
   {
+    path: 'faq',
+    loadChildren: () => import('../page/faq/faq.module').then(mod => mod.FAQPageModule)
+  },
+  {
     path: 'search',
     loadChildren: () => import('../page/search/search.module').then(mod => mod.SearchPageModule)
   },
