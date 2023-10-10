@@ -71,7 +71,7 @@ import { SearchIndexComponent } from './page/search/pages/search-index/search-in
 
 import { LazyImgDirective } from './shared/derective/lazy-load-img.directive';
 import { FadeInAnimationDirective } from './shared/derective/fade-in-animation.directive';
-
+import { FaqPage } from './page/faq/pages/faq/faq.page';
 
 
 
@@ -113,7 +113,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     HomeBlogComponent,
     SelectLangComponent,
     BlogCardMobileComponent, SearchIndexComponent, NoSSRComponent,
-    LandingPage, HomeEasyAccessComponent, HomeNewsComponent, SeriesPage, HomeCryptoComponent, ReadChartPage, ChartPatternCardComponent, FooterComponent],
+    LandingPage, HomeEasyAccessComponent, HomeNewsComponent, SeriesPage, HomeCryptoComponent, ReadChartPage, ChartPatternCardComponent, FooterComponent, FaqPage],
   exports:[
     ZorroModule
   ],

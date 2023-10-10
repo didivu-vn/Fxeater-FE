@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <h1 nz-typography style="display: none;">FxEater's Frequently Asked</h1>
+  </div>
+  <div class="row pt-5">
+    <h4 nz-typography class="mb-5">Luckily, we heart some voices, and we are supper happy to share more about us.</h4>
+    <div class="col-lg-10 col-12">
+      <nz-collapse [nzGhost]="false">
+        <nz-collapse-panel #p *ngFor="let panel of panels" [nzHeader]="panel.question" [nzActive]="panel.active"
+          [nzExpandedIcon]="p.nzActive ? 'send' : 'eye'" [nzDisabled]="panel.disabled">
+          <p style="margin:0;">
+            {{panel.content}}
+          </p>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </div>
+  </div>
+</div>
